@@ -1,0 +1,134 @@
+.container {
+  padding: 0 2rem;
+}
+
+.main {
+  min-height: 100vh;
+  padding: 4rem 0;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.header{
+  width: 100%;
+  height: 400px;
+  padding-top: 100px;
+  background-image: linear-gradient(
+    120deg,#000000 0%,rgba(0,0,0,0) 100%),url(http://www.photonuri.com/wp-content/uploads/2020/10/1210101RF001-2-scaled.jpg)!important;
+}
+.header_t1{
+  display: block;
+  font-size: 3em;
+  font-weight: 800;
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+  color: white;
+  margin-bottom: 10px;
+  margin-top: 0;
+}
+.header_t2{
+  display: block;
+  font-size: 1.5em;
+  font-weight: 800;
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+  color: white;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  margin-top: 0;
+}
+
+.footer {
+  padding: 2rem 0;
+  border-top: 1px solid #eaeaea;
+  justify-content: center;
+  align-items: center;
+  background-color: #1e1d1c!important;
+}
+
+
+.footer_t{
+  font-weight: 800;
+  font-size: 2em;
+  width: max-content;
+  margin-left: auto;
+  margin-right: auto;
+  color: white;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.footer_part{
+  width: 25%;
+  margin-right: 5.5%;
+}
+.footer_part_last{
+  width: 25%;
+}
+.footer_item{
+  background-color: #282624;
+  width: 100%;
+  padding-bottom: 30px;
+}
+.footer_mid{
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-top: 100px;
+}
+.footer_item_link{
+  width: 100%;
+}
+.footer_item_link img{
+  width: 100%;
+  height: auto;
+}
+.footer_item_p{
+  font-size: 1.5em;
+  color: white;
+  font-weight: 800;
+  width: max-content;
+  margin-left: auto;
+  margin-right: auto;
+}
+.footer_item_a{
+  display: block;
+  color: #fdb467!important;
+  font-size: 1.5em;
+  font-weight: 800;
+  width: max-content;
+  margin-left: auto;
+  margin-right: auto;
+}
+.footer_info_p1{
+  font-size: 1.5rem;
+  font-weight: 900;
+  width: max-content;
+  margin-left: auto;
+  margin-right: auto;
+  color: white;
+}
+.footer_info_p2{
+  font-size: 1.5rem;
+  font-weight: 500;
+  width: max-content;
+  margin-left: auto;
+  margin-right: auto;
+  color: white;
+}
+.footer_info_icon{
+  width: 60px;
+  height: 60px;
+  border-radius: 30px;
+  background-color: #fdb467!important;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+.footer_info_div{
+  display: flex;
+  justify-content: center;
+}
