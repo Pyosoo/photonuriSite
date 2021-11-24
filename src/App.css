@@ -132,3 +132,60 @@
   display: flex;
   justify-content: center;
 }
+
+
+.cat1_div{
+  display: flex;
+  flex-grow: 1;
+  flex-wrap: wrap;
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 50px;
+  margin-bottom: 50px;
+  justify-content: center;
+}
+.cat1_item{
+  width: 250px;
+  height: 170px;
+  border: 1px solid black;
+  margin-left: 30px;
+  margin-right: 30px;
+  margin-top: 25px;
+  margin-bottom: 25px;
+}
+.cat1_img{
+  width: 250px;
+  height: 170px;
+}
+.cat1_img:hover{cursor: pointer;}
+.cat1_title{
+  margin-top: 5px;
+  text-align: center;
+  color: #474747;
+  font-weight: 700;
+}
+.cat2_item{
+  width: 100px;
+  height: 100px;
+  line-height: 100px;
+  vertical-align: middle;
+  text-align: center;
+  border-radius: 4px;
+  background-color: #f0e2e1;
+  color: black;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+.cat2_item:hover{
+  cursor: pointer;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+}
+
+.cat_backbtn{
+  width: 50px;
+  height: 25px;
+  line-height: 25px;
+  vertical-align: middle;
+  text-align: center;
+}

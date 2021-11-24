@@ -3,24 +3,14 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import {
-  BrowserRouter,
-  Routes,
-  Route
-} from "react-router-dom";
-import Choice from './Choice';
-import Folder from './Folder';
+import {BrowserRouter} from 'react-router-dom'
 
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<App />} />
-        <Route path="choice" element={<Choice />} />
-        <Route path="folder" element={<Folder />} />
-      </Routes>
+      <App />
     </BrowserRouter>
-  </React.StrictMode>,
+  </React.StrictMode >,
   document.getElementById('root')
 );
 
