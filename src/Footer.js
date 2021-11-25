@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 function Footer(props) {
     return (
@@ -51,6 +52,8 @@ function Footer(props) {
                 <a className="footer_info_icon" href="/">
                     
                 </a>
+                
+                <Link className="footer_info_icon" to={'/login'}></Link>
             </div>
         </div>
     )

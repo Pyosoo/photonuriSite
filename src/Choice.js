@@ -4,19 +4,28 @@ import { Link } from 'react-router-dom';
 const testdata = {
         "cat1": [
             {"code": 121, "text": "불교건축", "thumb": ""},
-            {"code": 122, "text": "기타건축", "thumb": ""},
+            {"code": 122, "text": "전통건축", "thumb": ""},
             {"code": 123, "text": "근대건축", "thumb": ""},
             {"code": 124, "text": "현대건축", "thumb": ""},
-            {"code": 125, "text": "기독교건축", "thumb": ""},
-            {"code": 126, "text": "천주교건축", "thumb": ""},
-            {"code": 127, "text": "이슬람교건축", "thumb": ""},
+            {"code": 125, "text": "기타교건축", "thumb": ""},
         ],
         "cat2": [
             {"code": 1, "text": "경북"},
-            {"code": 2, "text": "서울"},
-            {"code": 3, "text": "강남"},
-            {"code": 4, "text": "북부"},
-            {"code": 5, "text": "서부"},
+            {"code": 2, "text": "경남"},
+            {"code": 3, "text": "전북"},
+            {"code": 4, "text": "전남"},
+            {"code": 5, "text": "충북"},
+            {"code": 6, "text": "충남"},
+            {"code": 7, "text": "강원"},
+            {"code": 8, "text": "경기"},
+            {"code": 9, "text": "제주"},
+            {"code": 10, "text": "서울"},
+            {"code": 11, "text": "부산"},
+            {"code": 12, "text": "대구"},
+            {"code": 13, "text": "대전"},
+            {"code": 14, "text": "광주"},
+            {"code": 15, "text": "울산"},
+            {"code": 16, "text": "인천"},
         ],
         "cat3": [
             {"cat1": 121, "cat2": 1, "code": 1210101, "text": "부석사", "region": "영주", "thumb":""},
@@ -53,13 +62,12 @@ function Choice(props) {
     }
     else if (cat2 === 0) {
         return (
-            <div className="cat1_div">
+            <div className="cat2_div">
                 {
                     testdata['cat2'].map(c => {
                         return(
                             <div className="cat2_item" onClick={e => setcat2(c.code)}>
                                 {c.text}
-                                <p onClick={e => setcat3(c.code)}>{c.text}</p>
                             </div>
                         )
                     })
