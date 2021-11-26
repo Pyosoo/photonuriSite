@@ -42,7 +42,7 @@ function Choice(props) {
     const [cat1, setcat1] = useState(0);
     const [cat2, setcat2] = useState(0);
     const [cat3, setcat3] = useState(0);
-
+    console.log(props)
 
     if (cat1 === 0) {
         return (

@@ -244,3 +244,25 @@
   background-color: #2e2d2d;
   cursor: pointer;
 }
+
+
+
+/*  Admin  */
+.admin_body{
+  margin-top: 50px;
+  margin-bottom: 50px;
+  width: 70%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.admin_add{
+  width: 100%;
+  display: flex;
+}
+.admin_add_left{
+  width: 50%;
+}
+.admin_add_right{
+  width: 50%;
+}
