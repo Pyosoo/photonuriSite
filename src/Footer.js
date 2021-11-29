@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Cookies, useCookies } from 'react-cookie';
-import {useHistory} from 'react-router-dom'
 
 
 function Footer() {
@@ -56,7 +55,11 @@ function Footer() {
 
                 </a>
 
+<<<<<<< HEAD
                 
+=======
+               
+>>>>>>> f27e1016082035bf380bde14b3bcf0fdbc8a41ec
             </div>
         </div>
     )
