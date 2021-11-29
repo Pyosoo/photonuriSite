@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Song+Myung&display=swap');
+
+
 .container {
   padding: 0 2rem;
 }
@@ -144,16 +147,18 @@
   margin-top: 50px;
   margin-bottom: 50px;
   justify-content: center;
+  font-family: 'Song Myung', serif;
 }
 .cat2_div{
   display: flex;
   flex-wrap: wrap;
-  width: 80%;
+  width: 60%;
   margin-left: auto;
   margin-right: auto;
   margin-top: 50px;
   margin-bottom: 50px;
   justify-content: center;
+  font-family: 'Song Myung', serif;
 }
 .cat1_item{
   width: 350px;
@@ -174,17 +179,27 @@
   color: #474747;
   font-weight: 700;
 }
+
+.cat2_title{
+  width: 100%;
+  font-weight: 700;
+  font-size: 27px;
+  text-align: center;
+  color: #676767;
+
+}
 .cat2_item{
   width: 100px;
-  height: 100px;
-  line-height: 100px;
+  height: 50px;
+  line-height: 50px;
   vertical-align: middle;
   text-align: center;
-  border-radius: 4px;
-  background-color: #f0e2e1;
   color: black;
   margin-left: 10px;
   margin-right: 10px;
+}
+.cat2_item:hover{
+  font-weight: 900;
 }
 .cat2_item:hover{
   cursor: pointer;
@@ -192,11 +207,26 @@
 }
 
 .cat_backbtn{
-  width: 50px;
-  height: 25px;
-  line-height: 25px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 150px;
+  height: 50px;
+  line-height: 50px;
+  background-color: #878787;
+  color: white;
   vertical-align: middle;
   text-align: center;
+  border: none;
+  outline: 0;
+  border-radius: 3px;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  font-weight: 800;
+}
+.cat_backbtn:hover{
+  cursor: pointer;
+  background-color: #939393;
 }
 
 .loginDiv{
@@ -265,4 +295,18 @@
 }
 .admin_add_right{
   width: 50%;
+}
+.wrongwayText{
+  margin-top: 150px;
+  margin-bottom: 150px;
+  font-size: 25px;
+  font-weight: 700;
+  color: rgb(209, 150, 150);
+  text-align: center;
+}
+
+.header_logindiv{
+  position: absolute;
+  right: 10px;
+  top: 10px;
 }
