@@ -5,11 +5,6 @@ import {useHistory} from 'react-router-dom'
 
 
 function Footer() {
-    const cookies = new Cookies();
-    const history = useHistory();
-    useEffect(()=>{
-
-    }, [cookies.loginState])
     return (
         <div className="footer">
             <p className="footer_t">How can I buy stock photo ?</p>
@@ -61,29 +56,7 @@ function Footer() {
 
                 </a>
 
-                {
-                    cookies.get('loginState') === 'true' ? 
-                    <>
-                        <button  onClick={e => {
-                            cookies.set('loginState', false)
-                            window.location.reload();
-                        }}>로그아웃</button>
-                        <button onClick={e => {
-                            history.push("/admin")
-                        }}>
-                            수정페이지
-                        </button>
-                        <button onClick={e => {
-                            history.push('/')
-                        }}>
-                            홈으로
-                        </button>
-                    </>
-                    :
-                    <button onClick={e => {
-                        history.push("/login");
-                    }}>로그인</button>
-                }
+                
             </div>
         </div>
     )

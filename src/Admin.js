@@ -11,6 +11,8 @@ function Admin() {
     const [addedcat3, setAddedCat3] = useState('');
     const [addedcontent, setAddedContent] = useState('');
 
+    const [gellaryData, setGellaryData] = useState([]);
+
 
     return (
         <div>
@@ -51,6 +53,8 @@ function Admin() {
                     </div>
             }
             </div>
+
+            s
         </div>
     )
 
