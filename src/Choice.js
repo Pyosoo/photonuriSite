@@ -47,36 +47,15 @@ function Choice(props) {
         return (
             <div className="cat1_div">
                 {
-<<<<<<< HEAD
-                    testdata['cat2'].map(c => {
-                        return(
-                            <div class="back">
-                                <div class="button_base b02_slide_in" onClick={e => setcat2(c.code)}>
-                                    <div>{c.text}</div>
-                                    <div></div>
-                                    <div>{c.text}</div>
-                                </div>
-=======
                     testdata['cat1'].map(c => {
                         return (
                             <div className="cat1_item">
                                 <img src={c.thumb} className="cat1_img" onClick={e => setcat1(c.code)} />
                                 <p className="cat1_title" >{c.text}</p>
->>>>>>> f27e1016082035bf380bde14b3bcf0fdbc8a41ec
                             </div>
                         )
                     })
                 }
-<<<<<<< HEAD
-                <div class="back">
-                    <div class="button_base b02_slide_in"  onClick={e => setcat1(0)}>
-                        <div>뒤로가기</div>
-                        <div></div>
-                        <div>뒤로가기</div>
-                    </div>
-                </div>
-=======
->>>>>>> f27e1016082035bf380bde14b3bcf0fdbc8a41ec
             </div>
         )
     }
@@ -102,29 +81,6 @@ function Choice(props) {
 
     } else {
         return (
-<<<<<<< HEAD
-            <div className="cat1_div">
-                {
-                    testdata['cat3'].map(c => {
-                        return(
-                            <div className="cat3_item">
-                                <Link to={`/folder/${cat1+cat2+c.code}`}>
-                                <img src={c.thumb} className="cat3_img" onClick={e => setcat1(c.code)} />
-                                </Link>
-                                <p className="cat1_title" >{c.text}</p>
-                            </div>
-                        )
-                    })    
-                }
-                <div class="back">
-                    <div class="button_base b02_slide_in"  onClick={e => setcat2(0)}>
-                        <div>뒤로가기</div>
-                        <div></div>
-                        <div>뒤로가기</div>
-                    </div>
-                </div>
-            </div>
-=======
             <>
                 <div className="cat1_div">
                     {
@@ -142,7 +98,6 @@ function Choice(props) {
                 </div>
                 <button className="cat_backbtn" onClick={e => setcat2(0)}>뒤로가기</button>
             </>
->>>>>>> f27e1016082035bf380bde14b3bcf0fdbc8a41ec
         )
     }
 }

@@ -55,11 +55,7 @@ function Footer() {
 
                 </a>
 
-<<<<<<< HEAD
-                
-=======
                
->>>>>>> f27e1016082035bf380bde14b3bcf0fdbc8a41ec
             </div>
         </div>
     )

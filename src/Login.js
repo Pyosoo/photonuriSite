@@ -30,7 +30,7 @@ function Login({ history }) {
             </div>
             <div className="login_field">
                 <div className="loginText">비밀번호</div>
-                <input className="loginInput" onKeyDown={e => { if (e.key === "Enter") { checkLogin() } }} onChange={e => setPW(e.target.value)} />
+                <input className="loginInput" type="password" onKeyDown={e => { if (e.key === "Enter") { checkLogin() } }} onChange={e => setPW(e.target.value)} />
             </div>
             <button className="login_btn" onClick={e => checkLogin()}>로그인</button>
         </div>
