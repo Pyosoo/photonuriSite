@@ -66,18 +66,19 @@ function Choice(props) {
         } else {
             return (
                 <>
-                    <div className="cat1_div">
+                    <div className="cat2_div">
+                        <p className="cat2_title">종류를 선택해주세요.</p>
                         {
+                            cateData['cat3'].filter(d => (d['cat1'] === cat1 && d['cat2'] === cat2)).length > 0 ? 
                             cateData['cat3'].filter(d => (d['cat1'] === cat1 && d['cat2'] === cat2)).map(c => {
                                 return (
-                                    <div className="cat1_item">
-                                        <Link to={`/folder/${c.code}`}>
-                                            <img src={c.image} className="cat1_img" onClick={e => setcat1(c.code)} />
-                                        </Link>
-                                        <p className="cat1_title" >{c.text}</p>
-                                    </div>
+                                    <Link to={`/folder/${c.code}`} style={{color:'black'}}>
+                                        <div className="cat2_item">{c.text}</div>
+                                    </Link>
                                 )
                             })
+                            :
+                            <p>해당 카테고리에 맞는 사진이 없습니다.</p>
                         }
                     </div>
                     {/* <button onClick={e => {
