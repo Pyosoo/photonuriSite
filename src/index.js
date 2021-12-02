@@ -7,13 +7,11 @@ import { BrowserRouter } from 'react-router-dom'
 import { CookiesProvider } from 'react-cookie';
 
 ReactDOM.render(
-  <React.StrictMode>
     <CookiesProvider>
       <BrowserRouter>
         <App />
       </BrowserRouter>
-    </CookiesProvider >
-  </React.StrictMode >,
+    </CookiesProvider >,
   document.getElementById('root')
 );
 
