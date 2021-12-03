@@ -45,6 +45,7 @@
   margin-bottom: 10px;
   margin-top: 0;
 }
+.header_t1:hover{cursor: pointer;}
 
 .header_login{
   position: absolute;
@@ -174,6 +175,10 @@
   margin-top: 25px;
   margin-bottom: 25px;
 }
+.cat1_item:hover{
+  transform: scale(1.05);
+  transition: all 0.5s;
+}
 .cat1_img{
   width: 400px;
   height: 250px;
@@ -275,7 +280,7 @@
   outline: 0;
 }
 .login_btn{
-  width: 278px;
+  width: 240px;
   height: 35px;
   line-height: 35px;
   vertical-align: middle;
@@ -356,6 +361,8 @@
   height: 250px;
   font-family: 'Song Myung', serif;
   text-align: center;
+  margin-right: 50px;
+  margin-bottom: 20px;
 }
 .photo_item:hover{
   cursor: pointer;

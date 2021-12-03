@@ -90,6 +90,11 @@ function Admin() {
                 'istockphoto': link3
             }
         })
+        if(res && res.data.success){
+            alert("성공적으로 등록되었습니다.")
+        }else{
+            alert("등록에 실패했습니다.")
+        }
     }
 
 

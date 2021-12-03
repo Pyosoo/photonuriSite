@@ -43,12 +43,15 @@ function Header(props) {
                         </button>
                     </>
                     :
-                    <button onClick={e => {
-                        history.push("/login");
-                    }}>로그인</button>
+                    <button 
+                        onClick={e => {
+                            history.push("/login");
+                        }}
+                        style={{backgroundColor:'transparent', color:'white', border:'none', outline:0}}
+                    >로그인</button>
                 }
             </div>
-            <p className="header_t1">Photonuri.com</p>
+            <p className="header_t1" onClick={e => history.push("/")}>Photonuri.com</p>
             <p className="header_t2">The Country of Morning Calm Traditional Architecture Of Korea Stock Photo Archive.</p>
             <p className="header_t2">Seoul, South Korea</p>
         </div>

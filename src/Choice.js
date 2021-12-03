@@ -34,7 +34,15 @@ function Choice(props) {
                         cateData['cat1'].map(c => {
                             return (
                                 <div className="cat1_item">
-                                    <img src={c.image} className="cat1_img" onClick={e => setcat1(c.code)} />
+                                    <img 
+                                        src={c.image} 
+                                        alt=""
+                                        className="cat1_img" 
+                                        onClick={e => {
+                                            setcat1(c.code);
+                                            window.scrollTo(0,300)
+                                        }} 
+                                    />
                                     <p className="cat1_title" >{c.text}</p>
                                 </div>
                             )

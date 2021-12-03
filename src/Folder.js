@@ -41,7 +41,7 @@ function Folder({ location, match }) {
 
     return (
         <div className="photo_container">
-            <div style={{ marginTop: '50px', marginBottom: '50px' }}>
+            <div style={{ marginTop: '50px', marginBottom: '50px', display: 'flex' }}>
                 {
                     items.length > 0 ?
                         items.map(item => {
@@ -50,8 +50,12 @@ function Folder({ location, match }) {
                                     setSelectedItems(item);
                                     setModalOpen(true)
                                 }}>
-                                    <img src={item.image} className="photo_img" />
-                                    <p>{item.title}</p>
+                                    <img 
+                                        src={item.image} 
+                                        alt=""
+                                        className="photo_img"
+                                    />
+                                    <p style={{fontWeight:'700'}}>{item.title}</p>
                                 </div>
                             )
                         })
@@ -60,9 +64,8 @@ function Folder({ location, match }) {
                             <p >해당 카테고리에 맞는 사진이 없습니다. 다른 카테고리를 선택해주세요.</p>
                         </div>
                 }
-                <Button style={{ marginLeft: 'auto', marginRight: 'auto', display: 'block', marginTop: '50px' }} onClick={e => history.push("/")}>처음으로</Button>
             </div>
-
+            <Button style={{ marginLeft: 'auto', marginRight: 'auto', display: 'block', marginTop: '50px', marginBottom:'50px' }} onClick={e => history.push("/")}>처음으로</Button>
 
 
             {
@@ -72,25 +75,25 @@ function Folder({ location, match }) {
                         visible={modalOpen}
                         onOk={closeModal}
                         onCancel={closeModal}
-                        width={900}
+                        width={1100}
                         footer={
                             selectedItems ?
                                 <div style={{ textAlign: 'center' }}>
                                     {
                                         selectedItems.links.adobestock.length > 0 ?
-                                            <a style={{ textDecoration: 'none', fontWeight: '800', marginLeft: '10px', marginRight: '10px' }} href={selectedItems.links.adobestock} target="_blank">adobeStock</a>
+                                            <a rel="noreferrer" style={{ textDecoration: 'none', fontWeight: '800', marginLeft: '10px', marginRight: '10px' }} href={selectedItems.links.adobestock} target="_blank">adobeStock</a>
                                             :
                                             null
                                     }
                                     {
                                         selectedItems.links.istockphoto.length > 0 ?
-                                            <a style={{ textDecoration: 'none', fontWeight: '800', marginLeft: '10px', marginRight: '10px' }} href={selectedItems.links.istockphoto} target="_blank">istockphoto</a>
+                                            <a rel="noreferrer" style={{ textDecoration: 'none', fontWeight: '800', marginLeft: '10px', marginRight: '10px' }} href={selectedItems.links.istockphoto} target="_blank">istockphoto</a>
                                             :
                                             null
                                     }
                                     {
                                         selectedItems.links.shutterstock.length > 0 ?
-                                            <a style={{ textDecoration: 'none', fontWeight: '800', marginLeft: '10px', marginRight: '10px' }} href={selectedItems.links.shutterstock} target="_blank">shutterstock</a>
+                                            <a rel="noreferrer" style={{ textDecoration: 'none', fontWeight: '800', marginLeft: '10px', marginRight: '10px' }} href={selectedItems.links.shutterstock} target="_blank">shutterstock</a>
                                             :
                                             null
                                     }
@@ -101,7 +104,11 @@ function Folder({ location, match }) {
 
                     >
                         <div>
-                            <img src={selectedItems.image} className="modal_image" />
+                            <img 
+                                src={selectedItems.image} 
+                                alt=""
+                                className="modal_image" 
+                            />
                         </div>
                         <div className="modal_content">
                             {selectedItems.content}
