@@ -3,7 +3,7 @@ import queryString from 'query-string';
 import CustomModal from './CustomModal';
 import axios from 'axios';
 import { useHistory } from 'react-router-dom'
-import { Input, Select, Button, Modal } from 'antd';
+import { Input, Select, Button, Modal, Pagination } from 'antd';
 import 'antd/dist/antd.css';
 
 function Folder({ location, match }) {
@@ -12,8 +12,11 @@ function Folder({ location, match }) {
     const [code, setCode] = useState(location.pathname.split('/')[location.pathname.split('/').length - 1])
     const [modalVisible, setModalVisible] = useState(false);
     const [items, setItems] = useState([1])
+    const [totalLength, setTotalLength] = useState(0);
     const [selectedItems, setSelectedItems] = useState(null);
     const [modalOpen, setModalOpen] = useState(false);
+    const [pageNum, setPageNum] = useState(1);
+
 
     const openModal = () => {
         setModalOpen(true);
@@ -26,14 +29,19 @@ function Folder({ location, match }) {
     async function GetItems() {
         const res = await axios.post('http://61.100.186.15:5000/searchItems', {
             "code": code,
-            "page": 1,
+            "page": pageNum,
         })
         if (res.data.success) {
-            console.log(res);
-            console.log(res.data.data.items)
             setItems(res.data.data.items)
+            setTotalLength(res.data.total)
         }
     }
+
+    const changePageNum = num => {
+        setPageNum(num);
+        GetItems();
+    }
+
 
     useEffect(() => {
         GetItems()
@@ -41,7 +49,7 @@ function Folder({ location, match }) {
 
     return (
         <div className="photo_container">
-            <div style={{ marginTop: '50px', marginBottom: '50px', display: 'flex' }}>
+            <div style={{ marginTop: '50px', marginBottom: '50px', display: 'flex', flexWrap:'wrap' }}>
                 {
                     items.length > 0 ?
                         items.map(item => {
@@ -50,12 +58,12 @@ function Folder({ location, match }) {
                                     setSelectedItems(item);
                                     setModalOpen(true)
                                 }}>
-                                    <img 
-                                        src={item.image} 
+                                    <img
+                                        src={item.image}
                                         alt=""
                                         className="photo_img"
                                     />
-                                    <p style={{fontWeight:'700'}}>{item.title}</p>
+                                    <p style={{ fontWeight: '700' }}>{item.title}</p>
                                 </div>
                             )
                         })
@@ -65,7 +73,15 @@ function Folder({ location, match }) {
                         </div>
                 }
             </div>
-            <Button style={{ marginLeft: 'auto', marginRight: 'auto', display: 'block', marginTop: '50px', marginBottom:'50px' }} onClick={e => history.push("/")}>처음으로</Button>
+            <div style={{textAlign:'center'}}>
+                <Pagination
+                    current={pageNum}
+                    onChange={(page, pageSize) => changePageNum(page)}
+                    total={totalLength}
+                />
+                <Button style={{ marginLeft: 'auto', marginRight: 'auto', display: 'block', marginTop: '50px', marginBottom: '50px' }} onClick={e => history.push("/")}>처음으로</Button>
+
+            </div>
 
 
             {
@@ -104,10 +120,10 @@ function Folder({ location, match }) {
 
                     >
                         <div>
-                            <img 
-                                src={selectedItems.image} 
+                            <img
+                                src={selectedItems.image}
                                 alt=""
-                                className="modal_image" 
+                                className="modal_image"
                             />
                         </div>
                         <div className="modal_content">

@@ -366,6 +366,8 @@
 }
 .photo_item:hover{
   cursor: pointer;
+  transform: scale(1.05);
+  transition: all 0.5s;
 }
 .photo_img{
   width: 250px;

@@ -72,7 +72,7 @@ function Choice(props) {
             )
     
         } else {
-            return (
+            return ( 
                 <>
                     <div className="cat2_div">
                         <p className="cat2_title">종류를 선택해주세요.</p>
