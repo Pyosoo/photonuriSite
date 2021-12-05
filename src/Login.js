@@ -6,7 +6,6 @@ function Login({ history }) {
     const [PW, setPW] = useState('');
     const [cookies, setCookie, removeCookie] = useCookies(['loginState']);
 
-    console.log(cookies.loginState)
     function checkLogin() {
         if (ID === process.env.REACT_APP_ADMIN_ID && PW === process.env.REACT_APP_ADMIN_PASSWORD) {
             setCookie('loginState', true);

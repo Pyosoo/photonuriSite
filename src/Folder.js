@@ -33,23 +33,22 @@ function Folder({ location, match }) {
         })
         if (res.data.success) {
             setItems(res.data.data.items)
-            setTotalLength(res.data.total)
+            setTotalLength(res.data.data.total)
         }
     }
 
     const changePageNum = num => {
         setPageNum(num);
-        GetItems();
     }
 
 
     useEffect(() => {
         GetItems()
-    }, [])
+    }, [pageNum])
 
     return (
         <div className="photo_container">
-            <div style={{ marginTop: '50px', marginBottom: '50px', display: 'flex', flexWrap:'wrap' }}>
+            <div style={{ marginTop: '50px', marginBottom: '50px', display: 'flex', flexWrap:'wrap', justifyContent:'center' }}>
                 {
                     items.length > 0 ?
                         items.map(item => {
@@ -78,6 +77,7 @@ function Folder({ location, match }) {
                     current={pageNum}
                     onChange={(page, pageSize) => changePageNum(page)}
                     total={totalLength}
+                    pageSize={10}
                 />
                 <Button style={{ marginLeft: 'auto', marginRight: 'auto', display: 'block', marginTop: '50px', marginBottom: '50px' }} onClick={e => history.push("/")}>처음으로</Button>
 
@@ -97,19 +97,19 @@ function Folder({ location, match }) {
                                 <div style={{ textAlign: 'center' }}>
                                     {
                                         selectedItems.links.adobestock.length > 0 ?
-                                            <a rel="noreferrer" style={{ textDecoration: 'none', fontWeight: '800', marginLeft: '10px', marginRight: '10px' }} href={selectedItems.links.adobestock} target="_blank">adobeStock</a>
+                                            <a rel="noreferrer" style={{ textDecoration: 'none', fontWeight: '800', marginLeft: '40px', marginRight: '40px' }} href={selectedItems.links.adobestock} target="_blank">adobeStock</a>
                                             :
                                             null
                                     }
                                     {
                                         selectedItems.links.istockphoto.length > 0 ?
-                                            <a rel="noreferrer" style={{ textDecoration: 'none', fontWeight: '800', marginLeft: '10px', marginRight: '10px' }} href={selectedItems.links.istockphoto} target="_blank">istockphoto</a>
+                                            <a rel="noreferrer" style={{ textDecoration: 'none', fontWeight: '800', marginLeft: '40px', marginRight: '40px' }} href={selectedItems.links.istockphoto} target="_blank">istockphoto</a>
                                             :
                                             null
                                     }
                                     {
                                         selectedItems.links.shutterstock.length > 0 ?
-                                            <a rel="noreferrer" style={{ textDecoration: 'none', fontWeight: '800', marginLeft: '10px', marginRight: '10px' }} href={selectedItems.links.shutterstock} target="_blank">shutterstock</a>
+                                            <a rel="noreferrer" style={{ textDecoration: 'none', fontWeight: '800', marginLeft: '40px', marginRight: '40px' }} href={selectedItems.links.shutterstock} target="_blank">shutterstock</a>
                                             :
                                             null
                                     }
