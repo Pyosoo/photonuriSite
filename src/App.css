@@ -128,6 +128,7 @@
   width: max-content;
   margin-left: auto;
   margin-right: auto;
+  margin-top: 50px;
   color: white;
 }
 .footer_info_icon{
@@ -168,8 +169,8 @@
   font-family: 'Song Myung', serif;
 }
 .cat1_item{
-  width: 400px;
-  height: 250px;
+  width: 500px;
+  height: 320px;
   border: 1px solid black;
   margin-right: 3%;
   margin-top: 25px;
@@ -180,8 +181,8 @@
   transition: all 0.5s;
 }
 .cat1_img{
-  width: 400px;
-  height: 250px;
+  width: 500px;
+  height: 320px;
 }
 .cat1_img:hover{cursor: pointer;}
 .cat1_title{
@@ -373,6 +374,58 @@
   width: 250px;
   height: 200px;
   object-fit: cover;
+}
+.folder_ad{
+  width: 728px;
+  height: 90px;
+  border: 1px solid gray;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 30px;
+}
+.photo_main{
+  width: 1024px;
+  height: 600px;
+  display: flex;
+  justify-content: center;
+  margin: auto;
+  margin-top: 30px;
+}
+.photo_main_left{
+  width: 50%;
+  height: 400px;
+  margin-top: 100px;
+}
+.photo_main_img{
+  width: 100%;
+  height: auto;
+}
+.photo_main_right{
+  width: 50%;
+  height: 600px;
+  padding-top: 100px;
+}
+.photo_main_p{
+  width: 70%;
+  height: 50px;
+  line-height: 50px;
+  vertical-align: middle;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  border: 1px dotted rgb(82, 80, 80);
+  padding-left: 10px;
+  padding-right: 10px;
+}
+.photo_main_p2{
+  width: 70%;
+  height: 200px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  border: 1px dotted rgb(82, 80, 80);
+  padding-left: 10px;
+  padding-right: 10px;
 }
 
 

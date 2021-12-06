@@ -12,7 +12,7 @@ function Footer() {
             <div className="footer_mid">
                 <div className="footer_part">
                     <div className="footer_item">
-                        <a className="footer_item_link" href="http://www.shutterstock.com/g/ALNET?rid=205302337">
+                        <a className="footer_item_link" href="https://www.shutterstock.com/g/alnet">
                             <img src="http://www.photonuri.com/wp-content/uploads/2020/11/stock-photo-kiev-ukraine-february1.jpg" />
                         </a>
                         <p className="footer_item_p">Shutterstock</p>
@@ -32,7 +32,7 @@ function Footer() {
                 </div>
                 <div className="footer_part_last">
                     <div className="footer_item">
-                        <a className="footer_item_link" href="https://www.istockphoto.com/kr/portfolio/syston?assettype=image&sort=mostpopular">
+                        <a className="footer_item_link" href="http://www.istockphoto.com/portfolio/syston">
                             <img src="http://www.photonuri.com/wp-content/uploads/2020/11/istockphoto-472137495-1024x1024-1.jpg" />
                         </a>
                         <p className="footer_item_p">Getty Images</p>
@@ -42,9 +42,9 @@ function Footer() {
                 </div>
             </div>
 
-            <p className="footer_info_p1">E-mail To Us</p>
-            <p className="footer_info_p2"> 7sevensmart@gmail.com</p>
-            <div className="footer_info_div">
+            {/* <p className="footer_info_p1">E-mail To Us</p> */}
+            <p className="footer_info_p2"> Copyright@1999 Syston All Right Reserved. syston@naver.com  </p>
+            {/* <div className="footer_info_div">
                 <a className="footer_info_icon" href="/">
 
                 </a>
@@ -56,7 +56,7 @@ function Footer() {
                 </a>
 
                
-            </div>
+            </div> */}
         </div>
     )
 }

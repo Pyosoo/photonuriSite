@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Cookies } from 'react-cookie';
 import UrlImageDownloader from 'react-url-image-downloader'
 import axios from 'axios';
-import { Input, Select, Button, Modal } from 'antd';
+import { Input, Select, Button, Modal, Pagination } from 'antd';
 import 'antd/dist/antd.css';
 
 const { Option } = Select;
@@ -30,6 +30,8 @@ function Admin() {
     const [updateCat2, setUpdateCat2] = useState('선택');
     const [updateCat3, setUpdateCat3] = useState('선택');
     const [fetchData, setFetchData] = useState([]);
+    const [fetchDataTotal, setFetchDataTotal] = useState(0);
+    const [pageNum, setPageNum] = useState(1);
     const [selectedUpdateData, setSelectedUpdateData] = useState(null)
     const [updateModalOpen, setUpdateModalOpen] = useState(false)
 
@@ -49,10 +51,11 @@ function Admin() {
     async function GetItems() {
         const res = await axios.post('http://61.100.186.15:5000/searchItems', {
             "code": updateCat3,
-            "page": 1,
+            "page": pageNum,
         })
         if (res.data.success) {
             setFetchData(res.data.data.items)
+            setFetchDataTotal(res.data.data.total)
         }
     }
 
@@ -142,6 +145,11 @@ function Admin() {
     useEffect(() => {
         fetchCategories();
     }, [])
+
+    useEffect(()=>{
+        GetItems()
+    }, [updateCat3, pageNum])
+
 
 
 
@@ -287,7 +295,6 @@ function Admin() {
                                         value={updateCat3}
                                         onChange={e => {
                                             setUpdateCat3(e)
-                                            GetItems();
                                         }}
                                         style={{ width: '150px' }}
                                     >
@@ -299,25 +306,36 @@ function Admin() {
                                     </Select>
                                 </div>
 
-                                <div style={{ marginTop: '50px' }}>
+                                <div style={{ marginTop: '50px', display:'flex', justifyContent:'center', width:'100%', flexWrap:'wrap' }}>
                                     {
                                         fetchData.length > 0 ?
                                             fetchData.map(item => {
                                                 return (
-                                                    <Button
-                                                        style={{ marginLeft: '10px', marginRight: '10px' }}
-                                                        onClick={e => {
-                                                            setSelectedUpdateData(item);
-                                                            setUpdateModalOpen(true);
-                                                        }}
-                                                    >
-                                                        {item.title}
-                                                    </Button>
+                                                    <div style={{width:'250px', marginRight:'20px', marginBottom:'20px'}}>
+                                                        <img alt="" src={item.image} style={{width:'250px', height:'130px', marginBottom:'7px', objectFit:'cover'}} />
+                                                        <Button
+                                                            style={{ marginLeft: '10px', marginRight: '10px', marginLeft:'auto', marginRight:'auto', display:'block' }}
+                                                            onClick={e => {
+                                                                setSelectedUpdateData(item);
+                                                                setUpdateModalOpen(true);
+                                                            }}
+                                                        >
+                                                            {item.title}
+                                                        </Button>
+                                                    </div>
                                                 )
                                             })
                                             :
                                             <p>해당 카테고리에 이미지가 없습니다.</p>
                                     }
+                                </div>
+                                <div style={{marginLeft:'auto', marginRight:'auto', display:'block', textAlign:'center', marginTop:'30px'}}>
+                                    <Pagination
+                                        current={pageNum}
+                                        onChange={(page, pageSize) => setPageNum(page)}
+                                        total={fetchDataTotal}
+                                        pageSize={10}
+                                    />
                                 </div>
                             </div>
                     }

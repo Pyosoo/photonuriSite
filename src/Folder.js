@@ -3,6 +3,7 @@ import queryString from 'query-string';
 import CustomModal from './CustomModal';
 import axios from 'axios';
 import { useHistory } from 'react-router-dom'
+import {Adsense} from 'react-adsense';
 import { Input, Select, Button, Modal, Pagination } from 'antd';
 import 'antd/dist/antd.css';
 
@@ -17,6 +18,7 @@ function Folder({ location, match }) {
     const [modalOpen, setModalOpen] = useState(false);
     const [pageNum, setPageNum] = useState(1);
 
+    const [mainImgItem, setMainImgItem] = useState(null);
 
     const openModal = () => {
         setModalOpen(true);
@@ -34,6 +36,7 @@ function Folder({ location, match }) {
         if (res.data.success) {
             setItems(res.data.data.items)
             setTotalLength(res.data.data.total)
+            setMainImgItem(res.data.data.items[0]);
         }
     }
 
@@ -46,16 +49,48 @@ function Folder({ location, match }) {
         GetItems()
     }, [pageNum])
 
+
+    useEffect(() => {
+        (window.adsbygoogle = window.adsbygoogle || []).push({})
+        console.log("why")
+    }, [])
+
+
     return (
         <div className="photo_container">
-            <div style={{ marginTop: '50px', marginBottom: '50px', display: 'flex', flexWrap:'wrap', justifyContent:'center' }}>
+
+            <div className="folder_ad">
+                <Adsense
+                    client="ca-pub-7183258811881624"
+                    slot="7259870550"
+                />
+            </div>
+            {
+                mainImgItem ?
+                    <div className="photo_main">
+                        <div className="photo_main_left">
+                            <img src={mainImgItem.image} className="photo_main_img" />
+                        </div>
+                        <div className="photo_main_right">
+                            <p className="photo_main_p">{mainImgItem.title}</p>
+                            <p className="photo_main_p">{mainImgItem.title}</p>
+                            <p className="photo_main_p2">{mainImgItem.content}</p>
+                        </div>
+                    </div>
+                    :
+                    null
+            }
+
+
+            <div style={{ marginTop: '50px', marginBottom: '50px', display: 'flex', flexWrap: 'wrap', justifyContent: 'center' }}>
                 {
                     items.length > 0 ?
                         items.map(item => {
                             return (
                                 <div className="photo_item" onClick={e => {
                                     setSelectedItems(item);
-                                    setModalOpen(true)
+                                    setMainImgItem(item);
+                                    // setModalOpen(true)
                                 }}>
                                     <img
                                         src={item.image}
@@ -72,7 +107,7 @@ function Folder({ location, match }) {
                         </div>
                 }
             </div>
-            <div style={{textAlign:'center'}}>
+            <div style={{ textAlign: 'center' }}>
                 <Pagination
                     current={pageNum}
                     onChange={(page, pageSize) => changePageNum(page)}
