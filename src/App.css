@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Song+Myung&display=swap');
 
+img:hover{cursor: pointer;}
 
 .container {
   padding: 0 2rem;
@@ -169,9 +170,8 @@
   font-family: 'Song Myung', serif;
 }
 .cat1_item{
-  width: 500px;
+  width: 30%px;
   height: 320px;
-  border: 1px solid black;
   margin-right: 3%;
   margin-top: 25px;
   margin-bottom: 25px;
@@ -183,6 +183,7 @@
 .cat1_img{
   width: 500px;
   height: 320px;
+  border-radius: 5px;
 }
 .cat1_img:hover{cursor: pointer;}
 .cat1_title{
@@ -190,6 +191,7 @@
   text-align: center;
   color: #474747;
   font-weight: 700;
+  font-size: 17px;
 }
 
 .cat2_title{
@@ -357,6 +359,16 @@
   margin-left: auto;
   margin-right: auto;
 }
+.photo_body{
+  max-width: 1500px;
+  margin-top: 50px;
+  margin-bottom: 50px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-left: auto;
+  margin-right: auto;
+}
 .photo_item{
   width: 250px;
   height: 250px;
@@ -371,7 +383,7 @@
   transition: all 0.5s;
 }
 .photo_img{
-  width: 250px;
+  width: 280px;
   height: 200px;
   object-fit: cover;
 }
@@ -385,30 +397,31 @@
 }
 .photo_main{
   width: 1024px;
-  height: 600px;
+  height: 500px;
   display: flex;
   justify-content: center;
   margin: auto;
   margin-top: 30px;
 }
 .photo_main_left{
-  width: 50%;
-  height: 400px;
-  margin-top: 100px;
+  width: 70%;
+  height: auto;
 }
 .photo_main_img{
   width: 100%;
   height: auto;
+  max-height: 500px;
 }
 .photo_main_right{
-  width: 50%;
+  width: 30%;
   height: 600px;
-  padding-top: 100px;
 }
 .photo_main_p{
-  width: 70%;
-  height: 50px;
-  line-height: 50px;
+  width: 80%;
+  height: 70px;
+  line-height: 70px;
+  font-weight: 500;
+  font-size: 15px;
   vertical-align: middle;
   display: block;
   margin-left: auto;
@@ -416,24 +429,25 @@
   border: 1px dotted rgb(82, 80, 80);
   padding-left: 10px;
   padding-right: 10px;
+  border-radius: 7px;
 }
 .photo_main_p2{
-  width: 70%;
-  height: 200px;
+  width: 80%;
+  height: 330px;
   display: block;
   margin-left: auto;
   margin-right: auto;
   border: 1px dotted rgb(82, 80, 80);
-  padding-left: 10px;
-  padding-right: 10px;
+  padding: 10px;
+  border-radius: 7px;
 }
 
 
 /*  Modal  */
 .modal_image{
   display: block;
-  width: 800px;
-  height: 600px;
+  width: 100%;
+  max-height: 728px;
   margin-left: auto;
   margin-right: auto;
   object-fit: cover;
@@ -444,4 +458,13 @@
   margin-right: auto;
   text-align: left;
   font-family: 'Song Myung', serif;
+}
+
+.modal_container{
+  display: flex;
+}
+.modal_adsense{
+  width: 90px;
+  height: 728px;
+  border: 1px dotted black;
 }
