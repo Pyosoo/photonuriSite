@@ -170,7 +170,6 @@ function Folder({ location, match }) {
                     style={{ marginLeft: 'auto', marginRight: 'auto', display: 'block', marginTop: '50px', marginBottom: '50px' }} 
                     onClick={e => {
                         history.push("/")
-                        window.scrollTo(0)
                     }}>처음으로</Button>
 
             </div>

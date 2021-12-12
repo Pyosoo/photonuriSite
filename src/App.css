@@ -170,9 +170,9 @@ img:hover{cursor: pointer;}
   font-family: 'Song Myung', serif;
 }
 .cat1_item{
-  width: 30%px;
-  height: 320px;
-  margin-right: 3%;
+  width: 210px;
+  height: 150px;
+  margin-right: 20px;
   margin-top: 25px;
   margin-bottom: 25px;
 }
@@ -181,8 +181,8 @@ img:hover{cursor: pointer;}
   transition: all 0.5s;
 }
 .cat1_img{
-  width: 500px;
-  height: 320px;
+  width: 210px;
+  height: 150px;
   border-radius: 5px;
 }
 .cat1_img:hover{cursor: pointer;}

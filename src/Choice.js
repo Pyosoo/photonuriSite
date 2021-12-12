@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import { Input, Select, Button, Modal, Pagination } from 'antd';
 
 
 
@@ -9,109 +10,83 @@ import axios from 'axios';
 function Choice(props) {
 
     const [cateData, setCateData] = useState({});
+    const [mainData, setMainData] = useState([]);
     const [cat1, setcat1] = useState(0);
     const [cat2, setcat2] = useState(0);
     const [cat3, setcat3] = useState(0);
+    const [pageNum, setPageNum] = useState(1);
+    const [fetchDataTotal, setFetchDataTotal] = useState(0);
 
 
-    async function fetchCategories(){
+    async function fetchCategories() {
         const res = await axios.get('http://61.100.186.15:5000/getCategories')
-        if(res.data && res.data.success){
+        if (res.data && res.data.success) {
             setCateData(res.data.data)
         }
     }
 
-
-    useEffect(()=>{
-        fetchCategories()
-    },[])
-
-
-
-    if(Object.entries(cateData).length !== 0){
-        if (cat1 === 0) {
-            return (
-                <div className="cat1_div">
-                    {
-                        cateData['cat1'].map(c => {
-                            return (
-                                <Link 
-                                    to={{
-                                        pathname: `/folder/${c.code}`,
-                                        state:{
-                                            categoryData : cateData
-                                        }
-                                    }} 
-                                    style={{color:'black', marginRight:'3%'}} 
-                                >
-                                    <div className="cat1_item">
-                                    <img 
-                                        src={c.image} 
-                                        alt=""
-                                        className="cat1_img" 
-                                        onClick={e => {
-                                            setcat1(c.code);
-                                            window.scrollTo(0,300)
-                                        }} 
-                                    />
-                                    <p className="cat1_title" >{c.text}</p>
-                                </div>
-                                </Link>
-                            )
-                        })
-                    }
-                </div>
-            )
+    async function fetchExposeData() {
+        const res = await axios.post('http://61.100.186.15:5000/searchAll', { 'page': pageNum })
+        if (res.data && res.data.success) {
+            setFetchDataTotal(res.data.data.total)
+            setMainData(res.data.data.items)
         }
-        // else if (cat2 === 0) {
-        //     return (
-        //         <>
-        //             <div className="cat2_div">
-        //                 <p className="cat2_title">지역을 선택해주세요.</p>
-        //                 {
-        //                     cateData['cat2'].map(c => {
-        //                         return (
-        //                             <div className="cat2_item" onClick={e => setcat2(c.code)}>
-        //                                 {c.text}
-        //                             </div>
-        //                         )
-        //                     })
-        //                 }
-        //             </div>
-        //             <button className="cat_backbtn" onClick={e => setcat1(0)}>뒤로가기</button>
-        //         </>
-    
-        //     )
-    
-        // } else {
-        //     return ( 
-        //         <>
-        //             <div className="cat2_div">
-        //                 <p className="cat2_title">종류를 선택해주세요.</p>
-        //                 {
-        //                     cateData['cat3'].filter(d => (d['cat1'] === cat1 && d['cat2'] === cat2)).length > 0 ? 
-        //                     cateData['cat3'].filter(d => (d['cat1'] === cat1 && d['cat2'] === cat2)).map(c => {
-        //                         return (
-        //                             <Link to={`/folder/${c.code}`} style={{color:'black'}}>
-        //                                 <div className="cat2_item">{c.text}</div>
-        //                             </Link>
-        //                         )
-        //                     })
-        //                     :
-        //                     <p>해당 카테고리에 맞는 사진이 없습니다.</p>
-        //                 }
-        //             </div>
-        //             {/* <button onClick={e => {
-        //                 console.log(cat1); console.log(cat2);
-        //                 console.log(cateData['cat3'].filter(d => (d.cat1 === cat1 && d.cat2 === cat2)))
-        //             }}>체크</button> */}
-        //             <button className="cat_backbtn" onClick={e => setcat2(0)}>뒤로가기</button>
-        //         </>
-        //     )
-        // }
+    }
+
+
+    useEffect(() => {
+        fetchCategories()
+    }, [])
+    useEffect(() => {
+        fetchExposeData()
+    }, [pageNum])
+
+
+    if (mainData.length !== 0) {
+        return (
+            <div className="cat1_div">
+                {
+                    mainData.map(item => {
+                        return (
+                            <Link
+                                to={{
+                                    pathname: `/folder/${item.code}`,
+                                    state: {
+                                        categoryData: cateData
+                                    }
+                                }}
+                                style={{ color: 'black', marginRight: '3%' }}
+                            >
+                                <div className="cat1_item">
+                                    <img
+                                        src={item.image}
+                                        alt=""
+                                        className="cat1_img"
+                                        onClick={e => {
+                                            setcat1(item.code);
+                                            window.scrollTo(0, 300)
+                                        }}
+                                    />
+                                    <p className="cat1_title" >{item.title}</p>
+                                </div>
+                            </Link>
+                        )
+                    })
+                }
+               
+                <div style={{ width:'100%', marginLeft: 'auto', marginRight: 'auto', display: 'block', textAlign: 'center', marginTop: '30px' }}>
+                    <Pagination
+                        current={pageNum}
+                        onChange={(page, pageSize) => setPageNum(page)}
+                        total={fetchDataTotal}
+                        pageSize={10}
+                    />
+                </div>
+            </div>
+        )
     } else return <div>no Data</div>
 
-    
+
 }
 
 export default Choice;

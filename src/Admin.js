@@ -17,7 +17,7 @@ function Admin() {
     const [addedcat2, setAddedCat2] = useState('선택');
     const [addedcat3, setAddedCat3] = useState('선택');
     const [addedcontent, setAddedContent] = useState('');
-    const [addedImageUrl, setAddedImgUrl] = useState('');
+    const [addedExpose, setAddedExpose] = useState(false);
     const [imgSrc, setImgSrc] = useState(null);
     const [cateData, setCateData] = useState(null)
     const [link1, setLink1] = useState('');
@@ -87,6 +87,7 @@ function Admin() {
             "code": addedcat3,
             "title": addedTitle,
             "content": addedcontent,
+            "expose": addedExpose,
             "links": {
                 'shutterstock': link1,
                 'adobestock': link2,
@@ -257,6 +258,10 @@ function Admin() {
                                         <span style={{ marginBottom: '5px', marginTop: '10px', fontWeight: '600' }}>istockphoto 링크</span>
                                         <Input value={link3} onChange={e => setLink3(e.target.value)} />
                                     </div>
+                                    <div>
+                                        <span>메인화면 노출여부</span>
+                                        <input  style={{width:'15px', height:'15px'}} type="checkbox" value={addedExpose} onChange={e=> setAddedExpose(e.target.value)} />
+                                    </div>
                                     <Button
                                         style={{ marginTop: '10px' }}
                                         onClick={e => {
@@ -396,6 +401,10 @@ function Admin() {
                                 <div className="modal_content">
                                     <span>istockphoto 링크</span>
                                     <Input value={selectedUpdateData.links.istockphoto} onChange={e => setSelectedUpdateData({ ...selectedUpdateData, links: { ...selectedUpdateData.links, istockphoto: e.target.value } })} />
+                                </div>
+                                <div className="modal_content">
+                                    <span>메인화면 노출여부</span>
+                                    <input type="checkbox" value={selectedUpdateData.expose} onChange={e => setSelectedUpdateData({ ...selectedUpdateData, expose: e.target.value })} />
                                 </div>
                                 <Button
                                     onClick={e => modifyItem()}
