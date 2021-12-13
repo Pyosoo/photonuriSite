@@ -6,6 +6,7 @@ import { useHistory } from 'react-router-dom'
 import { Input, Select, Button, Modal, Pagination } from 'antd';
 import AdSense from 'react-adsense';
 import 'antd/dist/antd.css';
+const { Option } = Select;
 
 function Folder({ location, match }) {
     const history = useHistory();
@@ -21,6 +22,13 @@ function Folder({ location, match }) {
     const [mainImgItem, setMainImgItem] = useState(null);
     const [mainImgCategory, setMainImgCateogry] = useState('');
 
+    const [moveCategoryModalOpen, setMoveCategoryModalOpen] = useState(false);
+    const [moveCat1, setMoveCat1] = useState('선택');
+    const [moveCat2, setMoveCat2] = useState('선택');
+    const [moveCat3, setMoveCat3] = useState('선택');
+
+
+
     const openModal = () => {
         setModalOpen(true);
     }
@@ -28,17 +36,29 @@ function Folder({ location, match }) {
         setModalOpen(false)
     }
 
+    const openModal2 = () => {
+        setMoveCategoryModalOpen(true);
+    }
+    const closeModal2 = () => {
+        setMoveCategoryModalOpen(false)
+    }
 
-    async function GetItems() {
+
+    async function GetItems(c) {
         const res = await axios.post('http://61.100.186.15:5000/searchItems', {
-            "code": code,
+            "code": c === 0 ? code : c,
             "page": pageNum,
         })
-        if (res.data.success) {
+        if (res.data.success && res.data.data.items.length > 0) {
             setItems(res.data.data.items)
             setTotalLength(res.data.data.total)
             setMainImgItem(res.data.data.items[0]);
             catchCategory(res.data.data.items[0].code)
+        } else {
+            setItems([])
+            setTotalLength(0)
+            setMainImgItem({});
+            catchCategory(0)
         }
     }
 
@@ -54,27 +74,31 @@ function Folder({ location, match }) {
     }
 
     const catchCategory = code => {
-        console.log("들어옴")
+        console.log(code)
         let cg = [];
-        if(!category){
-            console.log("들어옴")
+        if (!category) {
             cg = location.state.categoryData;
         } else { cg = category }
 
         let codeString = code + "";
-        let cat1 = codeString.substr(0,3);
-        let cat2 = codeString.substr(2,2);
+        let cat1 = codeString.substr(0, 3);
+        let cat2 = codeString.substr(2, 2);
         let cat3 = codeString.substr(5);
         let result = "";
-        for(let i=0; i<cg['cat1'].length; i++){
-            if(cg['cat1'][i].code+"" === cat1){
+        for (let i = 0; i < cg['cat1'].length; i++) {
+            if (cg['cat1'][i].code + "" === cat1) {
                 result += cg['cat1'][i].text;
                 result += " > ";
             }
         }
-        for(let i=0; i<cg['cat3'].length; i++){
-            if(cg['cat3'][i].code === codeString){
-                result += (cg['cat3'][i].region + " > " + cg['cat3'][i].text)
+        for (let i = 0; i < cg['cat2'].length; i++) {
+            if (cg['cat2'][i].code + "" === cat2) {
+                result += cg['cat2'][i].text;
+            }
+        }
+        for (let i = 0; i < cg['cat3'].length; i++) {
+            if (cg['cat3'][i].code === codeString) {
+                result += ("(" + cg['cat3'][i].region + ")" + " > " + cg['cat3'][i].text)
             }
         }
         setMainImgCateogry(result);
@@ -86,7 +110,7 @@ function Folder({ location, match }) {
 
 
     useEffect(() => {
-        GetItems()
+        GetItems(0)
     }, [pageNum])
 
 
@@ -102,19 +126,19 @@ function Folder({ location, match }) {
                 <AdSense.Google
                     style={{ display: 'block' }}
                     client='ca-pub-7183258811881624'
-                    slot='1234567890'
+                    slot='5993734338'
                     format='auto'
                     responsive='true'
                 />
             </div>
             {
-                mainImgItem ?
+                mainImgItem && items.length > 0 ?
                     <div className="photo_main">
                         <div className="photo_main_left">
-                            <img 
+                            <img
                                 alt=""
-                                src={mainImgItem.image} 
-                                className="photo_main_img" 
+                                src={mainImgItem.image}
+                                className="photo_main_img"
                                 onClick={e => {
                                     setModalOpen(true);
                                     setSelectedItems(mainImgItem);
@@ -122,9 +146,22 @@ function Folder({ location, match }) {
                             />
                         </div>
                         <div className="photo_main_right">
-                            <p className="photo_main_p">{mainImgItem.title}</p>
-                            <p className="photo_main_p">{mainImgCategory}</p>
-                            <p className="photo_main_p2">{mainImgItem.content}</p>
+                            <div className="photo_main_p">
+                                {mainImgItem.title}
+                                <p className='photo_main_subT'>제목</p>
+                            </div>
+                            <div className="photo_main_p">
+                                {mainImgCategory}
+                                <p className='photo_main_subT'>분류</p>
+                                <button
+                                    className='moveBtn2'
+                                    onClick={e => setMoveCategoryModalOpen(true)}
+                                >이동</button>
+                            </div>
+                            <div className="photo_main_p2">
+                                {mainImgItem.content}
+                                <p className='photo_main_subT2'>상세설명</p>
+                            </div>
                         </div>
                     </div>
                     :
@@ -152,7 +189,54 @@ function Folder({ location, match }) {
                         })
                         :
                         <div style={{ marginTop: '150px', marginBottom: '150px', textAlign: 'center' }}>
-                            <p >해당 카테고리에 맞는 사진이 없습니다. 다른 카테고리를 선택해주세요.</p>
+                            <p>해당 카테고리에 맞는 사진이 없습니다. 다른 카테고리를 선택해주세요.</p>
+                            <div style={{ height: '200px', lineHeight: '200px' }}>
+                                <Select
+                                    value={moveCat1}
+                                    onChange={e => setMoveCat1(e)}
+                                    style={{ width: '120px', marginRight: '15px' }}
+                                    size='large'
+                                >
+                                    {
+                                        category['cat1'].map(d => {
+                                            return <Option value={d.code}>{d.text}</Option>
+                                        })
+                                    }
+                                </Select>
+                                <Select
+                                    value={moveCat2}
+                                    onChange={e => setMoveCat2(e)}
+                                    style={{ width: '120px', marginRight: '15px' }}
+                                    size='large'
+                                >
+                                    {
+                                        category['cat2'].map(d => {
+                                            return <Option value={d.code}>{d.text}</Option>
+                                        })
+                                    }
+                                </Select>
+                                <Select
+                                    value={moveCat3}
+                                    onChange={e => setMoveCat3(e)}
+                                    style={{ width: '150px' }}
+                                    size='large'
+                                >
+                                    {
+                                        category['cat3'].filter(c => (c.cat1 === moveCat1 && c.cat2 === moveCat2)).map(d => {
+                                            return <Option value={d.code}>{d.text}</Option>
+                                        })
+                                    }
+                                </Select>
+                                <button
+                                    className='moveBtn'
+                                    onClick={e => {
+                                        GetItems(moveCat3);
+                                        setMoveCategoryModalOpen(false);
+                                    }}
+                                >
+                                    이동
+                                </button>
+                            </div>
                         </div>
                 }
             </div>
@@ -161,18 +245,84 @@ function Folder({ location, match }) {
                     current={pageNum}
                     onChange={(page, pageSize) => {
                         changePageNum(page)
-                        window.scrollTo(0,300)
+                        window.scrollTo(0, 300)
                     }}
                     total={totalLength}
                     pageSize={10}
                 />
-                <Button 
-                    style={{ marginLeft: 'auto', marginRight: 'auto', display: 'block', marginTop: '50px', marginBottom: '50px' }} 
+                <Button
+                    style={{ marginLeft: 'auto', marginRight: 'auto', display: 'block', marginTop: '50px', marginBottom: '50px' }}
                     onClick={e => {
                         history.push("/")
                     }}>처음으로</Button>
 
             </div>
+
+            {/*  카테고리 이동 모달창  */}
+            {
+                category ?
+                    <Modal
+                        title={'카테고리 이동'}
+                        visible={moveCategoryModalOpen}
+                        onOk={closeModal2}
+                        onCancel={closeModal2}
+                        closable={true}
+                        width={560}
+                        height={300}
+                        footer={null}
+
+                    >
+                        <div style={{ height: '200px', lineHeight: '200px' }}>
+                            <Select
+                                value={moveCat1}
+                                onChange={e => setMoveCat1(e)}
+                                style={{ width: '120px', marginRight: '15px' }}
+                                size='large'
+                            >
+                                {
+                                    category['cat1'].map(d => {
+                                        return <Option value={d.code}>{d.text}</Option>
+                                    })
+                                }
+                            </Select>
+                            <Select
+                                value={moveCat2}
+                                onChange={e => setMoveCat2(e)}
+                                style={{ width: '120px', marginRight: '15px' }}
+                                size='large'
+                            >
+                                {
+                                    category['cat2'].map(d => {
+                                        return <Option value={d.code}>{d.text}</Option>
+                                    })
+                                }
+                            </Select>
+                            <Select
+                                value={moveCat3}
+                                onChange={e => setMoveCat3(e)}
+                                style={{ width: '150px' }}
+                                size='large'
+                            >
+                                {
+                                    category['cat3'].filter(c => (c.cat1 === moveCat1 && c.cat2 === moveCat2)).map(d => {
+                                        return <Option value={d.code}>{d.text}</Option>
+                                    })
+                                }
+                            </Select>
+                            <button
+                                className='moveBtn'
+                                onClick={e => {
+                                    GetItems(moveCat3);
+                                    setMoveCategoryModalOpen(false);
+                                }}
+                            >
+                                이동
+                            </button>
+                        </div>
+                    </Modal>
+                    :
+                    null
+            }
 
 
             {
@@ -205,24 +355,24 @@ function Folder({ location, match }) {
                                             :
                                             null
                                     }
-                                    <Button onClick={e=>closeModal()} style={{display:'block', marginLeft:'auto', marginRight:'auto', marginTop:'15px', backgroundColor:'#565656', color:'white'}}>닫기</Button>
+                                    <Button onClick={e => closeModal()} style={{ display: 'block', marginLeft: 'auto', marginRight: 'auto', marginTop: '15px', backgroundColor: '#565656', color: 'white' }}>닫기</Button>
                                 </div>
                                 :
-                                <Button onClick={e=>closeModal()} style={{display:'block', marginLeft:'auto', marginRight:'auto', marginTop:'15px', backgroundColor:'#565656', color:'white'}}>닫기</Button>
+                                <Button onClick={e => closeModal()} style={{ display: 'block', marginLeft: 'auto', marginRight: 'auto', marginTop: '15px', backgroundColor: '#565656', color: 'white' }}>닫기</Button>
                         }
 
                     >
                         <div className="modal_container">
                             <div className="modal_adsense">
                             </div>
-                            <div style={{height:'728px', lineHeight:'728px', verticalAlign:'middle', width:'100%'}}>
+                            <div style={{ height: '728px', lineHeight: '728px', verticalAlign: 'middle', width: '100%' }}>
                                 <img
                                     src={selectedItems.image}
                                     alt=""
                                     className="modal_image"
                                 />
                             </div>
-                            
+
                             <div className="modal_adsense">
                             </div>
                         </div>

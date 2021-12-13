@@ -74,12 +74,12 @@ function Choice(props) {
                     })
                 }
                
-                <div style={{ width:'100%', marginLeft: 'auto', marginRight: 'auto', display: 'block', textAlign: 'center', marginTop: '30px' }}>
+                <div style={{ width:'100%', marginLeft: 'auto', marginRight: 'auto', display: 'block', textAlign: 'center', marginTop: '70px', marginBottom:'30px' }}>
                     <Pagination
                         current={pageNum}
                         onChange={(page, pageSize) => setPageNum(page)}
                         total={fetchDataTotal}
-                        pageSize={10}
+                        pageSize={20}
                     />
                 </div>
             </div>

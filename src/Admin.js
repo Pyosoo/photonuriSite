@@ -6,6 +6,7 @@ import { Input, Select, Button, Modal, Pagination } from 'antd';
 import 'antd/dist/antd.css';
 
 const { Option } = Select;
+const { TextArea } = Input;
 
 
 function Admin() {
@@ -109,6 +110,7 @@ function Admin() {
             "content": selectedUpdateData.content,
             "links": selectedUpdateData.links,
             "_id": selectedUpdateData['_id'],
+            "expose": selectedUpdateData.expose
         })
         if (res.data.success) {
             alert("성공적으로 변경되었습니다.");
@@ -167,7 +169,6 @@ function Admin() {
                         mode === "add" ?
                             <div className="admin_add">
                                 <div className="admin_add_left">
-
                                     <label className="input-file-button" for="input-file" >
                                         사진 업로드
                                     </label>
@@ -244,7 +245,7 @@ function Admin() {
                                     </div>
                                     <div>
                                         <span style={{ marginBottom: '5px', marginTop: '10px', fontWeight: '600' }}>상세설명</span>
-                                        <Input value={addedcontent} onChange={e => setAddedContent(e.target.value)} />
+                                        <TextArea rows={4} value={addedcontent} onChange={e => setAddedContent(e.target.value)} />
                                     </div>
                                     <div>
                                         <span style={{ marginBottom: '5px', marginTop: '10px', fontWeight: '600' }}>shutterstock 링크</span>
@@ -260,7 +261,7 @@ function Admin() {
                                     </div>
                                     <div>
                                         <span>메인화면 노출여부</span>
-                                        <input  style={{width:'15px', height:'15px'}} type="checkbox" value={addedExpose} onChange={e=> setAddedExpose(e.target.value)} />
+                                        <input style={{width:'15px', height:'15px', marginTop:'20px'}} type="checkbox" value={addedExpose} onChange={e=> setAddedExpose(e.target.checked)} />
                                     </div>
                                     <Button
                                         style={{ marginTop: '10px' }}
@@ -404,7 +405,7 @@ function Admin() {
                                 </div>
                                 <div className="modal_content">
                                     <span>메인화면 노출여부</span>
-                                    <input type="checkbox" value={selectedUpdateData.expose} onChange={e => setSelectedUpdateData({ ...selectedUpdateData, expose: e.target.value })} />
+                                    <input type="checkbox" value={selectedUpdateData.expose} onChange={e => setSelectedUpdateData({ ...selectedUpdateData, expose: e.target.checked })} />
                                 </div>
                                 <Button
                                     onClick={e => modifyItem()}

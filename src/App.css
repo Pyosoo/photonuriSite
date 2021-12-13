@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Song+Myung&display=swap');
 
 img:hover{cursor: pointer;}
-
+button:hover{cursor: pointer;}
 .container {
   padding: 0 2rem;
 }
@@ -151,6 +151,7 @@ img:hover{cursor: pointer;}
   flex-grow: 1;
   flex-wrap: wrap;
   width: 90%;
+  max-width: 1600px;
   margin-left: auto;
   margin-right: auto;
   margin-top: 50px;
@@ -396,12 +397,13 @@ img:hover{cursor: pointer;}
   margin-top: 30px;
 }
 .photo_main{
-  width: 1024px;
+  width: 1300px;
   height: 500px;
   display: flex;
   justify-content: center;
   margin: auto;
   margin-top: 30px;
+  margin-bottom: 100px;
 }
 .photo_main_left{
   width: 70%;
@@ -411,6 +413,8 @@ img:hover{cursor: pointer;}
   width: 100%;
   height: auto;
   max-height: 500px;
+  border: 1px solid rgb(114, 113, 113,0.5);
+  border-radius: 3px;
 }
 .photo_main_right{
   width: 30%;
@@ -426,22 +430,51 @@ img:hover{cursor: pointer;}
   display: block;
   margin-left: auto;
   margin-right: auto;
-  border: 1px dotted rgb(82, 80, 80);
+  margin-top: 20px;
+  margin-bottom: 20px;
+  border: 1px solid rgb(114, 113, 113,0.5);
   padding-left: 10px;
   padding-right: 10px;
   border-radius: 7px;
+  position: relative;
 }
 .photo_main_p2{
+  position: relative;
   width: 80%;
-  height: 330px;
+  height: 300px;
   display: block;
   margin-left: auto;
   margin-right: auto;
-  border: 1px dotted rgb(82, 80, 80);
+  border: 1px solid rgb(114, 113, 113,0.5);
   padding: 10px;
   border-radius: 7px;
+  word-break: break-all;
+  white-space: normal;
 }
-
+.photo_main_subT{
+  position: absolute;
+  top: -10px;
+  left: 43%;
+  width: 35px;
+  height: 20px;
+  line-height: 20px;
+  font-size: 13px;
+  background-color: white;
+  text-align: center;
+  font-weight: 600;
+}
+.photo_main_subT2{
+  position: absolute;
+  top: -10px;
+  left: 40%;
+  width: 60px;
+  height: 20px;
+  line-height: 20px;
+  font-size: 13px;
+  background-color: white;
+  text-align: center;
+  font-weight: 600;
+}
 
 /*  Modal  */
 .modal_image{
@@ -456,6 +489,8 @@ img:hover{cursor: pointer;}
   width: 80%;
   margin-left: auto;
   margin-right: auto;
+  margin-top: 20px;
+  margin-bottom: 20px;
   text-align: left;
   font-family: 'Song Myung', serif;
 }
@@ -467,4 +502,42 @@ img:hover{cursor: pointer;}
   width: 90px;
   height: 728px;
   border: 1px dotted black;
+}
+
+
+.moveBtn{
+  width: 60px;
+  height: 40px;
+  line-height: 40px;
+  border: none;
+  outline: 0;
+  border-radius: 5px;
+  color: white;
+  font-size: 16px;
+  margin-left: 10px;
+  margin-right: 10px;
+  background-color: #5D95F6;
+}
+.moveBtn:hover{
+  background-color: #4f82d8;
+  cursor: pointer;
+}
+
+.moveBtn2{
+  width: 40px;
+  height: 27px;
+  line-height: 27px;
+  border: none;
+  outline: 0;
+  border-radius: 5px;
+  color: white;
+  font-weight: 400;
+  font-size: 12px;
+  margin-left: 10px;
+  margin-right: 10px;
+  background-color: #5D95F6;
+}
+.moveBtn2:hover{
+  background-color: #4f82d8;
+  cursor: pointer;
 }
