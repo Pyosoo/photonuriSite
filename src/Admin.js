@@ -79,7 +79,7 @@ function Admin() {
             return;
         }
         if (addedcat1 === "선택" || addedcat2 === "선택" || addedcat3 === "선택") {
-            alert("카테고리를 선택");
+            alert("카테고리를 선택해주세요.");
             return;
         }
 
@@ -210,7 +210,7 @@ function Admin() {
                                     <Input className="admin_add_right_input" value={addedTitle} onChange={e => setAddedTitle(e.target.value)} />
                                     <div style={{ marginBottom: '10px' }}>
                                         <p style={{ marginBottom: '5px', marginTop: '10px', fontWeight: '600' }}>카테고리 선택</p>
-                                        <Select style={{ width: '150px' }} value={addedcat1} onChange={e => {
+                                        <Select style={{ width: '150px', marginRight:'15px' }} value={addedcat1} onChange={e => {
                                             setAddedCat1(e);
                                             setAddedCat2('선택')
                                         }}>
@@ -220,7 +220,7 @@ function Admin() {
                                                 })
                                             }
                                         </Select>
-                                        <Select style={{ width: '120px' }} value={addedcat2} onChange={e => {
+                                        <Select style={{ width: '120px', marginRight:'15px'}} value={addedcat2} onChange={e => {
                                             setAddedCat2(e);
                                             setAddedCat3('선택')
                                         }}>
@@ -240,7 +240,7 @@ function Admin() {
                                                     }
                                                 </Select>
                                                 :
-                                                <span></span>
+                                                <span>앞선 카테고리를 선택해주세요.</span>
                                         }
                                     </div>
                                     <div>
@@ -261,7 +261,7 @@ function Admin() {
                                     </div>
                                     <div>
                                         <span>메인화면 노출여부</span>
-                                        <input style={{width:'15px', height:'15px', marginTop:'20px'}} type="checkbox" value={addedExpose} onChange={e=> setAddedExpose(e.target.checked)} />
+                                        <input style={{width:'15px', height:'15px', marginTop:'20px'}} type="checkbox" checked={addedExpose} onChange={e=> setAddedExpose(e.target.checked)} />
                                     </div>
                                     <Button
                                         style={{ marginTop: '10px' }}
@@ -278,7 +278,7 @@ function Admin() {
                                     <Select
                                         value={updateCat1}
                                         onChange={e => setUpdateCat1(e)}
-                                        style={{ width: '120px' }}
+                                        style={{ width: '120px', marginRight:'15px' }}
                                     >
                                         {
                                             cateData['cat1'].map(d => {
@@ -289,7 +289,7 @@ function Admin() {
                                     <Select
                                         value={updateCat2}
                                         onChange={e => setUpdateCat2(e)}
-                                        style={{ width: '120px' }}
+                                        style={{ width: '120px', marginRight:'15px' }}
                                     >
                                         {
                                             cateData['cat2'].map(d => {
@@ -322,6 +322,7 @@ function Admin() {
                                                         <Button
                                                             style={{ marginLeft: '10px', marginRight: '10px', marginLeft:'auto', marginRight:'auto', display:'block' }}
                                                             onClick={e => {
+                                                                console.log(item)
                                                                 setSelectedUpdateData(item);
                                                                 setUpdateModalOpen(true);
                                                             }}
@@ -340,7 +341,7 @@ function Admin() {
                                         current={pageNum}
                                         onChange={(page, pageSize) => setPageNum(page)}
                                         total={fetchDataTotal}
-                                        pageSize={10}
+                                        pageSize={20}
                                     />
                                 </div>
                             </div>
@@ -358,7 +359,7 @@ function Admin() {
                         selectedUpdateData ?
                             <>
                                 <div>
-                                    <img src={selectedUpdateData.image} className="modal_image" />
+                                    <img alt='' src={selectedUpdateData.image} className="modal_image" />
                                     <label className="input-file-button" for="input-file2" style={{ display: 'block', width: '110px', marginTop: '10px', marginLeft: 'auto', marginRight: 'auto' }}>
                                         사진 교체
                                     </label>
@@ -405,7 +406,7 @@ function Admin() {
                                 </div>
                                 <div className="modal_content">
                                     <span>메인화면 노출여부</span>
-                                    <input type="checkbox" value={selectedUpdateData.expose} onChange={e => setSelectedUpdateData({ ...selectedUpdateData, expose: e.target.checked })} />
+                                    <input type="checkbox" checked={selectedUpdateData.expose} onChange={e => setSelectedUpdateData({ ...selectedUpdateData, expose: e.target.checked })} />
                                 </div>
                                 <Button
                                     onClick={e => modifyItem()}
