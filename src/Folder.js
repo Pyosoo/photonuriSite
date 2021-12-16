@@ -4,8 +4,8 @@ import CustomModal from './CustomModal';
 import axios from 'axios';
 import { useHistory } from 'react-router-dom'
 import { Input, Select, Button, Modal, Pagination } from 'antd';
-import AdSense from 'react-adsense';
 import 'antd/dist/antd.css';
+import GoogleAdsense from 'react-adsense-google';
 const { Option } = Select;
 
 function Folder({ location, match }) {
@@ -115,22 +115,18 @@ function Folder({ location, match }) {
 
 
     useEffect(() => {
-        (window.adsbygoogle = window.adsbygoogle || []).push({})
         fetchCategories();
     }, [])
 
     return (
         <div className="photo_container">
 
-            <div className="folder_ad">
-                <AdSense.Google
-                    style={{ display: 'block' }}
-                    client='ca-pub-7183258811881624'
-                    slot='5993734338'
-                    format='auto'
-                    responsive='true'
-                />
-            </div>
+            {/* <div className="folder_ad"> */}
+                {/* <GoogleAdsense
+                    adClient='ca-pub-7183258811881624'
+                    adSlot='5993734338'
+                /> */}
+            {/* </div> */}
             {
                 mainImgItem && items.length > 0 ?
                     <div className="photo_main">
@@ -363,8 +359,8 @@ function Folder({ location, match }) {
 
                     >
                         <div className="modal_container">
-                            <div className="modal_adsense">
-                            </div>
+                            {/* <div className="modal_adsense">
+                            </div> */}
                             <div style={{ height: '728px', lineHeight: '728px', verticalAlign: 'middle', width: '100%' }}>
                                 <img
                                     src={selectedItems.image}
@@ -373,8 +369,8 @@ function Folder({ location, match }) {
                                 />
                             </div>
 
-                            <div className="modal_adsense">
-                            </div>
+                            {/* <div className="modal_adsense">
+                            </div> */}
                         </div>
                     </Modal>
                     : null

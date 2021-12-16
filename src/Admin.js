@@ -36,6 +36,14 @@ function Admin() {
     const [selectedUpdateData, setSelectedUpdateData] = useState(null)
     const [updateModalOpen, setUpdateModalOpen] = useState(false)
 
+
+    const [modifyCat1, setModifyCat1] = useState('선택');
+    const [modifyCat2, setModifyCat2] = useState('선택');
+    const [modifyCateogryInputValue, setModifyCateogryInputValue] = useState('');
+    const [categoryModifyMode, setCateogryModifyMode] = useState(false);
+    const [categoryModifyCode , setCategoryModifyCode] = useState(0);
+
+
     const cookies = new Cookies();
 
     const closeModal = () => { setUpdateModalOpen(false) }
@@ -95,9 +103,9 @@ function Admin() {
                 'istockphoto': link3
             }
         })
-        if(res && res.data.success){
+        if (res && res.data.success) {
             alert("성공적으로 등록되었습니다.")
-        }else{
+        } else {
             alert("등록에 실패했습니다.")
         }
     }
@@ -120,6 +128,48 @@ function Admin() {
         }
     }
 
+    async function deleteItem() {
+        const res = await axios.post('http://61.100.186.15:5000/deleteItem', {
+            "_id": selectedUpdateData['_id'],
+        })
+        if (res.data.success) {
+            alert("성공적으로 삭제되었습니다.");
+            setUpdateModalOpen(false);
+        } else {
+            alert("삭제에 실패했습니다.")
+        }
+    }
+
+    async function modifyCategory(_code) {
+        console.log(_code);
+        console.log(modifyCateogryInputValue)
+        const res = await axios.post('http://61.100.186.15:5000/modifyCateogry', {
+            "code": _code,
+            "text": modifyCateogryInputValue
+        })
+        if (res.data.success) {
+            alert("성공적으로 삭제되었습니다.");
+            setUpdateModalOpen(false);
+            setCateogryModifyMode(false);
+        } else {
+            alert("삭제에 실패했습니다.");
+            setCateogryModifyMode(false);
+        }
+    }
+
+    async function deleteCategory(_code) {
+        console.log(_code);
+
+        const res = await axios.post('http://61.100.186.15:5000/modifyCateogry', {
+            "code": _code
+        })
+        if (res.data.success) {
+            alert("성공적으로 삭제되었습니다.");
+            setUpdateModalOpen(false);
+        } else {
+            alert("삭제에 실패했습니다.")
+        }
+    }
 
     async function makeURL(data) {
         const res = await axios.post('http://61.100.186.15:5000/createImage', {
@@ -149,7 +199,7 @@ function Admin() {
         fetchCategories();
     }, [])
 
-    useEffect(()=>{
+    useEffect(() => {
         GetItems()
     }, [updateCat3, pageNum])
 
@@ -160,8 +210,9 @@ function Admin() {
         return (
             <div>
                 <div style={{ textAlign: 'center', marginTop: '10px' }}>
-                    <Button onClick={e => setMode('add')} style={{ marginLeft: '10px', marginRight: '10px' }}>추가페이지</Button>
-                    <Button onClick={e => setMode('update')} style={{ marginLeft: '10px', marginRight: '10px' }}>수정페이지</Button>
+                    <Button onClick={e => setMode('add')} style={{ marginLeft: '10px', marginRight: '10px' }}>사진추가</Button>
+                    <Button onClick={e => setMode('modifyImage')} style={{ marginLeft: '10px', marginRight: '10px' }}>사진수정</Button>
+                    <Button onClick={e => setMode('modifyCategory')} style={{ marginLeft: '10px', marginRight: '10px' }}>카테고리수정</Button>
                 </div>
 
                 <div className="admin_body">
@@ -210,7 +261,7 @@ function Admin() {
                                     <Input className="admin_add_right_input" value={addedTitle} onChange={e => setAddedTitle(e.target.value)} />
                                     <div style={{ marginBottom: '10px' }}>
                                         <p style={{ marginBottom: '5px', marginTop: '10px', fontWeight: '600' }}>카테고리 선택</p>
-                                        <Select style={{ width: '150px', marginRight:'15px' }} value={addedcat1} onChange={e => {
+                                        <Select style={{ width: '150px', marginRight: '15px' }} value={addedcat1} onChange={e => {
                                             setAddedCat1(e);
                                             setAddedCat2('선택')
                                         }}>
@@ -220,7 +271,7 @@ function Admin() {
                                                 })
                                             }
                                         </Select>
-                                        <Select style={{ width: '120px', marginRight:'15px'}} value={addedcat2} onChange={e => {
+                                        <Select style={{ width: '120px', marginRight: '15px' }} value={addedcat2} onChange={e => {
                                             setAddedCat2(e);
                                             setAddedCat3('선택')
                                         }}>
@@ -261,7 +312,7 @@ function Admin() {
                                     </div>
                                     <div>
                                         <span>메인화면 노출여부</span>
-                                        <input style={{width:'15px', height:'15px', marginTop:'20px'}} type="checkbox" checked={addedExpose} onChange={e=> setAddedExpose(e.target.checked)} />
+                                        <input style={{ width: '15px', height: '15px', marginTop: '20px' }} type="checkbox" checked={addedExpose} onChange={e => setAddedExpose(e.target.checked)} />
                                     </div>
                                     <Button
                                         style={{ marginTop: '10px' }}
@@ -272,79 +323,135 @@ function Admin() {
                                 </div>
                             </div>
                             :
-                            <div>
-                                <div>
-                                    <p>카테고리 선택</p>
-                                    <Select
-                                        value={updateCat1}
-                                        onChange={e => setUpdateCat1(e)}
-                                        style={{ width: '120px', marginRight:'15px' }}
-                                    >
-                                        {
-                                            cateData['cat1'].map(d => {
-                                                return <Option value={d.code}>{d.text}</Option>
-                                            })
-                                        }
-                                    </Select>
-                                    <Select
-                                        value={updateCat2}
-                                        onChange={e => setUpdateCat2(e)}
-                                        style={{ width: '120px', marginRight:'15px' }}
-                                    >
-                                        {
-                                            cateData['cat2'].map(d => {
-                                                return <Option value={d.code}>{d.text}</Option>
-                                            })
-                                        }
-                                    </Select>
-                                    <Select
-                                        value={updateCat3}
-                                        onChange={e => {
-                                            setUpdateCat3(e)
-                                        }}
-                                        style={{ width: '150px' }}
-                                    >
-                                        {
-                                            cateData['cat3'].filter(c => (c.cat1 === updateCat1 && c.cat2 === updateCat2)).map(d => {
-                                                return <Option value={d.code}>{d.text}</Option>
-                                            })
-                                        }
-                                    </Select>
-                                </div>
+                            mode === "modifyImage" ?
+                                <>
+                                    <div>
+                                        <div>
+                                            <div>
+                                                <p>이미지수정 카테고리선택</p>
+                                                <Select
+                                                    value={updateCat1}
+                                                    onChange={e => setUpdateCat1(e)}
+                                                    style={{ width: '120px', marginRight: '15px' }}
+                                                >
+                                                    {
+                                                        cateData['cat1'].map(d => {
+                                                            return <Option value={d.code}>{d.text}</Option>
+                                                        })
+                                                    }
+                                                </Select>
+                                                <Select
+                                                    value={updateCat2}
+                                                    onChange={e => setUpdateCat2(e)}
+                                                    style={{ width: '120px', marginRight: '15px' }}
+                                                >
+                                                    {
+                                                        cateData['cat2'].map(d => {
+                                                            return <Option value={d.code}>{d.text}</Option>
+                                                        })
+                                                    }
+                                                </Select>
+                                                <Select
+                                                    value={updateCat3}
+                                                    onChange={e => {
+                                                        setUpdateCat3(e)
+                                                    }}
+                                                    style={{ width: '150px' }}
+                                                >
+                                                    {
+                                                        cateData['cat3'].filter(c => (c.cat1 === updateCat1 && c.cat2 === updateCat2)).map(d => {
+                                                            return <Option value={d.code}>{d.text}</Option>
+                                                        })
+                                                    }
+                                                </Select>
+                                            </div>
 
-                                <div style={{ marginTop: '50px', display:'flex', justifyContent:'center', width:'100%', flexWrap:'wrap' }}>
-                                    {
-                                        fetchData.length > 0 ?
-                                            fetchData.map(item => {
-                                                return (
-                                                    <div style={{width:'250px', marginRight:'20px', marginBottom:'20px'}}>
-                                                        <img alt="" src={item.image} style={{width:'250px', height:'130px', marginBottom:'7px', objectFit:'cover'}} />
-                                                        <Button
-                                                            style={{ marginLeft: '10px', marginRight: '10px', marginLeft:'auto', marginRight:'auto', display:'block' }}
-                                                            onClick={e => {
-                                                                console.log(item)
-                                                                setSelectedUpdateData(item);
-                                                                setUpdateModalOpen(true);
-                                                            }}
-                                                        >
-                                                            {item.title}
-                                                        </Button>
+                                            <div style={{ marginTop: '50px', display: 'flex', justifyContent: 'center', width: '100%', flexWrap: 'wrap' }}>
+                                                {
+                                                    fetchData.length > 0 ?
+                                                        fetchData.map(item => {
+                                                            return (
+                                                                <div style={{ width: '250px', marginRight: '20px', marginBottom: '20px' }}>
+                                                                    <img alt="" src={item.image} style={{ width: '250px', height: '130px', marginBottom: '7px', objectFit: 'cover' }} />
+                                                                    <Button
+                                                                        style={{ marginLeft: '10px', marginRight: '10px', marginLeft: 'auto', marginRight: 'auto', display: 'block' }}
+                                                                        onClick={e => {
+                                                                            setSelectedUpdateData(item);
+                                                                            setUpdateModalOpen(true);
+                                                                        }}
+                                                                    >
+                                                                        {item.title}
+                                                                    </Button>
+                                                                </div>
+                                                            )
+                                                        })
+                                                        :
+                                                        <p>해당 카테고리에 이미지가 없습니다.</p>
+                                                }
+                                            </div>
+                                            <div style={{ marginLeft: 'auto', marginRight: 'auto', display: 'block', textAlign: 'center', marginTop: '30px' }}>
+                                                <Pagination
+                                                    current={pageNum}
+                                                    onChange={(page, pageSize) => setPageNum(page)}
+                                                    total={fetchDataTotal}
+                                                    pageSize={20}
+                                                />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </>
+                                :
+                                <div>
+                                    <div>
+                                        <p>카테고리수정 카테고리선택</p>
+                                        <Select
+                                            value={modifyCat1}
+                                            onChange={e => setModifyCat1(e)}
+                                            style={{ width: '120px', marginRight: '15px' }}
+                                        >
+                                            {
+                                                cateData['cat1'].map(d => {
+                                                    return <Option value={d.code}>{d.text}</Option>
+                                                })
+                                            }
+                                        </Select>
+                                        <Select
+                                            value={modifyCat2}
+                                            onChange={e => setModifyCat2(e)}
+                                            style={{ width: '120px', marginRight: '15px' }}
+                                        >
+                                            {
+                                                cateData['cat2'].map(d => {
+                                                    return <Option value={d.code}>{d.text}</Option>
+                                                })
+                                            }
+                                        </Select>
+                                        <div style={{ display: 'flex', marginTop: '50px', marginBottom: '50px' }}>
+                                            {
+                                                cateData['cat3'].filter(c => (c.cat1 === modifyCat1 && c.cat2 === modifyCat2)).map(d => {
+                                                    return <div className='modifyCategoryItem'>
+                                                        {
+                                                            categoryModifyMode && d.code === categoryModifyCode? 
+                                                            <input value={modifyCateogryInputValue} onChange={e => setModifyCateogryInputValue(e.target.value)} />
+                                                            :
+                                                            <div>{d.text}</div>
+                                                        }
+                                                        {
+                                                            categoryModifyMode ? 
+                                                                <button className='modifyButton' onClick={e => modifyCategory(d.code)}>확인</button>
+                                                                :
+                                                                <button className='modifyButton' onClick={e => {
+                                                                    setCateogryModifyMode(true);
+                                                                    setCategoryModifyCode(d.code);
+                                                                }}>수정</button>
+                                                        }
+                                                        <button className='modifyButton' onClick={e => deleteCategory(d.code)}>삭제</button>
                                                     </div>
-                                                )
-                                            })
-                                            :
-                                            <p>해당 카테고리에 이미지가 없습니다.</p>
-                                    }
+                                                })
+                                            }
+                                        </div>
+                                    </div>
                                 </div>
-                                <div style={{marginLeft:'auto', marginRight:'auto', display:'block', textAlign:'center', marginTop:'30px'}}>
-                                    <Pagination
-                                        current={pageNum}
-                                        onChange={(page, pageSize) => setPageNum(page)}
-                                        total={fetchDataTotal}
-                                        pageSize={20}
-                                    />
-                                </div>
-                            </div>
                     }
                 </div>
                 <Modal
@@ -413,6 +520,12 @@ function Admin() {
                                     style={{ marginLeft: 'auto', marginRight: 'auto', display: 'block', marginTop: '30px', marginBottom: '30px' }}
                                 >
                                     수정하기
+                                </Button>
+                                <Button
+                                    onClick={e => deleteItem()}
+                                    style={{ marginLeft: 'auto', marginRight: 'auto', display: 'block', marginTop: '30px', marginBottom: '30px' }}
+                                >
+                                    삭제하기
                                 </Button>
                             </>
                             :

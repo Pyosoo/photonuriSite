@@ -541,3 +541,20 @@ button:hover{cursor: pointer;}
   background-color: #4f82d8;
   cursor: pointer;
 }
+
+.modifyCategoryItem{
+  display: flex;
+  height: 50px;
+  line-height: 50px;
+  vertical-align: middle;
+  padding: 7px 15px;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+.modifyButton{
+  height: 34px;
+  line-height: 34px;
+  margin-left: 2px;
+  margin-right: 2px;
+  vertical-align: middle;
+}
