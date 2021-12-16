@@ -426,7 +426,7 @@ function Admin() {
                                                 })
                                             }
                                         </Select>
-                                        <div style={{ display: 'flex', marginTop: '50px', marginBottom: '50px' }}>
+                                        <div style={{ display: 'flex', marginTop: '50px', marginBottom: '50px', flexWrap:'wrap' }}>
                                             {
                                                 cateData['cat3'].filter(c => (c.cat1 === modifyCat1 && c.cat2 === modifyCat2)).map(d => {
                                                     return <div className='modifyCategoryItem'>
@@ -434,7 +434,7 @@ function Admin() {
                                                             categoryModifyMode && d.code === categoryModifyCode? 
                                                             <input value={modifyCateogryInputValue} onChange={e => setModifyCateogryInputValue(e.target.value)} />
                                                             :
-                                                            <div>{d.text}</div>
+                                                            <div className='modifyDiv'>{d.text}</div>
                                                         }
                                                         {
                                                             categoryModifyMode ? 
@@ -445,7 +445,13 @@ function Admin() {
                                                                     setCategoryModifyCode(d.code);
                                                                 }}>수정</button>
                                                         }
-                                                        <button className='modifyButton' onClick={e => deleteCategory(d.code)}>삭제</button>
+                                                        {
+                                                            categoryModifyMode ? 
+                                                                <button className='modifyButton' onClick={e => setCateogryModifyMode(false)}>취소</button>
+                                                                :
+                                                                <button className='modifyButton' onClick={e => deleteCategory(d.code)}>삭제</button>
+
+                                                        }
                                                     </div>
                                                 })
                                             }
