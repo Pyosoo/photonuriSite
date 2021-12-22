@@ -34,19 +34,23 @@ function Admin() {
     const [fetchDataTotal, setFetchDataTotal] = useState(0);
     const [pageNum, setPageNum] = useState(1);
     const [selectedUpdateData, setSelectedUpdateData] = useState(null)
-    const [updateModalOpen, setUpdateModalOpen] = useState(false)
 
+    const [updateModalOpen, setUpdateModalOpen] = useState(false)
 
     const [modifyCat1, setModifyCat1] = useState('선택');
     const [modifyCat2, setModifyCat2] = useState('선택');
     const [modifyCateogryInputValue, setModifyCateogryInputValue] = useState('');
     const [categoryModifyMode, setCateogryModifyMode] = useState(false);
-    const [categoryModifyCode , setCategoryModifyCode] = useState(0);
+    const [categoryModifyCode, setCategoryModifyCode] = useState(0);
+
+    const [addCateModalOpen, setAddCateModalOpen] = useState(false);
+    const [addCateValue, setAddCateValue] = useState('');
 
 
     const cookies = new Cookies();
 
     const closeModal = () => { setUpdateModalOpen(false) }
+    const closeModal2 = () => { setAddCateModalOpen(false) }
 
 
     async function fetchCategories() {
@@ -123,6 +127,18 @@ function Admin() {
         if (res.data.success) {
             alert("성공적으로 변경되었습니다.");
             setUpdateModalOpen(false);
+            setFetchData(fetchData.map(d => {
+                if (d._id === selectedUpdateData['_id']) {
+                    return {
+                        "image": selectedUpdateData.image,
+                        "title": selectedUpdateData.title,
+                        "content": selectedUpdateData.content,
+                        "links": selectedUpdateData.links,
+                        "_id": selectedUpdateData['_id'],
+                        "expose": selectedUpdateData.expose
+                    }
+                } else return d;
+            }))
         } else {
             alert("업데이트에 실패했습니다. 내용을 정확히 입력해주세요.")
         }
@@ -134,7 +150,11 @@ function Admin() {
         })
         if (res.data.success) {
             alert("성공적으로 삭제되었습니다.");
+            // 테스트
+            setFetchData(fetchData.filter(d => d._id !== selectedUpdateData['_id']));
+            setFetchDataTotal(fetchDataTotal - 1)
             setUpdateModalOpen(false);
+            // ====== 
         } else {
             alert("삭제에 실패했습니다.")
         }
@@ -401,63 +421,133 @@ function Admin() {
                                     </div>
                                 </>
                                 :
-                                <div>
+                                mode === "modifyImage" ?
                                     <div>
-                                        <p>카테고리수정 카테고리선택</p>
-                                        <Select
-                                            value={modifyCat1}
-                                            onChange={e => setModifyCat1(e)}
-                                            style={{ width: '120px', marginRight: '15px' }}
-                                        >
-                                            {
-                                                cateData['cat1'].map(d => {
-                                                    return <Option value={d.code}>{d.text}</Option>
-                                                })
-                                            }
-                                        </Select>
-                                        <Select
-                                            value={modifyCat2}
-                                            onChange={e => setModifyCat2(e)}
-                                            style={{ width: '120px', marginRight: '15px' }}
-                                        >
-                                            {
-                                                cateData['cat2'].map(d => {
-                                                    return <Option value={d.code}>{d.text}</Option>
-                                                })
-                                            }
-                                        </Select>
-                                        <div style={{ display: 'flex', marginTop: '50px', marginBottom: '50px', flexWrap:'wrap' }}>
-                                            {
-                                                cateData['cat3'].filter(c => (c.cat1 === modifyCat1 && c.cat2 === modifyCat2)).map(d => {
-                                                    return <div className='modifyCategoryItem'>
-                                                        {
-                                                            categoryModifyMode && d.code === categoryModifyCode? 
-                                                            <input value={modifyCateogryInputValue} onChange={e => setModifyCateogryInputValue(e.target.value)} />
-                                                            :
-                                                            <div className='modifyDiv'>{d.text}</div>
-                                                        }
-                                                        {
-                                                            categoryModifyMode ? 
-                                                                <button className='modifyButton' onClick={e => modifyCategory(d.code)}>확인</button>
-                                                                :
-                                                                <button className='modifyButton' onClick={e => {
-                                                                    setCateogryModifyMode(true);
-                                                                    setCategoryModifyCode(d.code);
-                                                                }}>수정</button>
-                                                        }
-                                                        {
-                                                            categoryModifyMode ? 
-                                                                <button className='modifyButton' onClick={e => setCateogryModifyMode(false)}>취소</button>
-                                                                :
-                                                                <button className='modifyButton' onClick={e => deleteCategory(d.code)}>삭제</button>
+                                        <div>
+                                            <p>카테고리수정 카테고리선택</p>
+                                            <Select
+                                                value={modifyCat1}
+                                                onChange={e => setModifyCat1(e)}
+                                                style={{ width: '120px', marginRight: '15px' }}
+                                            >
+                                                {
+                                                    cateData['cat1'].map(d => {
+                                                        return <Option value={d.code}>{d.text}</Option>
+                                                    })
+                                                }
+                                            </Select>
+                                            <Select
+                                                value={modifyCat2}
+                                                onChange={e => setModifyCat2(e)}
+                                                style={{ width: '120px', marginRight: '15px' }}
+                                            >
+                                                {
+                                                    cateData['cat2'].map(d => {
+                                                        return <Option value={d.code}>{d.text}</Option>
+                                                    })
+                                                }
+                                            </Select>
+                                            <div style={{ display: 'flex', marginTop: '50px', marginBottom: '50px', flexWrap: 'wrap' }}>
+                                                {
+                                                    cateData['cat3'].filter(c => (c.cat1 === modifyCat1 && c.cat2 === modifyCat2)).map(d => {
+                                                        return <div className='modifyCategoryItem'>
+                                                            {
+                                                                categoryModifyMode && d.code === categoryModifyCode ?
+                                                                    <input value={modifyCateogryInputValue} onChange={e => setModifyCateogryInputValue(e.target.value)} />
+                                                                    :
+                                                                    <div className='modifyDiv'>{d.text}</div>
+                                                            }
+                                                            {
+                                                                categoryModifyMode ?
+                                                                    <button className='modifyButton' onClick={e => modifyCategory(d.code)}>확인</button>
+                                                                    :
+                                                                    <button className='modifyButton' onClick={e => {
+                                                                        setCateogryModifyMode(true);
+                                                                        setCategoryModifyCode(d.code);
+                                                                    }}>수정</button>
+                                                            }
+                                                            {
+                                                                categoryModifyMode ?
+                                                                    <button className='modifyButton' onClick={e => setCateogryModifyMode(false)}>취소</button>
+                                                                    :
+                                                                    <button className='modifyButton' onClick={e => deleteCategory(d.code)}>삭제</button>
 
-                                                        }
-                                                    </div>
-                                                })
-                                            }
+                                                            }
+                                                        </div>
+                                                    })
+                                                }
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
+                                    :
+                                    mode === "modifyCategory" ?
+                                        <div>
+                                            <div>
+                                                <p>카테고리수정 카테고리선택</p>
+                                                <Select
+                                                    value={modifyCat1}
+                                                    onChange={e => setModifyCat1(e)}
+                                                    style={{ width: '120px', marginRight: '15px' }}
+                                                >
+                                                    {
+                                                        cateData['cat1'].map(d => {
+                                                            return <Option value={d.code}>{d.text}</Option>
+                                                        })
+                                                    }
+                                                </Select>
+                                                <Select
+                                                    value={modifyCat2}
+                                                    onChange={e => setModifyCat2(e)}
+                                                    style={{ width: '120px', marginRight: '15px' }}
+                                                >
+                                                    {
+                                                        cateData['cat2'].map(d => {
+                                                            return <Option value={d.code}>{d.text}</Option>
+                                                        })
+                                                    }
+                                                </Select>
+                                                <div style={{ display: 'flex', marginTop: '50px', marginBottom: '50px', flexWrap: 'wrap' }}>
+                                                    {
+                                                        cateData['cat3'].filter((c) => (c.cat1 === modifyCat1 && c.cat2 === modifyCat2)).map((d, index) => {
+                                                            return <div className='modifyCategoryItem'>
+                                                                {
+                                                                    categoryModifyMode && d.code === categoryModifyCode ?
+                                                                        <input value={modifyCateogryInputValue} onChange={e => setModifyCateogryInputValue(e.target.value)} />
+                                                                        :
+                                                                        <div className='modifyDiv'>{index}. {d.text}</div>
+                                                                }
+                                                                {
+                                                                    categoryModifyMode ?
+                                                                        <button className='modifyButton' onClick={e => modifyCategory(d.code)}>확인</button>
+                                                                        :
+                                                                        <button className='modifyButton' onClick={e => {
+                                                                            setCateogryModifyMode(true);
+                                                                            setCategoryModifyCode(d.code);
+                                                                        }}>수정</button>
+                                                                }
+                                                                {
+                                                                    categoryModifyMode ?
+                                                                        <button className='modifyButton' onClick={e => setCateogryModifyMode(false)}>취소</button>
+                                                                        :
+                                                                        null
+
+                                                                }
+                                                            </div>
+                                                        })
+                                                    }
+                                                    {
+                                                        modifyCat1 !== '선택' && modifyCat2 !== '선택' ?
+                                                            <div className='addNewCategory'>
+                                                                <Button style={{height:'50px', lineHeight:'50px', verticalAlign:'middle'}} onClick={e => setAddCateModalOpen(true)}>카테고리 추가하기</Button>
+                                                            </div>
+                                                            : null
+                                                    }
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        :
+                                        null
                     }
                 </div>
                 <Modal
@@ -537,6 +627,17 @@ function Admin() {
                             :
                             null
                     }
+                </Modal>
+                <Modal
+                    title="수정하기"
+                    visible={addCateModalOpen}
+                    onOk={closeModal2}
+                    onCancel={closeModal2}
+                    width={900}
+                    footer={null}
+                >
+                    <input value={addCateValue} onChange={e => setAddCateValue(e.target.value)} placeholder='새로운 카테고리 이름을 입력하세요.' />
+                    <Button> 추가하기 </Button>
 
                 </Modal>
             </div>

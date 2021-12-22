@@ -431,8 +431,7 @@ button:hover{cursor: pointer;}
   margin-left: auto;
   margin-right: auto;
   margin-top: 20px;
-  margin-bottom: 20px;
-  border: 1px solid rgb(114, 113, 113,0.5);
+  margin-bottom: 20px;box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
   padding-left: 10px;
   padding-right: 10px;
   border-radius: 7px;
@@ -444,8 +443,7 @@ button:hover{cursor: pointer;}
   height: 300px;
   display: block;
   margin-left: auto;
-  margin-right: auto;
-  border: 1px solid rgb(114, 113, 113,0.5);
+  margin-right: auto;box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
   padding: 10px;
   border-radius: 7px;
   word-break: break-all;
@@ -529,16 +527,17 @@ button:hover{cursor: pointer;}
   line-height: 27px;
   border: none;
   outline: 0;
-  border-radius: 5px;
+  border-radius: 2px;
   color: white;
   font-weight: 400;
   font-size: 12px;
   margin-left: 10px;
   margin-right: 10px;
-  background-color: #5D95F6;
+  background-color: #a5a1a1;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 .moveBtn2:hover{
-  background-color: #4f82d8;
+  background-color: #484848;
   cursor: pointer;
 }
 
