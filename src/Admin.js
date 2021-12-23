@@ -150,11 +150,9 @@ function Admin() {
         })
         if (res.data.success) {
             alert("성공적으로 삭제되었습니다.");
-            // 테스트
             setFetchData(fetchData.filter(d => d._id !== selectedUpdateData['_id']));
             setFetchDataTotal(fetchDataTotal - 1)
             setUpdateModalOpen(false);
-            // ====== 
         } else {
             alert("삭제에 실패했습니다.")
         }
@@ -177,19 +175,20 @@ function Admin() {
         }
     }
 
-    async function deleteCategory(_code) {
-        console.log(_code);
-
-        const res = await axios.post('http://61.100.186.15:5000/modifyCateogry', {
-            "code": _code
+    async function addCategory(_code) {
+        const res = await axios.post('http://61.100.186.15:5000/addCategory', {
+            "cat1": modifyCat1,
+            "cat2": modifyCat2,
+            "name": addCateValue
         })
         if (res.data.success) {
-            alert("성공적으로 삭제되었습니다.");
+            alert("성공적으로 추가되었습니다.");
             setUpdateModalOpen(false);
         } else {
             alert("삭제에 실패했습니다.")
         }
     }
+
 
     async function makeURL(data) {
         const res = await axios.post('http://61.100.186.15:5000/createImage', {
@@ -470,8 +469,7 @@ function Admin() {
                                                                 categoryModifyMode ?
                                                                     <button className='modifyButton' onClick={e => setCateogryModifyMode(false)}>취소</button>
                                                                     :
-                                                                    <button className='modifyButton' onClick={e => deleteCategory(d.code)}>삭제</button>
-
+                                                                    null
                                                             }
                                                         </div>
                                                     })
@@ -637,7 +635,7 @@ function Admin() {
                     footer={null}
                 >
                     <input value={addCateValue} onChange={e => setAddCateValue(e.target.value)} placeholder='새로운 카테고리 이름을 입력하세요.' />
-                    <Button> 추가하기 </Button>
+                    <Button onClick={e => addCategory()}> 추가하기 </Button>
 
                 </Modal>
             </div>
