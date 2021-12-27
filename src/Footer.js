@@ -13,50 +13,34 @@ function Footer() {
                 <div className="footer_part">
                     <div className="footer_item">
                         <a className="footer_item_link" href="https://www.shutterstock.com/g/alnet">
-                            <img src="http://www.photonuri.com/images/shutterstock.jpg" />
+                            <img src='./Images/shutter_icon.png' />
                         </a>
                         <p className="footer_item_p">Shutterstock</p>
-                        <p className="footer_item_p">www.shutterstock.com</p>
-                        <a className="footer_item_a">VIEW DETAILS</a>
+                        <a className="footer_item_a">click to view Details.</a>
                     </div>
                 </div>
                 <div className="footer_part">
                     <div className="footer_item">
                         <a className="footer_item_link" href="https://stock.adobe.com/kr/contributor/207850314/syston">
-                            <img src="http://www.photonuri.com/images/adobestock.jpg" />
+                            <img src='./Images/adobe_icon.png' />
                         </a>
                         <p className="footer_item_p">Adobe Stock</p>
-                        <p className="footer_item_p">stock.adobe.com</p>
-                        <a className="footer_item_a">VIEW DETAILS</a>
+                        <a className="footer_item_a">click to view Details.</a>
                     </div>
                 </div>
                 <div className="footer_part_last">
                     <div className="footer_item">
                         <a className="footer_item_link" href="http://www.istockphoto.com/portfolio/syston">
-                            <img src="http://www.photonuri.com/images/istockphoto.jpg" />
+                            <img src='./Images/getty_icon.png' />
                         </a>
                         <p className="footer_item_p">Getty Images</p>
-                        <p className="footer_item_p">www.istockphoto.com</p>
-                        <a className="footer_item_a">VIEW DETAILS</a>
+                        <a className="footer_item_a">click to view Details.</a>
                     </div>
                 </div>
             </div>
 
             {/* <p className="footer_info_p1">E-mail To Us</p> */}
             <p className="footer_info_p2"> Copyright@1999 Syston All Right Reserved. syston@naver.com  </p>
-            {/* <div className="footer_info_div">
-                <a className="footer_info_icon" href="/">
-
-                </a>
-                <a className="footer_info_icon" href="/">
-
-                </a>
-                <a className="footer_info_icon" href="/">
-
-                </a>
-
-               
-            </div> */}
         </div>
     )
 }

@@ -44,38 +44,11 @@ function Choice(props) {
 
     if (mainData.length !== 0) {
         return (
-            <div className="cat1_div">
-                {/* {
-                    mainData.map(item => {
-                        return (
-                            <Link
-                                to={{
-                                    pathname: `/folder/${item.code}`,
-                                    state: {
-                                        categoryData: cateData
-                                    }
-                                }}
-                                style={{ color: 'black', marginRight: '3%' }}
-                            >
-                                <div className="cat1_item">
-                                    <img
-                                        src={item.image}
-                                        alt=""
-                                        className="cat1_img"
-                                        onClick={e => {
-                                            setcat1(item.code);
-                                            window.scrollTo(0, 300)
-                                        }}
-                                    />
-                                    <p className="cat1_title" >{item.title}</p>
-                                </div>
-                            </Link>
-                        )
-                    })
-                } */}
+            <div className="main_line">
 
-                <div style={{display:'flex', width:'1300px', height:'930px'}}>
-                    <div style={{width:'50%'}}>
+                {/* 메인1 */}
+                <div style={{display:'flex', width:'1300px',  marginLeft:'auto', marginRight:'auto'}}>
+                    <div style={{width:'50%', height:'450px'}}>
                         <Link
                             to={{
                                 pathname: `/folder/${mainData[0].code}`,
@@ -87,9 +60,10 @@ function Choice(props) {
                         >
                             <div style={{width:'100%'}}>
                                 <img
-                                    src={mainData[0].image}
+                                    // src={mainData[0].image}
+                                    src="http://www.photonuri.com/wp-content/uploads/2020/11/1210202RF017-400x250.jpg"
                                     alt=""
-                                    style={{width:'100%'}}
+                                    style={{width:'100%', marginTop:'4px'}}
                                     onClick={e => {
                                         setcat1(mainData[0].code);
                                         window.scrollTo(0, 300)
@@ -107,13 +81,14 @@ function Choice(props) {
                                         categoryData: cateData
                                     }
                                 }}
-                                style={{ color: 'black'}}
+                                className='mainImage1'
                             >
                                 <div className="cat1_item">
                                     <img
-                                        src={mainData[1].image}
+                                        // src={mainData[1].image}
+                                    src="http://www.photonuri.com/wp-content/uploads/2020/11/1210202RF017-400x250.jpg"
                                         alt=""
-                                        style={{width:'50%'}}
+                                        style={{width:'100%'}}
                                         onClick={e => {
                                             setcat1(mainData[1].code);
                                             window.scrollTo(0, 300)
@@ -128,13 +103,14 @@ function Choice(props) {
                                         categoryData: cateData
                                     }
                                 }}
-                                style={{ color: 'black'}}
+                                className='mainImage1'
                             >
                                 <div className="cat1_item">
                                     <img
-                                        src={mainData[2].image}
+                                        // src={mainData[2].image}
+                                    src="http://www.photonuri.com/wp-content/uploads/2020/11/1210202RF017-400x250.jpg"
                                         alt=""
-                                        style={{width:'50%'}}
+                                        style={{width:'100%'}}
                                         onClick={e => {
                                             setcat1(mainData[2].code);
                                             window.scrollTo(0, 300)
@@ -151,13 +127,14 @@ function Choice(props) {
                                         categoryData: cateData
                                     }
                                 }}
-                                style={{ color: 'black'}}
+                                className='mainImage1'
                             >
-                                <div className="cat1_item">
+                                <div>
                                     <img
-                                        src={mainData[1].image}
+                                        // src={mainData[1].image}
+                                    src="http://www.photonuri.com/wp-content/uploads/2020/11/1210202RF017-400x250.jpg"
                                         alt=""
-                                        style={{width:'50%'}}
+                                        style={{width:'100%'}}
                                         onClick={e => {
                                             setcat1(mainData[1].code);
                                             window.scrollTo(0, 300)
@@ -172,13 +149,14 @@ function Choice(props) {
                                         categoryData: cateData
                                     }
                                 }}
-                                style={{ color: 'black'}}
+                                className='mainImage1'
                             >
-                                <div className="cat1_item">
+                                <div>
                                     <img
-                                        src={mainData[2].image}
+                                        // src={mainData[2].image}
+                                    src="http://www.photonuri.com/wp-content/uploads/2020/11/1210202RF017-400x250.jpg"
                                         alt=""
-                                        style={{width:'50%'}}
+                                        style={{width:'100%'}}
                                         onClick={e => {
                                             setcat1(mainData[2].code);
                                             window.scrollTo(0, 300)
@@ -189,6 +167,130 @@ function Choice(props) {
                         </div>
                     </div>
                 </div>
+
+                {/* 메인2 */}
+                <div style={{display:'flex', width:'1300px', marginLeft:'auto', marginRight:'auto'}}>
+                    <div style={{width:'50%'}}>
+                        <div style={{display:'flex'}}>
+                            <Link
+                                to={{
+                                    pathname: `/folder/${mainData[1].code}`,
+                                    state: {
+                                        categoryData: cateData
+                                    }
+                                }}
+                                className='mainImage1'
+                            >
+                                <div className="cat1_item">
+                                    <img
+                                        // src={mainData[1].image}
+                                    src="http://www.photonuri.com/wp-content/uploads/2020/11/1210202RF017-400x250.jpg"
+                                        alt=""
+                                        style={{width:'100%'}}
+                                        onClick={e => {
+                                            setcat1(mainData[1].code);
+                                            window.scrollTo(0, 300)
+                                        }}
+                                    />
+                                </div>
+                            </Link>
+                            <Link
+                                to={{
+                                    pathname: `/folder/${mainData[2].code}`,
+                                    state: {
+                                        categoryData: cateData
+                                    }
+                                }}
+                                className='mainImage1'
+                            >
+                                <div className="cat1_item">
+                                    <img
+                                        // src={mainData[2].image}
+                                    src="http://www.photonuri.com/wp-content/uploads/2020/11/1210202RF017-400x250.jpg"
+                                        alt=""
+                                        style={{width:'100%'}}
+                                        onClick={e => {
+                                            setcat1(mainData[2].code);
+                                            window.scrollTo(0, 300)
+                                        }}
+                                    />
+                                </div>
+                            </Link>
+                        </div>
+                        <div style={{display:'flex'}}>
+                            <Link
+                                to={{
+                                    pathname: `/folder/${mainData[1].code}`,
+                                    state: {
+                                        categoryData: cateData
+                                    }
+                                }}
+                                className='mainImage1'
+                            >
+                                <div>
+                                    <img
+                                        // src={mainData[1].image}
+                                    src="http://www.photonuri.com/wp-content/uploads/2020/11/1210202RF017-400x250.jpg"
+                                        alt=""
+                                        style={{width:'100%'}}
+                                        onClick={e => {
+                                            setcat1(mainData[1].code);
+                                            window.scrollTo(0, 300)
+                                        }}
+                                    />
+                                </div>
+                            </Link>
+                            <Link
+                                to={{
+                                    pathname: `/folder/${mainData[2].code}`,
+                                    state: {
+                                        categoryData: cateData
+                                    }
+                                }}
+                                className='mainImage1'
+                            >
+                                <div>
+                                    <img
+                                        // src={mainData[2].image}
+                                    src="http://www.photonuri.com/wp-content/uploads/2020/11/1210202RF017-400x250.jpg"
+                                        alt=""
+                                        style={{width:'100%'}}
+                                        onClick={e => {
+                                            setcat1(mainData[2].code);
+                                            window.scrollTo(0, 300)
+                                        }}
+                                    />
+                                </div>
+                            </Link>
+                        </div>
+                    </div>
+                    <div style={{width:'50%', height:'450px'}}>
+                        <Link
+                            to={{
+                                pathname: `/folder/${mainData[0].code}`,
+                                state: {
+                                    categoryData: cateData
+                                }
+                            }}
+                            className='mainImage0'
+                        >
+                            <div style={{width:'100%'}}>
+                                <img
+                                    // src={mainData[0].image}
+                                    src="http://www.photonuri.com/wp-content/uploads/2020/11/1210202RF017-400x250.jpg"
+                                    alt=""
+                                    style={{width:'100%', marginTop:'4px'}}
+                                    onClick={e => {
+                                        setcat1(mainData[0].code);
+                                        window.scrollTo(0, 300)
+                                    }}
+                                />
+                            </div>
+                        </Link>
+                    </div>
+                </div>
+
+
                
                 <div style={{ width:'100%', marginLeft: 'auto', marginRight: 'auto', display: 'block', textAlign: 'center', marginTop: '70px', marginBottom:'30px' }}>
                     <Pagination

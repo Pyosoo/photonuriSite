@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import queryString from 'query-string';
-import CustomModal from './CustomModal';
 import axios from 'axios';
 import { useHistory } from 'react-router-dom'
 import { Input, Select, Button, Modal, Pagination } from 'antd';
 import 'antd/dist/antd.css';
-import GoogleAdsense from 'react-adsense-google';
 const { Option } = Select;
 
 function Folder({ location, match }) {
@@ -143,20 +141,27 @@ function Folder({ location, match }) {
                         </div>
                         <div className="photo_main_right">
                             <div className="photo_main_p">
-                                {mainImgItem.title}
-                                <p className='photo_main_subT'>제목</p>
+                               {mainImgItem.title}
+                                <p className='photo_main_subT'>
+                                    Name
+                                </p>
+                                <div className='photo_divider'></div>
                             </div>
                             <div className="photo_main_p">
                                 {mainImgCategory}
-                                <p className='photo_main_subT'>분류</p>
-                                <button
-                                    className='moveBtn2'
-                                    onClick={e => setMoveCategoryModalOpen(true)}
-                                >이동</button>
+                                <p className='photo_main_subT'>
+                                    Category
+                                    <button
+                                        className='moveBtn2'
+                                        onClick={e => setMoveCategoryModalOpen(true)}
+                                    >Move</button>
+                                </p>
+                                
+                                <div className='photo_divider'></div>
                             </div>
                             <div className="photo_main_p2">
                                 {mainImgItem.content}
-                                <p className='photo_main_subT2'>상세설명</p>
+                                <p className='photo_main_subT2'>Details</p>
                             </div>
                         </div>
                     </div>
@@ -328,7 +333,7 @@ function Folder({ location, match }) {
                         visible={modalOpen}
                         onOk={closeModal}
                         onCancel={closeModal}
-                        closable={false}
+                        closable={true}
                         width={1300}
                         footer={
                             selectedItems ?
@@ -354,8 +359,8 @@ function Folder({ location, match }) {
                                     <Button onClick={e => closeModal()} style={{ display: 'block', marginLeft: 'auto', marginRight: 'auto', marginTop: '15px', backgroundColor: '#565656', color: 'white' }}>닫기</Button>
                                 </div>
                                 :
-                                <Button onClick={e => closeModal()} style={{ display: 'block', marginLeft: 'auto', marginRight: 'auto', marginTop: '15px', backgroundColor: '#565656', color: 'white' }}>닫기</Button>
-                        }
+                                null
+                            }
 
                     >
                         <div className="modal_container">
