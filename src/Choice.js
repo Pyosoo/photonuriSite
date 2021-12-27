@@ -5,7 +5,7 @@ import axios from 'axios';
 import { Input, Select, Button, Modal, Pagination } from 'antd';
 
 
-
+//  Choice is 메인화면
 
 function Choice(props) {
 
@@ -26,7 +26,7 @@ function Choice(props) {
     }
 
     async function fetchExposeData() {
-        const res = await axios.post('http://61.100.186.15:5000/searchAll', { 'page': pageNum })
+        const res = await axios.post('http://61.100.186.15:5000/searchAll', { 'page': pageNum, 'limit': 10 })
         if (res.data && res.data.success) {
             setFetchDataTotal(res.data.data.total)
             setMainData(res.data.data.items)
@@ -45,7 +45,7 @@ function Choice(props) {
     if (mainData.length !== 0) {
         return (
             <div className="cat1_div">
-                {
+                {/* {
                     mainData.map(item => {
                         return (
                             <Link
@@ -72,7 +72,123 @@ function Choice(props) {
                             </Link>
                         )
                     })
-                }
+                } */}
+
+                <div style={{display:'flex', width:'1300px', height:'930px'}}>
+                    <div style={{width:'50%'}}>
+                        <Link
+                            to={{
+                                pathname: `/folder/${mainData[0].code}`,
+                                state: {
+                                    categoryData: cateData
+                                }
+                            }}
+                            className='mainImage0'
+                        >
+                            <div style={{width:'100%'}}>
+                                <img
+                                    src={mainData[0].image}
+                                    alt=""
+                                    style={{width:'100%'}}
+                                    onClick={e => {
+                                        setcat1(mainData[0].code);
+                                        window.scrollTo(0, 300)
+                                    }}
+                                />
+                            </div>
+                        </Link>
+                    </div>
+                    <div style={{width:'50%'}}>
+                        <div style={{display:'flex'}}>
+                            <Link
+                                to={{
+                                    pathname: `/folder/${mainData[1].code}`,
+                                    state: {
+                                        categoryData: cateData
+                                    }
+                                }}
+                                style={{ color: 'black'}}
+                            >
+                                <div className="cat1_item">
+                                    <img
+                                        src={mainData[1].image}
+                                        alt=""
+                                        style={{width:'50%'}}
+                                        onClick={e => {
+                                            setcat1(mainData[1].code);
+                                            window.scrollTo(0, 300)
+                                        }}
+                                    />
+                                </div>
+                            </Link>
+                            <Link
+                                to={{
+                                    pathname: `/folder/${mainData[2].code}`,
+                                    state: {
+                                        categoryData: cateData
+                                    }
+                                }}
+                                style={{ color: 'black'}}
+                            >
+                                <div className="cat1_item">
+                                    <img
+                                        src={mainData[2].image}
+                                        alt=""
+                                        style={{width:'50%'}}
+                                        onClick={e => {
+                                            setcat1(mainData[2].code);
+                                            window.scrollTo(0, 300)
+                                        }}
+                                    />
+                                </div>
+                            </Link>
+                        </div>
+                        <div style={{display:'flex'}}>
+                            <Link
+                                to={{
+                                    pathname: `/folder/${mainData[1].code}`,
+                                    state: {
+                                        categoryData: cateData
+                                    }
+                                }}
+                                style={{ color: 'black'}}
+                            >
+                                <div className="cat1_item">
+                                    <img
+                                        src={mainData[1].image}
+                                        alt=""
+                                        style={{width:'50%'}}
+                                        onClick={e => {
+                                            setcat1(mainData[1].code);
+                                            window.scrollTo(0, 300)
+                                        }}
+                                    />
+                                </div>
+                            </Link>
+                            <Link
+                                to={{
+                                    pathname: `/folder/${mainData[2].code}`,
+                                    state: {
+                                        categoryData: cateData
+                                    }
+                                }}
+                                style={{ color: 'black'}}
+                            >
+                                <div className="cat1_item">
+                                    <img
+                                        src={mainData[2].image}
+                                        alt=""
+                                        style={{width:'50%'}}
+                                        onClick={e => {
+                                            setcat1(mainData[2].code);
+                                            window.scrollTo(0, 300)
+                                        }}
+                                    />
+                                </div>
+                            </Link>
+                        </div>
+                    </div>
+                </div>
                
                 <div style={{ width:'100%', marginLeft: 'auto', marginRight: 'auto', display: 'block', textAlign: 'center', marginTop: '70px', marginBottom:'30px' }}>
                     <Pagination

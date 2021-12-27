@@ -20,31 +20,36 @@ button:hover{cursor: pointer;}
   width: 100%;
   height: 400px;
   padding-top: 100px;
-  background-image: linear-gradient(
-    120deg,#000000 0%,rgba(0,0,0,0) 100%),url(http://www.photonuri.com/wp-content/uploads/2020/10/1210101RF001-2-scaled.jpg)!important;
+  background-image: url('./Images/main_top_back.png');
+  opacity: 0.95;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 .header_t1{
   display: block;
-  font-size: 3em;
+  font-size: 4em;
   font-weight: 800;
-  width: 80%;
+  text-align: center;
   margin-left: auto;
   margin-right: auto;
   color: white;
   margin-bottom: 10px;
   margin-top: 0;
+  opacity: 1;
 }
 .header_t2{
   display: block;
   font-size: 1.5em;
-  font-weight: 800;
-  width: 80%;
+  font-weight: 400;
+  text-align: center;
   margin-left: auto;
   margin-right: auto;
   color: white;
   margin-top: 10px;
   margin-bottom: 10px;
   margin-top: 0;
+  opacity: 1;
 }
 .header_t1:hover{cursor: pointer;}
 
@@ -146,80 +151,13 @@ button:hover{cursor: pointer;}
 }
 
 
-.cat1_div{
-  display: flex;
-  flex-grow: 1;
-  flex-wrap: wrap;
-  width: 90%;
-  max-width: 1600px;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 50px;
-  margin-bottom: 50px;
-  justify-content: center;
-  font-family: 'Song Myung', serif;
-}
-.cat2_div{
-  display: flex;
-  flex-wrap: wrap;
-  width: 60%;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 50px;
-  margin-bottom: 50px;
-  justify-content: center;
-  font-family: 'Song Myung', serif;
-}
-.cat1_item{
-  width: 210px;
-  height: 150px;
-  margin-right: 20px;
-  margin-top: 25px;
-  margin-bottom: 25px;
-}
-.cat1_item:hover{
-  transform: scale(1.05);
-  transition: all 0.5s;
-}
-.cat1_img{
-  width: 210px;
-  height: 150px;
-  border-radius: 5px;
-}
-.cat1_img:hover{cursor: pointer;}
-.cat1_title{
-  margin-top: 5px;
-  text-align: center;
-  color: #474747;
-  font-weight: 700;
-  font-size: 17px;
+
+.mainImage0{
+  border: 1px solid gray;
 }
 
-.cat2_title{
-  width: 100%;
-  font-weight: 700;
-  font-size: 27px;
-  text-align: center;
-  color: #676767;
 
-}
-.cat2_item{
-  width: 100px;
-  height: 50px;
-  line-height: 50px;
-  vertical-align: middle;
-  text-align: center;
-  color: black;
-  margin-left: 10px;
-  margin-right: 10px;
-}
-.cat2_item:hover{
-  font-weight: 900;
-}
-.cat2_item:hover{
-  cursor: pointer;
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
-}
+
 
 .cat_backbtn{
   display: block;
@@ -534,7 +472,7 @@ button:hover{cursor: pointer;}
   margin-left: 10px;
   margin-right: 10px;
   background-color: #a5a1a1;
-  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  box-shadow: rgba(116, 114, 114, 0.24) 0px 3px 8px;
 }
 .moveBtn2:hover{
   background-color: #484848;
@@ -574,4 +512,12 @@ button:hover{cursor: pointer;}
   cursor: pointer;
   background-color: rgb(167, 164, 164, 0.5);
   color: white;
+}
+
+.addNewCategory{
+  display: block;
+  width: 100%;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  text-align: center;
 }

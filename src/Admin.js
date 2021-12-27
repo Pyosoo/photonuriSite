@@ -45,6 +45,7 @@ function Admin() {
 
     const [addCateModalOpen, setAddCateModalOpen] = useState(false);
     const [addCateValue, setAddCateValue] = useState('');
+    const [addCateRegion, setAddCateRegion] = useState('');
 
 
     const cookies = new Cookies();
@@ -158,19 +159,20 @@ function Admin() {
         }
     }
 
-    async function modifyCategory(_code) {
-        console.log(_code);
-        console.log(modifyCateogryInputValue)
-        const res = await axios.post('http://61.100.186.15:5000/modifyCateogry', {
+    async function modifyCategory(_code, _region) {
+        console.log(_code, _region)
+        const res = await axios.post('http://61.100.186.15:5000/modifyCategory', {
             "code": _code,
-            "text": modifyCateogryInputValue
+            "text": modifyCateogryInputValue,
+            "region": _region
         })
         if (res.data.success) {
-            alert("성공적으로 삭제되었습니다.");
+            alert("성공적으로 수정되었습니다.");
             setUpdateModalOpen(false);
             setCateogryModifyMode(false);
+            window.location.reload();
         } else {
-            alert("삭제에 실패했습니다.");
+            alert("수정에 실패했습니다.");
             setCateogryModifyMode(false);
         }
     }
@@ -179,11 +181,13 @@ function Admin() {
         const res = await axios.post('http://61.100.186.15:5000/addCategory', {
             "cat1": modifyCat1,
             "cat2": modifyCat2,
-            "name": addCateValue
+            "text": addCateValue,
+            "region": addCateRegion
         })
         if (res.data.success) {
             alert("성공적으로 추가되었습니다.");
             setUpdateModalOpen(false);
+            window.location.reload();
         } else {
             alert("삭제에 실패했습니다.")
         }
@@ -420,7 +424,7 @@ function Admin() {
                                     </div>
                                 </>
                                 :
-                                mode === "modifyImage" ?
+                                mode === "modifyCategory" ?
                                     <div>
                                         <div>
                                             <p>카테고리수정 카테고리선택</p>
@@ -448,17 +452,17 @@ function Admin() {
                                             </Select>
                                             <div style={{ display: 'flex', marginTop: '50px', marginBottom: '50px', flexWrap: 'wrap' }}>
                                                 {
-                                                    cateData['cat3'].filter(c => (c.cat1 === modifyCat1 && c.cat2 === modifyCat2)).map(d => {
+                                                    cateData['cat3'].filter((c) => (c.cat1 === modifyCat1 && c.cat2 === modifyCat2)).map((d, index) => {
                                                         return <div className='modifyCategoryItem'>
                                                             {
                                                                 categoryModifyMode && d.code === categoryModifyCode ?
                                                                     <input value={modifyCateogryInputValue} onChange={e => setModifyCateogryInputValue(e.target.value)} />
                                                                     :
-                                                                    <div className='modifyDiv'>{d.text}</div>
+                                                                    <div className='modifyDiv'>{index}. {d.text}</div>
                                                             }
                                                             {
                                                                 categoryModifyMode ?
-                                                                    <button className='modifyButton' onClick={e => modifyCategory(d.code)}>확인</button>
+                                                                    <button className='modifyButton' onClick={e => modifyCategory(d.code, d.region)}>확인</button>
                                                                     :
                                                                     <button className='modifyButton' onClick={e => {
                                                                         setCateogryModifyMode(true);
@@ -470,82 +474,24 @@ function Admin() {
                                                                     <button className='modifyButton' onClick={e => setCateogryModifyMode(false)}>취소</button>
                                                                     :
                                                                     null
+
                                                             }
                                                         </div>
                                                     })
                                                 }
+                                                {
+                                                    modifyCat1 !== '선택' && modifyCat2 !== '선택' ?
+                                                        <div className='addNewCategory'>
+                                                            <Button style={{ height: '50px', lineHeight: '50px', verticalAlign: 'middle' }} onClick={e => setAddCateModalOpen(true)}>카테고리 추가하기</Button>
+                                                        </div>
+                                                        : null
+                                                }
+
                                             </div>
                                         </div>
                                     </div>
                                     :
-                                    mode === "modifyCategory" ?
-                                        <div>
-                                            <div>
-                                                <p>카테고리수정 카테고리선택</p>
-                                                <Select
-                                                    value={modifyCat1}
-                                                    onChange={e => setModifyCat1(e)}
-                                                    style={{ width: '120px', marginRight: '15px' }}
-                                                >
-                                                    {
-                                                        cateData['cat1'].map(d => {
-                                                            return <Option value={d.code}>{d.text}</Option>
-                                                        })
-                                                    }
-                                                </Select>
-                                                <Select
-                                                    value={modifyCat2}
-                                                    onChange={e => setModifyCat2(e)}
-                                                    style={{ width: '120px', marginRight: '15px' }}
-                                                >
-                                                    {
-                                                        cateData['cat2'].map(d => {
-                                                            return <Option value={d.code}>{d.text}</Option>
-                                                        })
-                                                    }
-                                                </Select>
-                                                <div style={{ display: 'flex', marginTop: '50px', marginBottom: '50px', flexWrap: 'wrap' }}>
-                                                    {
-                                                        cateData['cat3'].filter((c) => (c.cat1 === modifyCat1 && c.cat2 === modifyCat2)).map((d, index) => {
-                                                            return <div className='modifyCategoryItem'>
-                                                                {
-                                                                    categoryModifyMode && d.code === categoryModifyCode ?
-                                                                        <input value={modifyCateogryInputValue} onChange={e => setModifyCateogryInputValue(e.target.value)} />
-                                                                        :
-                                                                        <div className='modifyDiv'>{index}. {d.text}</div>
-                                                                }
-                                                                {
-                                                                    categoryModifyMode ?
-                                                                        <button className='modifyButton' onClick={e => modifyCategory(d.code)}>확인</button>
-                                                                        :
-                                                                        <button className='modifyButton' onClick={e => {
-                                                                            setCateogryModifyMode(true);
-                                                                            setCategoryModifyCode(d.code);
-                                                                        }}>수정</button>
-                                                                }
-                                                                {
-                                                                    categoryModifyMode ?
-                                                                        <button className='modifyButton' onClick={e => setCateogryModifyMode(false)}>취소</button>
-                                                                        :
-                                                                        null
-
-                                                                }
-                                                            </div>
-                                                        })
-                                                    }
-                                                    {
-                                                        modifyCat1 !== '선택' && modifyCat2 !== '선택' ?
-                                                            <div className='addNewCategory'>
-                                                                <Button style={{height:'50px', lineHeight:'50px', verticalAlign:'middle'}} onClick={e => setAddCateModalOpen(true)}>카테고리 추가하기</Button>
-                                                            </div>
-                                                            : null
-                                                    }
-
-                                                </div>
-                                            </div>
-                                        </div>
-                                        :
-                                        null
+                                    null
                     }
                 </div>
                 <Modal
@@ -627,15 +573,22 @@ function Admin() {
                     }
                 </Modal>
                 <Modal
-                    title="수정하기"
+                    title="카테고리 추가하기"
                     visible={addCateModalOpen}
                     onOk={closeModal2}
                     onCancel={closeModal2}
                     width={900}
                     footer={null}
                 >
-                    <input value={addCateValue} onChange={e => setAddCateValue(e.target.value)} placeholder='새로운 카테고리 이름을 입력하세요.' />
-                    <Button onClick={e => addCategory()}> 추가하기 </Button>
+                    <Input
+                        style={{ width: '300px', display: 'block', marginLeft: 'auto', marginRight: 'auto', marginTop: '10px', marginBottom: '10px' }}
+                        value={addCateRegion} onChange={e => setAddCateRegion(e.target.value)} placeholder='지역명을 입력해주세요.' />
+                    <Input
+                        style={{ width: '300px', display: 'block', marginLeft: 'auto', marginRight: 'auto', marginTop: '10px', marginBottom: '10px' }}
+                        value={addCateValue} onChange={e => setAddCateValue(e.target.value)} placeholder='카테고리 이름을 입력하세요.' />
+                    <Button
+                        style={{ display: 'block', marginLeft: 'auto', marginRight: 'auto' }}
+                        onClick={e => addCategory()}> 추가하기 </Button>
 
                 </Modal>
             </div>
