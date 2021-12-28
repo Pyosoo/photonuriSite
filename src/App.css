@@ -1,6 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Song+Myung&display=swap');
 
-img:hover{cursor: pointer;}
+img:hover{
+  cursor: pointer;
+  transition: all 0.5s;
+}
 button:hover{cursor: pointer;}
 .container {
   padding: 0 2rem;
@@ -28,7 +31,7 @@ button:hover{cursor: pointer;}
   width: 100%;
   height: 400px;
   padding-top: 100px;
-  background-image: url('./Images/main_top_back.png');
+  background-image: url('http://www.photonuri.com/images/main_top_back.png');
   opacity: 0.95;
   background-size: cover;
   background-repeat: no-repeat;
@@ -72,7 +75,10 @@ button:hover{cursor: pointer;}
   border-top: 1px solid #eaeaea;
   justify-content: center;
   align-items: center;
-  background-image: url('./Images/main_bottom_back.png');
+  background-image: url('http://www.photonuri.com/images/main_bottom_back.png');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
   opacity: 1;
 }
 
@@ -97,7 +103,7 @@ button:hover{cursor: pointer;}
 .footer_item{
   background-color: white;
   width: 100%;
-  padding-bottom: 30px;
+  padding: 20px;
   border-radius: 20px;
 }
 .footer_mid{
@@ -109,10 +115,7 @@ button:hover{cursor: pointer;}
 .footer_item_link{
   width: 100%;
 }
-.footer_item_link img{
-  width: 100%;
-  height: auto;
-}
+
 .footer_item_p{
   font-size: 1.5em;
   color: white;
@@ -160,6 +163,21 @@ button:hover{cursor: pointer;}
   justify-content: center;
 }
 
+.footer_icon{
+  width: 50px;
+  height: 50px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+.footer_icon2{
+  display: block;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
 .main_line{
   margin-top: 100px;
   text-align: center;
@@ -465,6 +483,7 @@ button:hover{cursor: pointer;}
 
 .modal_container{
   display: flex;
+  margin-top: 30px;
 }
 .modal_adsense{
   width: 90px;
@@ -552,4 +571,16 @@ button:hover{cursor: pointer;}
   margin-top: 15px;
   margin-bottom: 15px;
   text-align: center;
+}
+
+
+.modal_link_div{
+  width: 250px;
+  padding: 5px 10px;
+  border: 1px solid #D1D1D1;
+  border-radius: 5px;
+}
+
+.modal_link_div:hover{
+  box-shadow: rgba(0, 0, 0, 0.3) 0px 7px 15px, rgba(0, 0, 0, 0.22) 0px 7px 5px; 
 }

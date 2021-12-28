@@ -25,6 +25,7 @@ function Folder({ location, match }) {
     const [moveCat2, setMoveCat2] = useState('선택');
     const [moveCat3, setMoveCat3] = useState('선택');
 
+    const imageSrcUrl = 'http://www.photonuri.com/images/';
 
 
     const openModal = () => {
@@ -337,26 +338,34 @@ function Folder({ location, match }) {
                         width={1300}
                         footer={
                             selectedItems ?
-                                <div style={{ textAlign: 'center' }}>
+                                <div style={{ textAlign: 'center', display:'flex', justifyContent:'center', marginTop:'20px', marginBottom:'20px' }}>
                                     {
                                         selectedItems.links.adobestock.length > 0 ?
-                                            <a rel="noreferrer" style={{ textDecoration: 'none', fontWeight: '800', marginLeft: '40px', marginRight: '40px' }} href={selectedItems.links.adobestock} target="_blank">adobeStock</a>
+                                            <div className='modal_link_div'>
+                                                <img style={{width:'180px'}} alt="" rel="noreferrel" src={imageSrcUrl + "shutter_text.png"} />
+                                                <a href={selectedItems.links.adobestock} target="_blank" rel='noreferrer'><img style={{width:'25px', height:'25px'}} alt="" rel="noreferrel" src={imageSrcUrl + "link_icon.png"} /></a>
+                                            </div>
                                             :
                                             null
                                     }
                                     {
                                         selectedItems.links.istockphoto.length > 0 ?
-                                            <a rel="noreferrer" style={{ textDecoration: 'none', fontWeight: '800', marginLeft: '40px', marginRight: '40px' }} href={selectedItems.links.istockphoto} target="_blank">istockphoto</a>
+                                            <div className='modal_link_div'>
+                                                <img style={{width:'180px'}} alt="" rel="noreferrel" src={imageSrcUrl + "adobe_text.png"} />
+                                                <a href={selectedItems.links.istockphoto} target="_blank" rel='noreferrer'><img style={{width:'25px', height:'25px'}} alt="" rel="noreferrel" src={imageSrcUrl + "link_icon.png"} /></a>
+                                            </div>
                                             :
                                             null
                                     }
                                     {
                                         selectedItems.links.shutterstock.length > 0 ?
-                                            <a rel="noreferrer" style={{ textDecoration: 'none', fontWeight: '800', marginLeft: '40px', marginRight: '40px' }} href={selectedItems.links.shutterstock} target="_blank">shutterstock</a>
+                                            <div className='modal_link_div'>
+                                                <img style={{width:'180px'}} alt="" rel="noreferrel" src={imageSrcUrl + "gety_text.png"} />
+                                                <a href={selectedItems.links.shutterstock} target="_blank" rel='noreferrer'><img style={{width:'25px', height:'25px'}} alt="" rel="noreferrel" src={imageSrcUrl + "link_icon.png"} /></a>
+                                            </div>
                                             :
                                             null
                                     }
-                                    <Button onClick={e => closeModal()} style={{ display: 'block', marginLeft: 'auto', marginRight: 'auto', marginTop: '15px', backgroundColor: '#565656', color: 'white' }}>닫기</Button>
                                 </div>
                                 :
                                 null
