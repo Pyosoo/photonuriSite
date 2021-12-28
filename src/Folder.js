@@ -44,7 +44,7 @@ function Folder({ location, match }) {
 
 
     async function GetItems(c) {
-        const res = await axios.post('http://61.100.186.15:5000/searchItems', {
+        const res = await axios.post(`${process.env.REACT_APP_API_ADDRESS}/searchItems`, {
             "code": c === 0 ? code : c,
             "page": pageNum,
         })
@@ -62,7 +62,7 @@ function Folder({ location, match }) {
     }
 
     async function fetchCategories() {
-        const res = await axios.get('http://61.100.186.15:5000/getCategories')
+        const res = await axios.get(`${process.env.REACT_APP_API_ADDRESS}/getCategories`)
         if (res.data && res.data.success) {
             setCategory(res.data.data)
         }

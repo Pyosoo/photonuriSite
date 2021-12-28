@@ -55,7 +55,7 @@ function Admin() {
 
 
     async function fetchCategories() {
-        const res = await axios.get('http://61.100.186.15:5000/getCategories')
+        const res = await axios.get(`${process.env.REACT_APP_API_ADDRESS}/getCategories`)
         if (res.data && res.data.success) {
             setCateData(res.data.data)
         }
@@ -63,7 +63,7 @@ function Admin() {
 
 
     async function GetItems() {
-        const res = await axios.post('http://61.100.186.15:5000/searchItems', {
+        const res = await axios.post(`${process.env.REACT_APP_API_ADDRESS}/searchItems`, {
             "code": updateCat3,
             "page": pageNum,
         })
@@ -96,7 +96,7 @@ function Admin() {
             return;
         }
 
-        const res = await axios.post('http://61.100.186.15:5000/createItem', {
+        const res = await axios.post(`${process.env.REACT_APP_API_ADDRESS}/createItem`, {
             "image": imgSrc,
             "code": addedcat3,
             "title": addedTitle,
@@ -117,7 +117,7 @@ function Admin() {
 
 
     async function modifyItem() {
-        const res = await axios.post('http://61.100.186.15:5000/updateItem', {
+        const res = await axios.post(`${process.env.REACT_APP_API_ADDRESS}/updateItem`, {
             "image": selectedUpdateData.image,
             "title": selectedUpdateData.title,
             "content": selectedUpdateData.content,
@@ -146,7 +146,7 @@ function Admin() {
     }
 
     async function deleteItem() {
-        const res = await axios.post('http://61.100.186.15:5000/deleteItem', {
+        const res = await axios.post(`${process.env.REACT_APP_API_ADDRESS}/deleteItem`, {
             "_id": selectedUpdateData['_id'],
         })
         if (res.data.success) {
@@ -161,7 +161,7 @@ function Admin() {
 
     async function modifyCategory(_code, _region) {
         console.log(_code, _region)
-        const res = await axios.post('http://61.100.186.15:5000/modifyCategory', {
+        const res = await axios.post(`${process.env.REACT_APP_API_ADDRESS}/modifyCategory`, {
             "code": _code,
             "text": modifyCateogryInputValue,
             "region": _region
@@ -178,7 +178,7 @@ function Admin() {
     }
 
     async function addCategory(_code) {
-        const res = await axios.post('http://61.100.186.15:5000/addCategory', {
+        const res = await axios.post(`${process.env.REACT_APP_API_ADDRESS}/addCategory`, {
             "cat1": modifyCat1,
             "cat2": modifyCat2,
             "text": addCateValue,
@@ -195,7 +195,7 @@ function Admin() {
 
 
     async function makeURL(data) {
-        const res = await axios.post('http://61.100.186.15:5000/createImage', {
+        const res = await axios.post(`${process.env.REACT_APP_API_ADDRESS}/createImage`, {
             "image": data
         })
         if (res && res.data.success) {
@@ -203,7 +203,7 @@ function Admin() {
         }
     }
     async function makeURL2(data) {
-        const res = await axios.post('http://61.100.186.15:5000/createImage', {
+        const res = await axios.post(`${process.env.REACT_APP_API_ADDRESS}/createImage`, {
             "image": data
         })
         if (res && res.data.success) {

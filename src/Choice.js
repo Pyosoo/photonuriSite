@@ -19,14 +19,14 @@ function Choice(props) {
 
 
     async function fetchCategories() {
-        const res = await axios.get('http://61.100.186.15:5000/getCategories')
+        const res = await axios.get(`${process.env.REACT_APP_API_ADDRESS}/getCategories`)
         if (res.data && res.data.success) {
             setCateData(res.data.data)
         }
     }
 
     async function fetchExposeData() {
-        const res = await axios.post('http://61.100.186.15:5000/searchAll', { 'page': pageNum, 'limit': 10 })
+        const res = await axios.post(`${process.env.REACT_APP_API_ADDRESS}/searchAll`, { 'page': pageNum, 'limit': 10 })
         if (res.data && res.data.success) {
             setFetchDataTotal(res.data.data.total)
             setMainData(res.data.data.items)
@@ -346,7 +346,7 @@ function Choice(props) {
                 </div>
             </div>
         )
-    } else return <div>no Data</div>
+    } else return <div style={{height:'500px', lineHeight:'500px', textAlign:'center', fontSize:'25px', fontWeight:'600'}}>데이터가 없습니다.</div>
 
 
 }
