@@ -171,7 +171,7 @@ function Choice(props) {
                                     >
                                         <div>
                                             <img
-                                                src={mainData[2].image}
+                                                src={mainData[4].image}
                                                 alt=""
                                                 style={{ width: '100%' }}
                                                 onClick={e => {
@@ -197,7 +197,7 @@ function Choice(props) {
                                 mainData[5] ?
                                     <Link
                                         to={{
-                                            pathname: `/folder/${mainData[1].code}`,
+                                            pathname: `/folder/${mainData[5].code}`,
                                             state: {
                                                 categoryData: cateData
                                             }
@@ -206,11 +206,11 @@ function Choice(props) {
                                     >
                                         <div className="cat1_item">
                                             <img
-                                                src={mainData[1].image}
+                                                src={mainData[5].image}
                                                 alt=""
                                                 style={{ width: '100%' }}
                                                 onClick={e => {
-                                                    setcat1(mainData[1].code);
+                                                    setcat1(mainData[5].code);
                                                     window.scrollTo(0, 300)
                                                 }}
                                             />
@@ -223,7 +223,7 @@ function Choice(props) {
                                 mainData[6] ?
                                     <Link
                                         to={{
-                                            pathname: `/folder/${mainData[2].code}`,
+                                            pathname: `/folder/${mainData[6].code}`,
                                             state: {
                                                 categoryData: cateData
                                             }
@@ -232,11 +232,11 @@ function Choice(props) {
                                     >
                                         <div className="cat1_item">
                                             <img
-                                                src={mainData[2].image}
+                                                src={mainData[6].image}
                                                 alt=""
                                                 style={{ width: '100%' }}
                                                 onClick={e => {
-                                                    setcat1(mainData[2].code);
+                                                    setcat1(mainData[6].code);
                                                     window.scrollTo(0, 300)
                                                 }}
                                             />
@@ -252,7 +252,7 @@ function Choice(props) {
                                 mainData[7] ?
                                     <Link
                                         to={{
-                                            pathname: `/folder/${mainData[1].code}`,
+                                            pathname: `/folder/${mainData[7].code}`,
                                             state: {
                                                 categoryData: cateData
                                             }
@@ -261,11 +261,11 @@ function Choice(props) {
                                     >
                                         <div>
                                             <img
-                                                src={mainData[1].image}
+                                                src={mainData[7].image}
                                                 alt=""
                                                 style={{ width: '100%' }}
                                                 onClick={e => {
-                                                    setcat1(mainData[1].code);
+                                                    setcat1(mainData[7].code);
                                                     window.scrollTo(0, 300)
                                                 }}
                                             />
@@ -278,7 +278,7 @@ function Choice(props) {
                                 mainData[8] ?
                                     <Link
                                         to={{
-                                            pathname: `/folder/${mainData[2].code}`,
+                                            pathname: `/folder/${mainData[8].code}`,
                                             state: {
                                                 categoryData: cateData
                                             }
@@ -287,11 +287,11 @@ function Choice(props) {
                                     >
                                         <div>
                                             <img
-                                                src={mainData[2].image}
+                                                src={mainData[8].image}
                                                 alt=""
                                                 style={{ width: '100%' }}
                                                 onClick={e => {
-                                                    setcat1(mainData[2].code);
+                                                    setcat1(mainData[8].code);
                                                     window.scrollTo(0, 300)
                                                 }}
                                             />
@@ -308,7 +308,7 @@ function Choice(props) {
                             mainData[9] ?
                                 <Link
                                     to={{
-                                        pathname: `/folder/${mainData[0].code}`,
+                                        pathname: `/folder/${mainData[9].code}`,
                                         state: {
                                             categoryData: cateData
                                         }
@@ -317,11 +317,11 @@ function Choice(props) {
                                 >
                                     <div style={{ width: '100%' }}>
                                         <img
-                                            src={mainData[0].image}
+                                            src={mainData[9].image}
                                             alt=""
                                             style={{ width: '100%', marginTop: '10px' }}
                                             onClick={e => {
-                                                setcat1(mainData[0].code);
+                                                setcat1(mainData[9].code);
                                                 window.scrollTo(0, 300)
                                             }}
                                         />
