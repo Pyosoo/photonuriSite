@@ -73,16 +73,17 @@ function Folder({ location, match }) {
     }
 
     const catchCategory = code => {
-        console.log(code)
         let cg = [];
         if (!category) {
             cg = location.state.categoryData;
         } else { cg = category }
 
         let codeString = code + "";
+        console.log(codeString)
         let cat1 = codeString.substr(0, 3);
-        let cat2 = codeString.substr(2, 2);
+        let cat2 = codeString.substr(3, 2);
         let cat3 = codeString.substr(5);
+        console.log(cat1, cat2, cat3)
         let result = "";
         for (let i = 0; i < cg['cat1'].length; i++) {
             if (cg['cat1'][i].code + "" === cat1) {
@@ -97,7 +98,7 @@ function Folder({ location, match }) {
         }
         for (let i = 0; i < cg['cat3'].length; i++) {
             if (cg['cat3'][i].code === codeString) {
-                result += ("(" + cg['cat3'][i].region + ")" + " > " + cg['cat3'][i].text)
+                result += ("(" + cg['cat3'][i].region + ")  > " + cg['cat3'][i].text)
             }
         }
         setMainImgCateogry(result);
@@ -120,12 +121,12 @@ function Folder({ location, match }) {
     return (
         <div className="photo_container">
 
-            {/* <div className="folder_ad"> */}
+            <div className="folder_ad"> 
                 {/* <GoogleAdsense
                     adClient='ca-pub-7183258811881624'
                     adSlot='5993734338'
                 /> */}
-            {/* </div> */}
+            </div>
             {
                 mainImgItem && items.length > 0 ?
                     <div className="photo_main">
@@ -373,8 +374,8 @@ function Folder({ location, match }) {
 
                     >
                         <div className="modal_container">
-                            {/* <div className="modal_adsense">
-                            </div> */}
+                            <div className="modal_adsense">
+                            </div>
                             <div style={{ height: '728px', lineHeight: '728px', verticalAlign: 'middle', width: '100%' }}>
                                 <img
                                     src={selectedItems.image}
@@ -383,8 +384,8 @@ function Folder({ location, match }) {
                                 />
                             </div>
 
-                            {/* <div className="modal_adsense">
-                            </div> */}
+                            <div className="modal_adsense">
+                            </div>
                         </div>
                     </Modal>
                     : null

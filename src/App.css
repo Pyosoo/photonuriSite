@@ -185,10 +185,14 @@ button:hover{cursor: pointer;}
 }
 
 .mainImage0{
+  width: 650px;
+  height: 460px;
+  padding: 5px;
 }
 .mainImage1{
-  width: 50%;
-  padding: 5px;
+  width: 325px;
+  height: 230px;
+  padding:'5px'
 }
 
 
@@ -579,6 +583,8 @@ button:hover{cursor: pointer;}
   padding: 5px 10px;
   border: 1px solid #D1D1D1;
   border-radius: 5px;
+  margin-left: 20px;
+  margin-right: 20px;
 }
 
 .modal_link_div:hover{

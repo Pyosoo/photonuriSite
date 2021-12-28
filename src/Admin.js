@@ -270,12 +270,12 @@ function Admin() {
                                         {
                                             imgSrc ?
                                                 <>
-                                                    <img src={imgSrc} style={{ width: '300px', height: '200px', marginTop: '10px' }} />
+                                                    <img alt="" src={imgSrc} style={{ width: '300px', height: '200px', marginTop: '10px' }} />
                                                     <p>실제사진의 비율과 다를 수 있습니다.</p>
                                                 </>
                                                 :
                                                 null
-                                        }
+                                        }   
                                     </div>
 
                                 </div>
