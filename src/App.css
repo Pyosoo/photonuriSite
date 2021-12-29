@@ -29,7 +29,7 @@ button:hover{cursor: pointer;}
 
 .header{
   width: 100%;
-  height: 400px;
+  height: 450px;
   padding-top: 100px;
   background-image: url('http://www.photonuri.com/images/main_top_back.png');
   opacity: 0.95;
@@ -48,6 +48,10 @@ button:hover{cursor: pointer;}
   margin-bottom: 10px;
   margin-top: 0;
   opacity: 1;
+}
+.header_t1:hover{
+  transform: scale(1.01);
+  transition: ease 0.2s;
 }
 .header_t2{
   display: block;
@@ -71,6 +75,8 @@ button:hover{cursor: pointer;}
 }
 
 .footer {
+  width: 100%;
+  height: 700px;
   padding: 2rem 0;
   border-top: 1px solid #eaeaea;
   justify-content: center;
@@ -187,12 +193,10 @@ button:hover{cursor: pointer;}
 .mainImage0{
   width: 650px;
   height: 460px;
-  padding: 5px;
 }
 .mainImage1{
   width: 325px;
   height: 230px;
-  padding:'5px'
 }
 
 
@@ -374,7 +378,7 @@ button:hover{cursor: pointer;}
 }
 .photo_main{
   width: 1300px;
-  height: 500px;
+  height: 700px;
   display: flex;
   justify-content: center;
   margin: auto;
@@ -386,9 +390,8 @@ button:hover{cursor: pointer;}
   height: auto;
 }
 .photo_main_img{
-  width: 100%;
-  height: auto;
-  max-height: 500px;
+  width: 910px;
+  height: 650px;
   border: 1px solid rgb(114, 113, 113,0.5);
   border-radius: 3px;
 }
@@ -589,4 +592,28 @@ button:hover{cursor: pointer;}
 
 .modal_link_div:hover{
   box-shadow: rgba(0, 0, 0, 0.3) 0px 7px 15px, rgba(0, 0, 0, 0.22) 0px 7px 5px; 
+}
+
+
+
+.mainImgBig{
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+  padding: 4px;
+}
+.mainImgSmall{
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+  padding: 4px;
+}
+
+.mainImgBig:hover{
+  transform: scale(1.01);
+  transition: 0.5s ease;
+}
+.mainImgSmall:hover{
+  transform: scale(1.02);
+  transition: 0.5s ease;
 }

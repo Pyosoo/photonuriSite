@@ -59,11 +59,11 @@ function Choice(props) {
                                     }}
                                     className='mainImage0'
                                 >
-                                    <div style={{ width: '100%', height:'460px'}}>
+                                    <div style={{ width: '100%', height: '460px' }}>
                                         <img
                                             src={mainData[0].image}
                                             alt=""
-                                            style={{ width: '100%', height:'100%', objectFit:'fill', marginTop: '10px' }}
+                                            className='mainImgBig'
                                             onClick={e => {
                                                 setcat1(mainData[0].code);
                                                 window.scrollTo(0, 300)
@@ -77,7 +77,7 @@ function Choice(props) {
 
                     </div>
                     <div style={{ width: '49%' }}>
-                        <div style={{ display: 'flex', height:'230px' }}>
+                        <div style={{ display: 'flex', height: '230px' }}>
                             {
                                 mainData[1] ?
                                     <Link
@@ -89,15 +89,15 @@ function Choice(props) {
                                         }}
                                         className='mainImage1'
                                     >
-                                            <img
-                                                src={mainData[1].image}
-                                                alt=""
-                                                style={{ width: '100%', height:'100%', objectFit:'fill' }}
-                                                onClick={e => {
-                                                    setcat1(mainData[1].code);
-                                                    window.scrollTo(0, 300)
-                                                }}
-                                            />
+                                        <img
+                                            src={mainData[1].image}
+                                            alt=""
+                                            className='mainImgSmall'
+                                            onClick={e => {
+                                                setcat1(mainData[1].code);
+                                                window.scrollTo(0, 300)
+                                            }}
+                                        />
                                     </Link>
                                     : null
                             }
@@ -112,22 +112,22 @@ function Choice(props) {
                                         }}
                                         className='mainImage1'
                                     >
-                                            <img
-                                                src={mainData[2].image}
-                                                alt=""
-                                                style={{ width: '100%', height:'100%', objectFit:'fill' }}
-                                                onClick={e => {
-                                                    setcat1(mainData[2].code);
-                                                    window.scrollTo(0, 300)
-                                                }}
-                                            />
+                                        <img
+                                            src={mainData[2].image}
+                                            alt=""
+                                            className='mainImgSmall'
+                                            onClick={e => {
+                                                setcat1(mainData[2].code);
+                                                window.scrollTo(0, 300)
+                                            }}
+                                        />
                                     </Link>
                                     :
                                     null
                             }
 
                         </div>
-                        <div style={{ display: 'flex', height:'230px'  }}>
+                        <div style={{ display: 'flex', height: '230px' }}>
                             {
                                 mainData[3] ?
                                     <Link
@@ -139,15 +139,15 @@ function Choice(props) {
                                         }}
                                         className='mainImage1'
                                     >
-                                            <img
-                                                src={mainData[3].image}
-                                                alt=""
-                                                style={{ width: '100%', height:'100%', objectFit:'fill' }}
-                                                onClick={e => {
-                                                    setcat1(mainData[1].code);
-                                                    window.scrollTo(0, 300)
-                                                }}
-                                            />
+                                        <img
+                                            src={mainData[3].image}
+                                            alt=""
+                                            className='mainImgSmall'
+                                            onClick={e => {
+                                                setcat1(mainData[1].code);
+                                                window.scrollTo(0, 300)
+                                            }}
+                                        />
                                     </Link>
                                     :
                                     null
@@ -163,15 +163,15 @@ function Choice(props) {
                                         }}
                                         className='mainImage1'
                                     >
-                                            <img
-                                                src={mainData[4].image}
-                                                alt=""
-                                                style={{ width: '100%', height:'100%', objectFit:'fill' }}
-                                                onClick={e => {
-                                                    setcat1(mainData[4].code);
-                                                    window.scrollTo(0, 300)
-                                                }}
-                                            />
+                                        <img
+                                            src={mainData[4].image}
+                                            alt=""
+                                            className='mainImgSmall'
+                                            onClick={e => {
+                                                setcat1(mainData[4].code);
+                                                window.scrollTo(0, 300)
+                                            }}
+                                        />
                                     </Link>
                                     :
                                     null
@@ -184,7 +184,7 @@ function Choice(props) {
                 {/* 메인2 */}
                 <div style={{ display: 'flex', width: '1300px', marginLeft: 'auto', marginRight: 'auto' }}>
                     <div style={{ width: '49%', marginRight: 'auto' }}>
-                        <div style={{ display: 'flex', height:'230px'  }}>
+                        <div style={{ display: 'flex', height: '230px' }}>
                             {
                                 mainData[5] ?
                                     <Link
@@ -196,15 +196,15 @@ function Choice(props) {
                                         }}
                                         className='mainImage1'
                                     >
-                                            <img
-                                                src={mainData[5].image}
-                                                alt=""
-                                                style={{ width: '100%', height:'100%', objectFit:'fill' }}
-                                                onClick={e => {
-                                                    setcat1(mainData[5].code);
-                                                    window.scrollTo(0, 300)
-                                                }}
-                                            />
+                                        <img
+                                            src={mainData[5].image}
+                                            alt=""
+                                            className='mainImgSmall'
+                                            onClick={e => {
+                                                setcat1(mainData[5].code);
+                                                window.scrollTo(0, 300)
+                                            }}
+                                        />
                                     </Link>
                                     :
                                     null
@@ -220,22 +220,22 @@ function Choice(props) {
                                         }}
                                         className='mainImage1'
                                     >
-                                            <img
-                                                src={mainData[6].image}
-                                                alt=""
-                                                style={{ width: '100%', height:'100%', objectFit:'fill' }}
-                                                onClick={e => {
-                                                    setcat1(mainData[6].code);
-                                                    window.scrollTo(0, 300)
-                                                }}
-                                            />
+                                        <img
+                                            src={mainData[6].image}
+                                            alt=""
+                                            className='mainImgSmall'
+                                            onClick={e => {
+                                                setcat1(mainData[6].code);
+                                                window.scrollTo(0, 300)
+                                            }}
+                                        />
                                     </Link>
                                     :
                                     null
                             }
 
                         </div>
-                        <div style={{ display: 'flex', height:'230px' }}>
+                        <div style={{ display: 'flex', height: '230px' }}>
                             {
                                 mainData[7] ?
                                     <Link
@@ -247,15 +247,15 @@ function Choice(props) {
                                         }}
                                         className='mainImage1'
                                     >
-                                            <img
-                                                src={mainData[7].image}
-                                                alt=""
-                                                style={{ width: '100%', height:'100%', objectFit:'fill' }}
-                                                onClick={e => {
-                                                    setcat1(mainData[7].code);
-                                                    window.scrollTo(0, 300)
-                                                }}
-                                            />
+                                        <img
+                                            src={mainData[7].image}
+                                            alt=""
+                                            className='mainImgSmall'
+                                            onClick={e => {
+                                                setcat1(mainData[7].code);
+                                                window.scrollTo(0, 300)
+                                            }}
+                                        />
                                     </Link>
                                     :
                                     null
@@ -271,15 +271,15 @@ function Choice(props) {
                                         }}
                                         className='mainImage1'
                                     >
-                                            <img
-                                                src={mainData[8].image}
-                                                alt=""
-                                                style={{ width: '100%', height:'100%', objectFit:'fill' }}
-                                                onClick={e => {
-                                                    setcat1(mainData[8].code);
-                                                    window.scrollTo(0, 300)
-                                                }}
-                                            />
+                                        <img
+                                            src={mainData[8].image}
+                                            alt=""
+                                            className='mainImgSmall'
+                                            onClick={e => {
+                                                setcat1(mainData[8].code);
+                                                window.scrollTo(0, 300)
+                                            }}
+                                        />
                                     </Link>
                                     :
                                     null
@@ -299,17 +299,15 @@ function Choice(props) {
                                     }}
                                     className='mainImage0'
                                 >
-                                    <div style={{ width: '100%', height:'460px'}}>
                                         <img
                                             src={mainData[9].image}
                                             alt=""
-                                            style={{ width: '100%', marginTop: '10px', height:'100%', objectFit:'fill' }}
+                                            className='mainImgBig'
                                             onClick={e => {
                                                 setcat1(mainData[9].code);
                                                 window.scrollTo(0, 300)
                                             }}
                                         />
-                                    </div>
                                 </Link>
                                 :
                                 null
@@ -330,7 +328,7 @@ function Choice(props) {
                 </div>
             </div>
         )
-    } else return <div style={{height:'500px', lineHeight:'500px', textAlign:'center', fontSize:'25px', fontWeight:'600'}}>데이터가 없습니다.</div>
+    } else return <div style={{ height: '500px', lineHeight: '500px', textAlign: 'center', fontSize: '25px', fontWeight: '600' }}>데이터가 없습니다.</div>
 
 
 }

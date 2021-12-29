@@ -336,7 +336,7 @@ function Folder({ location, match }) {
                         onOk={closeModal}
                         onCancel={closeModal}
                         closable={true}
-                        width={1300}
+                        width={1400}
                         footer={
                             selectedItems ?
                                 <div style={{ textAlign: 'center', display:'flex', justifyContent:'center', marginTop:'20px', marginBottom:'20px' }}>
@@ -376,7 +376,7 @@ function Folder({ location, match }) {
                         <div className="modal_container">
                             <div className="modal_adsense">
                             </div>
-                            <div style={{ height: '728px', lineHeight: '728px', verticalAlign: 'middle', width: '100%' }}>
+                            <div style={{ height: '728px', lineHeight: '728px', verticalAlign: 'middle', width:'1020px', marginLeft:'auto', marginRight:'auto' }}>
                                 <img
                                     src={selectedItems.image}
                                     alt=""
