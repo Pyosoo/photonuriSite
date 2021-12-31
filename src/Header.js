@@ -48,7 +48,7 @@ function Header(props) {
                             history.push("/login");
                         }}
                         style={{backgroundColor:'transparent', color:'white', border:'none', outline:0}}
-                    >로그인</button>
+                    >Login</button>
                 }
             </div>
             <p className="header_t1" onClick={e => history.push("/")}>Photonuri</p>

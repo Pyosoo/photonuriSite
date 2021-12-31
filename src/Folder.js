@@ -3,6 +3,7 @@ import queryString from 'query-string';
 import axios from 'axios';
 import { useHistory } from 'react-router-dom'
 import { Input, Select, Button, Modal, Pagination } from 'antd';
+import { ArrowLeftOutlined, ArrowRightOutlined } from "@ant-design/icons"
 import 'antd/dist/antd.css';
 const { Option } = Select;
 
@@ -19,6 +20,7 @@ function Folder({ location, match }) {
 
     const [mainImgItem, setMainImgItem] = useState(null);
     const [mainImgCategory, setMainImgCateogry] = useState('');
+    const [mainImgIndex, setMainImgIndex] = useState(0);
 
     const [moveCategoryModalOpen, setMoveCategoryModalOpen] = useState(false);
     const [moveCat1, setMoveCat1] = useState('선택');
@@ -92,7 +94,7 @@ function Folder({ location, match }) {
             }
         }
         for (let i = 0; i < cg['cat2'].length; i++) {
-            if (cg['cat2'][i].code + "" === cat2) {
+            if (parseInt(cg['cat2'][i].code) === parseInt(cat2)) {
                 result += cg['cat2'][i].text;
             }
         }
@@ -104,7 +106,18 @@ function Folder({ location, match }) {
         setMainImgCateogry(result);
     }
 
-
+    const changeMainLeft = () => {
+        if(mainImgIndex !== 0){
+            setSelectedItems(items[mainImgIndex-1]);
+            setMainImgIndex(mainImgIndex-1)
+        }
+    }
+    const changeMainRight = () => {
+        if(mainImgIndex !== items.length -1){
+            setSelectedItems(items[mainImgIndex+1]);
+            setMainImgIndex(mainImgIndex+1)
+        }
+    }
 
 
 
@@ -121,7 +134,7 @@ function Folder({ location, match }) {
     return (
         <div className="photo_container">
 
-            <div className="folder_ad"> 
+            <div className="folder_ad">
                 {/* <GoogleAdsense
                     adClient='ca-pub-7183258811881624'
                     adSlot='5993734338'
@@ -129,44 +142,81 @@ function Folder({ location, match }) {
             </div>
             {
                 mainImgItem && items.length > 0 ?
-                    <div className="photo_main">
-                        <div className="photo_main_left">
-                            <img
-                                alt=""
-                                src={mainImgItem.image}
-                                className="photo_main_img"
-                                onClick={e => {
-                                    setModalOpen(true);
-                                    setSelectedItems(mainImgItem);
-                                }}
-                            />
+                    <>
+                        <div className="photo_main">
+                            <div className="photo_main_left">
+                                <img
+                                    alt=""
+                                    src={mainImgItem.image}
+                                    className="photo_main_img"
+                                    onClick={e => {
+                                        setModalOpen(true);
+                                        setSelectedItems(mainImgItem);
+                                    }}
+                                />
+                            </div>
+                            <div className="photo_main_right">
+                                <div className="photo_main_p">
+                                    {mainImgItem.title}
+                                    <p className='photo_main_subT'>
+                                        Name
+                                    </p>
+                                    <div className='photo_divider'></div>
+                                </div>
+                                <div className="photo_main_p">
+                                    {mainImgCategory}
+                                    <p className='photo_main_subT'>
+                                        Category
+                                        <button
+                                            className='moveBtn2'
+                                            onClick={e => setMoveCategoryModalOpen(true)}
+                                        >Move</button>
+                                    </p>
+
+                                    <div className='photo_divider'></div>
+                                </div>
+                                <div className="photo_main_p2">
+                                    {mainImgItem.content}
+                                    <p className='photo_main_subT2'>Details</p>
+                                </div>
+                            </div>
                         </div>
-                        <div className="photo_main_right">
-                            <div className="photo_main_p">
-                               {mainImgItem.title}
-                                <p className='photo_main_subT'>
-                                    Name
-                                </p>
-                                <div className='photo_divider'></div>
-                            </div>
-                            <div className="photo_main_p">
-                                {mainImgCategory}
-                                <p className='photo_main_subT'>
-                                    Category
-                                    <button
-                                        className='moveBtn2'
-                                        onClick={e => setMoveCategoryModalOpen(true)}
-                                    >Move</button>
-                                </p>
-                                
-                                <div className='photo_divider'></div>
-                            </div>
-                            <div className="photo_main_p2">
-                                {mainImgItem.content}
-                                <p className='photo_main_subT2'>Details</p>
-                            </div>
+                        <div style={{ textAlign: 'center', display: 'flex', justifyContent:'center', marginTop: '0px', marginBottom: '100px' }}>
+                            {
+                                mainImgItem.links.shutterstock.length > 0 ?
+                                    <div className='modal_link_div'>
+                                        <img style={{ width: '180px' }} alt="" rel="noreferrel" src={imageSrcUrl + "shutter_text.png"} />
+                                        <a href={mainImgItem.links.adobestock} target="_blank" rel='noreferrer'><img style={{ width: '25px', height: '25px' }} alt="" rel="noreferrel" src={imageSrcUrl + "link_icon.png"} /></a>
+                                    </div>
+                                    :
+                                    <div className='modal_link_div_no'>
+                                        <img style={{ width: '180px' }} alt="" rel="noreferrel" src={imageSrcUrl + "shutter_text.png"} />
+                                    </div>
+                            }
+                            {
+                                mainImgItem.links.adobestock.length > 0 ?
+                                    <div className='modal_link_div'>
+                                        <img style={{ width: '180px' }} alt="" rel="noreferrel" src={imageSrcUrl + "adobe_text.png"} />
+                                        <a href={mainImgItem.links.adobestock} target="_blank" rel='noreferrer'><img style={{ width: '25px', height: '25px' }} alt="" rel="noreferrel" src={imageSrcUrl + "link_icon.png"} /></a>
+                                    </div>
+                                    :
+                                    <div className='modal_link_div_no'>
+                                        <img style={{ width: '180px' }} alt="" rel="noreferrel" src={imageSrcUrl + "adobe_text.png"} />
+                                    </div>
+                            }
+                            {
+                                mainImgItem.links.istockphoto.length > 0 ?
+                                    <div className='modal_link_div'>
+                                        <img style={{ width: '180px' }} alt="" rel="noreferrel" src={imageSrcUrl + "gety_text.png"} />
+                                        <a href={mainImgItem.links.istockphoto} target="_blank" rel='noreferrer'><img style={{ width: '25px', height: '25px' }} alt="" rel="noreferrel" src={imageSrcUrl + "link_icon.png"} /></a>
+                                    </div>
+                                    :
+                                    <div className='modal_link_div_no'>
+                                        <img style={{ width: '180px' }} alt="" rel="noreferrel" src={imageSrcUrl + "gety_text.png"} />
+                                    </div>
+                            }
                         </div>
-                    </div>
+                    </>
                     :
                     null
             }
@@ -175,10 +225,11 @@ function Folder({ location, match }) {
             <div className="photo_body">
                 {
                     items.length > 0 ?
-                        items.map(item => {
+                        items.map((item,index) => {
                             return (
                                 <div className="photo_item" onClick={e => {
                                     setMainImgItem(item);
+                                    setMainImgIndex(index);
                                     catchCategory(item.code)
                                 }}>
                                     <img
@@ -337,51 +388,62 @@ function Folder({ location, match }) {
                         onCancel={closeModal}
                         closable={true}
                         width={1400}
-                        footer={
-                            selectedItems ?
-                                <div style={{ textAlign: 'center', display:'flex', justifyContent:'center', marginTop:'20px', marginBottom:'20px' }}>
-                                    {
-                                        selectedItems.links.adobestock.length > 0 ?
-                                            <div className='modal_link_div'>
-                                                <img style={{width:'180px'}} alt="" rel="noreferrel" src={imageSrcUrl + "shutter_text.png"} />
-                                                <a href={selectedItems.links.adobestock} target="_blank" rel='noreferrer'><img style={{width:'25px', height:'25px'}} alt="" rel="noreferrel" src={imageSrcUrl + "link_icon.png"} /></a>
-                                            </div>
-                                            :
-                                            null
-                                    }
-                                    {
-                                        selectedItems.links.istockphoto.length > 0 ?
-                                            <div className='modal_link_div'>
-                                                <img style={{width:'180px'}} alt="" rel="noreferrel" src={imageSrcUrl + "adobe_text.png"} />
-                                                <a href={selectedItems.links.istockphoto} target="_blank" rel='noreferrer'><img style={{width:'25px', height:'25px'}} alt="" rel="noreferrel" src={imageSrcUrl + "link_icon.png"} /></a>
-                                            </div>
-                                            :
-                                            null
-                                    }
-                                    {
-                                        selectedItems.links.shutterstock.length > 0 ?
-                                            <div className='modal_link_div'>
-                                                <img style={{width:'180px'}} alt="" rel="noreferrel" src={imageSrcUrl + "gety_text.png"} />
-                                                <a href={selectedItems.links.shutterstock} target="_blank" rel='noreferrer'><img style={{width:'25px', height:'25px'}} alt="" rel="noreferrel" src={imageSrcUrl + "link_icon.png"} /></a>
-                                            </div>
-                                            :
-                                            null
-                                    }
-                                </div>
-                                :
-                                null
-                            }
+                        footer={null}
 
                     >
                         <div className="modal_container">
                             <div className="modal_adsense">
                             </div>
-                            <div style={{ height: '728px', lineHeight: '728px', verticalAlign: 'middle', width:'1020px', marginLeft:'auto', marginRight:'auto' }}>
+                            <div 
+                                style={{ 
+                                    height: '728px', 
+                                    lineHeight: '728px', 
+                                    verticalAlign: 'middle', 
+                                    width: '1300px', 
+                                    marginLeft: 'auto', 
+                                    marginRight: 'auto',
+                                    position:'relative'
+                                }}
+                            >
+                                <div
+                                    style={{
+                                        position:'absolute',
+                                        left:0,
+                                        top:0,
+                                        zIndex:1000,
+                                        color:'white'
+                                    }}
+                                >
+                                    <ArrowLeftOutlined 
+                                        style={{
+                                            fontSize:'30px',
+                                            margin:'5px'
+                                        }}
+                                        onClick={e => changeMainLeft()}
+                                    />
+                                </div>
                                 <img
                                     src={selectedItems.image}
                                     alt=""
                                     className="modal_image"
                                 />
+                                <div
+                                    style={{
+                                        position:'absolute',
+                                        right:0,
+                                        top:0,
+                                        zIndex:1000,
+                                        color:'white'
+                                    }}
+                                >
+                                    <ArrowRightOutlined 
+                                        style={{
+                                            fontSize:'30px',
+                                            margin:'5px'
+                                        }}
+                                        onClick={e => changeMainRight()}
+                                    />
+                                </div>
                             </div>
 
                             <div className="modal_adsense">

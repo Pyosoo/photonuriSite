@@ -122,14 +122,6 @@ button:hover{cursor: pointer;}
   width: 100%;
 }
 
-.footer_item_p{
-  font-size: 1.5em;
-  color: white;
-  font-weight: 800;
-  width: max-content;
-  margin-left: auto;
-  margin-right: auto;
-}
 .footer_item_a{
   display: block;
   color: #666E6E!important;
@@ -148,7 +140,7 @@ button:hover{cursor: pointer;}
   color: white;
 }
 .footer_info_p2{
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   font-weight: 500;
   width: max-content;
   margin-left: auto;
@@ -183,6 +175,7 @@ button:hover{cursor: pointer;}
   text-align: center;
   margin-left: auto;
   margin-right: auto;
+  margin-bottom: 15px;
 }
 .main_line{
   margin-top: 100px;
@@ -350,6 +343,10 @@ button:hover{cursor: pointer;}
   margin-left: auto;
   margin-right: auto;
 }
+.photo_body p{
+  font-family: sans-serif;
+  margin-top: 10px;
+}
 .photo_item{
   width: 250px;
   height: 250px;
@@ -383,7 +380,6 @@ button:hover{cursor: pointer;}
   justify-content: center;
   margin: auto;
   margin-top: 30px;
-  margin-bottom: 100px;
 }
 .photo_main_left{
   width: 70%;
@@ -592,6 +588,16 @@ button:hover{cursor: pointer;}
 
 .modal_link_div:hover{
   box-shadow: rgba(0, 0, 0, 0.3) 0px 7px 15px, rgba(0, 0, 0, 0.22) 0px 7px 5px; 
+}
+
+.modal_link_div_no{
+  width: 250px;
+  padding: 5px 10px;
+  border: 1px solid #D1D1D1;
+  border-radius: 5px;
+  margin-left: 20px;
+  margin-right: 20px;
+  background-color: rgb(191, 188, 188);
 }
 
 

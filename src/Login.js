@@ -1,13 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import { useCookies, Cookies } from 'react-cookie';
+import axios from 'axios';
+
+
 
 function Login({ history }) {
     const [ID, setID] = useState('');
     const [PW, setPW] = useState('');
     const [cookies, setCookie, removeCookie] = useCookies(['loginState']);
 
-    function checkLogin() {
-        if (ID === process.env.REACT_APP_ADMIN_ID && PW === process.env.REACT_APP_ADMIN_PASSWORD) {
+
+    async function TryLogIn() {
+        const res = await axios.post(`${process.env.REACT_APP_API_ADDRESS}/login`, { 'id': ID, 'password': PW })
+        if (res.status === 200) {
             setCookie('loginState', true);
             history.push("/");
             window.location.reload();
@@ -29,9 +34,9 @@ function Login({ history }) {
             </div>
             <div className="login_field">
                 <div className="loginText">비밀번호</div>
-                <input className="loginInput" type="password" onKeyDown={e => { if (e.key === "Enter") { checkLogin() } }} onChange={e => setPW(e.target.value)} />
+                <input className="loginInput" type="password" onKeyDown={e => { if (e.key === "Enter") { TryLogIn() } }} onChange={e => setPW(e.target.value)} />
             </div>
-            <button className="login_btn" onClick={e => checkLogin()}>로그인</button>
+            <button className="login_btn" onClick={e => TryLogIn()}>로그인</button>
         </div>
     )
 }

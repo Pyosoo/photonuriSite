@@ -16,7 +16,6 @@ function Footer() {
                             <img alt="" className='footer_icon' src='http://www.photonuri.com/images/shutter_icon.png' />
                             <img alt="" className='footer_icon2' src="http://www.photonuri.com/images/shutter_text.png" />
                         </a>
-                        <p className="footer_item_p">Shutterstock</p>
                         <a className="footer_item_a" href="https://www.shutterstock.com/g/alnet" rel='noreferrer' target="_blank">click to view Details.</a>
                     </div>
                 </div>
@@ -26,7 +25,6 @@ function Footer() {
                             <img alt="" className='footer_icon' src='http://www.photonuri.com/images/adobe_icon.png' />
                             <img alt="" className='footer_icon2' src="http://www.photonuri.com/images/adobe_text.png" />
                         </a>
-                        <p className="footer_item_p">Adobe Stock</p>
                         <a className="footer_item_a" href="https://stock.adobe.com/kr/contributor/207850314/syston" rel='noreferrer' target="_blank">click to view Details.</a>
                     </div>
                 </div>
@@ -36,7 +34,6 @@ function Footer() {
                             <img alt="" className='footer_icon' src='http://www.photonuri.com/images/getty_icon.png' />
                             <img alt="" className='footer_icon2' src="http://www.photonuri.com/images/gety_text.png" />
                         </a>
-                        <p className="footer_item_p">Getty Images</p>
                         <a className="footer_item_a" href="http://www.istockphoto.com/portfolio/syston" rel='noreferrer' target="_blank">click to view Details.</a>
                     </div>
                 </div>
