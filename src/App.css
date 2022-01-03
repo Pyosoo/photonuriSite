@@ -520,13 +520,14 @@ button:hover{cursor: pointer;}
   border: none;
   outline: 0;
   border-radius: 2px;
-  color: white;
-  font-weight: 400;
+  color: black;
+  font-weight: 700;
   font-size: 12px;
   margin-left: 10px;
   margin-right: 10px;
-  background-color: #00A3FF;
+  background-color: #7F7F7F;
   box-shadow: rgba(116, 114, 114, 0.24) 0px 3px 8px;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 .moveBtn2:hover{
   background-color: #484848;
@@ -622,4 +623,8 @@ button:hover{cursor: pointer;}
 .mainImgSmall:hover{
   transform: scale(1.02);
   transition: 0.5s ease;
+}
+
+.arrow_btn:hover{
+  color: #454545;
 }

@@ -4,6 +4,8 @@ import axios from 'axios';
 import { useHistory } from 'react-router-dom'
 import { Input, Select, Button, Modal, Pagination } from 'antd';
 import { ArrowLeftOutlined, ArrowRightOutlined } from "@ant-design/icons"
+import { Watermark } from '@hirohe/react-watermark';
+import {Adsense} from '@ctrl/react-adsense';
 import 'antd/dist/antd.css';
 const { Option } = Select;
 
@@ -129,40 +131,35 @@ function Folder({ location, match }) {
 
     useEffect(() => {
         fetchCategories();
+        
     }, [])
-
     return (
         <div className="photo_container">
-
             <div className="folder_ad">
-                {/* <GoogleAdsense
-                    adClient='ca-pub-7183258811881624'
-                    adSlot='5993734338'
-                /> */}
+                <Adsense
+                    client='ca-pub-7183258811881624'
+                    slot='5993734338'
+                    style={{ width: 728, height: 90 }}
+                />
             </div>
             {
                 mainImgItem && items.length > 0 ?
                     <>
                         <div className="photo_main">
                             <div className="photo_main_left">
-                                <img
-                                    alt=""
-                                    src={mainImgItem.image}
-                                    className="photo_main_img"
-                                    onClick={e => {
-                                        setModalOpen(true);
-                                        setSelectedItems(mainImgItem);
-                                    }}
-                                />
+                                <Watermark text="photonuri">
+                                    <img
+                                        alt=""
+                                        src={mainImgItem.image}
+                                        className="photo_main_img"
+                                        onClick={e => {
+                                            setModalOpen(true);
+                                            setSelectedItems(mainImgItem);
+                                        }}
+                                    />
+                                </Watermark>
                             </div>
                             <div className="photo_main_right">
-                                <div className="photo_main_p">
-                                    {mainImgItem.title}
-                                    <p className='photo_main_subT'>
-                                        Name
-                                    </p>
-                                    <div className='photo_divider'></div>
-                                </div>
                                 <div className="photo_main_p">
                                     {mainImgCategory}
                                     <p className='photo_main_subT'>
@@ -175,6 +172,14 @@ function Folder({ location, match }) {
 
                                     <div className='photo_divider'></div>
                                 </div>
+                                <div className="photo_main_p">
+                                    {mainImgItem.title}
+                                    <p className='photo_main_subT'>
+                                        Name
+                                    </p>
+                                    <div className='photo_divider'></div>
+                                </div>
+                                
                                 <div className="photo_main_p2">
                                     {mainImgItem.content}
                                     <p className='photo_main_subT2'>Details</p>
@@ -312,6 +317,19 @@ function Folder({ location, match }) {
 
             </div>
 
+
+            
+            <div 
+                className="folder_ad"
+                style={{marginTop:'30px', marginBottom:'70px'}}
+            >
+                <Adsense
+                    client='ca-pub-7183258811881624'
+                    slot='5993734338'
+                    style={{ width: 728, height: 90 }}
+                />
+            </div>
+
             {/*  카테고리 이동 모달창  */}
             {
                 category ?
@@ -388,16 +406,24 @@ function Folder({ location, match }) {
                         onCancel={closeModal}
                         closable={true}
                         width={1400}
+                        style={{minWidth:'1300px'}}
                         footer={null}
 
                     >
-                        <div className="modal_container">
+                        <div 
+                            className="modal_container"
+                        >
                             <div className="modal_adsense">
+                                <Adsense
+                                    client='ca-pub-7183258811881624'
+                                    slot='5993734338'
+                                    style={{ width: 90, height: 728 }}
+                                />
                             </div>
                             <div 
                                 style={{ 
-                                    height: '728px', 
-                                    lineHeight: '728px', 
+                                    height: '770px', 
+                                    lineHeight: '770px', 
                                     verticalAlign: 'middle', 
                                     width: '1300px', 
                                     marginLeft: 'auto', 
@@ -419,14 +445,17 @@ function Folder({ location, match }) {
                                             fontSize:'30px',
                                             margin:'5px'
                                         }}
+                                        className='arrow_btn'
                                         onClick={e => changeMainLeft()}
                                     />
                                 </div>
-                                <img
-                                    src={selectedItems.image}
-                                    alt=""
-                                    className="modal_image"
-                                />
+                                <Watermark text="photonuri">
+                                    <img
+                                        src={selectedItems.image}
+                                        alt=""
+                                        className="modal_image"
+                                    />
+                                </Watermark>
                                 <div
                                     style={{
                                         position:'absolute',
@@ -441,12 +470,18 @@ function Folder({ location, match }) {
                                             fontSize:'30px',
                                             margin:'5px'
                                         }}
+                                        className='arrow_btn'
                                         onClick={e => changeMainRight()}
                                     />
                                 </div>
                             </div>
 
                             <div className="modal_adsense">
+                                <Adsense
+                                    client='ca-pub-7183258811881624'
+                                    slot='5993734338'
+                                    style={{ width: 90, height: 728 }}
+                                />
                             </div>
                         </div>
                     </Modal>
