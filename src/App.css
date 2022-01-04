@@ -1,5 +1,26 @@
 @import url('https://fonts.googleapis.com/css2?family=Song+Myung&display=swap');
 
+
+@media only screen and (max-width: 500px) {
+  .main_line{
+    display: none;
+  }
+  .footer{
+    display: none;
+  }
+  .header{
+    display: none;
+  }
+  .mobile_Notice{
+    display: block;
+    font-size: 25px;
+    text-align: center;
+    margin-top: 150px;
+  }
+}
+
+@media screen and (min-width: 501px) {
+  
 img:hover{
   cursor: pointer;
   transition: all 0.5s;
@@ -628,3 +649,5 @@ button:hover{cursor: pointer;}
 .arrow_btn:hover{
   color: #454545;
 }
+}
+

@@ -44,6 +44,7 @@ function Choice(props) {
 
     if (mainData.length !== 0) {
         return (
+            <>
             <div className="main_line">
                 {/* 메인1 */}
                 <div style={{ display: 'flex', width: '1300px', marginLeft: 'auto', marginRight: 'auto' }}>
@@ -327,6 +328,10 @@ function Choice(props) {
                     />
                 </div>
             </div>
+            <div className='mobile_Notice'>
+                    PC버전을 이용해주세요.
+            </div>
+        </>
         )
     } else return <div style={{ height: '500px', lineHeight: '500px', textAlign: 'center', fontSize: '25px', fontWeight: '600' }}>데이터가 없습니다.</div>
 
