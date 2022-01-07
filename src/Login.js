@@ -13,9 +13,11 @@ function Login({ history }) {
     async function TryLogIn() {
         const res = await axios.post(`${process.env.REACT_APP_API_ADDRESS}/login`, { 'id': ID, 'password': PW })
         if (res.status === 200) {
+            console.log(res)
             setCookie('loginState', true);
-            history.push("/");
-            window.location.reload();
+            setCookie('auth', res.data);
+            // history.push("/");
+            // window.location.reload();
         } else {
             alert("아이디 또는 비밀번호가 올바르지 않습니다.")
             setCookie('loginState', false);

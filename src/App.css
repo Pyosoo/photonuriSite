@@ -52,7 +52,7 @@ button:hover{cursor: pointer;}
   width: 100%;
   height: 450px;
   padding-top: 100px;
-  background-image: url('http://www.photonuri.com/images/main_top_back.png');
+  background-image: url('http://www.photonuri.com/images/main_top_back.jpg');
   opacity: 0.95;
   background-size: cover;
   background-repeat: no-repeat;
@@ -102,7 +102,7 @@ button:hover{cursor: pointer;}
   border-top: 1px solid #eaeaea;
   justify-content: center;
   align-items: center;
-  background-image: url('http://www.photonuri.com/images/main_bottom_back.png');
+  background-image: url('http://www.photonuri.com/images/main_bottom_back.jpg');
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;

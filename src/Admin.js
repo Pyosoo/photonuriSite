@@ -96,18 +96,27 @@ function Admin() {
             return;
         }
 
-        const res = await axios.post(`${process.env.REACT_APP_API_ADDRESS}/createItem`, {
-            "image": imgSrc,
-            "code": addedcat3,
-            "title": addedTitle,
-            "content": addedcontent,
-            "expose": addedExpose,
-            "links": {
-                'shutterstock': link1,
-                'adobestock': link2,
-                'istockphoto': link3
+        const res = await axios.post(`${process.env.REACT_APP_API_ADDRESS}/createItem`,
+        {
+            headers:{
+                Cookie: Cookies.get('auth')
+            },
+            data:{
+                "image": imgSrc,
+                "code": addedcat3,
+                "title": addedTitle,
+                "content": addedcontent,
+                "expose": addedExpose,
+                "links": {
+                    'shutterstock': link1,
+                    'adobestock': link2,
+                    'istockphoto': link3
+                }
             }
-        })
+        },
+        {
+           
+        } )
         if (res && res.data.success) {
             alert("성공적으로 등록되었습니다.")
         } else {
@@ -196,7 +205,12 @@ function Admin() {
 
     async function makeURL(data) {
         const res = await axios.post(`${process.env.REACT_APP_API_ADDRESS}/createImage`, {
-            "image": data
+            header:{
+                Cookie: Cookies.get('auth')
+            },
+            data:{
+                "image": data
+            }
         })
         if (res && res.data.success) {
             setImgSrc(res.data.data);
