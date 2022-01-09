@@ -43,6 +43,7 @@ function Choice(props) {
 
 
     if (mainData.length !== 0) {
+        console.log(mainData)
         return (
             <>
             <div className="main_line">
@@ -62,7 +63,7 @@ function Choice(props) {
                                 >
                                     <div style={{ width: '100%', height: '460px' }}>
                                         <img
-                                            src={mainData[0].image}
+                                            src={mainData[0].listImage.listImage}
                                             alt=""
                                             className='mainImgBig'
                                             onClick={e => {
@@ -91,7 +92,7 @@ function Choice(props) {
                                         className='mainImage1'
                                     >
                                         <img
-                                            src={mainData[1].image}
+                                            src={mainData[1].listImage.listImage}
                                             alt=""
                                             className='mainImgSmall'
                                             onClick={e => {
@@ -114,7 +115,7 @@ function Choice(props) {
                                         className='mainImage1'
                                     >
                                         <img
-                                            src={mainData[2].image}
+                                            src={mainData[2].listImage.listImage}
                                             alt=""
                                             className='mainImgSmall'
                                             onClick={e => {
@@ -141,7 +142,7 @@ function Choice(props) {
                                         className='mainImage1'
                                     >
                                         <img
-                                            src={mainData[3].image}
+                                            src={mainData[3].listImage.listImage}
                                             alt=""
                                             className='mainImgSmall'
                                             onClick={e => {
@@ -165,7 +166,7 @@ function Choice(props) {
                                         className='mainImage1'
                                     >
                                         <img
-                                            src={mainData[4].image}
+                                            src={mainData[4].listImage.listImage}
                                             alt=""
                                             className='mainImgSmall'
                                             onClick={e => {
@@ -198,7 +199,7 @@ function Choice(props) {
                                         className='mainImage1'
                                     >
                                         <img
-                                            src={mainData[5].image}
+                                            src={mainData[5].listImage.listImage}
                                             alt=""
                                             className='mainImgSmall'
                                             onClick={e => {
@@ -222,7 +223,7 @@ function Choice(props) {
                                         className='mainImage1'
                                     >
                                         <img
-                                            src={mainData[6].image}
+                                            src={mainData[6].listImage.listImage}
                                             alt=""
                                             className='mainImgSmall'
                                             onClick={e => {
@@ -249,7 +250,7 @@ function Choice(props) {
                                         className='mainImage1'
                                     >
                                         <img
-                                            src={mainData[7].image}
+                                            src={mainData[7].listImage.listImage}
                                             alt=""
                                             className='mainImgSmall'
                                             onClick={e => {
@@ -273,7 +274,7 @@ function Choice(props) {
                                         className='mainImage1'
                                     >
                                         <img
-                                            src={mainData[8].image}
+                                            src={mainData[8].listImage.listImage}
                                             alt=""
                                             className='mainImgSmall'
                                             onClick={e => {
@@ -301,7 +302,7 @@ function Choice(props) {
                                     className='mainImage0'
                                 >
                                         <img
-                                            src={mainData[9].image}
+                                            src={mainData[9].listImage.listImage}
                                             alt=""
                                             className='mainImgBig'
                                             onClick={e => {
@@ -333,7 +334,7 @@ function Choice(props) {
             </div>
         </>
         )
-    } else return <div style={{ height: '500px', lineHeight: '500px', textAlign: 'center', fontSize: '25px', fontWeight: '600' }}>데이터가 없습니다.</div>
+    } else return <div style={{ height: '500px', lineHeight: '500px', textAlign: 'center', fontSize: '25px', fontWeight: '600' }}>사진을 업로드해주세요.</div>
 
 
 }

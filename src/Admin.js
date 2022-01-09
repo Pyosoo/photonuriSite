@@ -8,6 +8,7 @@ import 'antd/dist/antd.css';
 const { Option } = Select;
 const { TextArea } = Input;
 
+const cookie = new Cookies();
 
 function Admin() {
 
@@ -19,6 +20,7 @@ function Admin() {
     const [addedcat3, setAddedCat3] = useState('선택');
     const [addedcontent, setAddedContent] = useState('');
     const [addedExpose, setAddedExpose] = useState(false);
+    const [addImgList, setAddImgList] = useState([]);
     const [imgSrc, setImgSrc] = useState(null);
     const [cateData, setCateData] = useState(null)
     const [link1, setLink1] = useState('');
@@ -98,25 +100,22 @@ function Admin() {
 
         const res = await axios.post(`${process.env.REACT_APP_API_ADDRESS}/createItem`,
         {
-            headers:{
-                Cookie: Cookies.get('auth')
-            },
-            data:{
-                "image": imgSrc,
-                "code": addedcat3,
-                "title": addedTitle,
-                "content": addedcontent,
-                "expose": addedExpose,
-                "links": {
-                    'shutterstock': link1,
-                    'adobestock': link2,
-                    'istockphoto': link3
-                }
+            "image": imgSrc,
+            "listImage": addImgList,
+            "code": addedcat3,
+            "title": addedTitle,
+            "content": addedcontent,
+            "expose": addedExpose,
+            "links": {
+                'shutterstock': link1,
+                'adobestock': link2,
+                'istockphoto': link3
             }
-        },
-        {
-           
-        } )
+        },{
+            headers: {
+                auth : cookie.get('auth') 
+            }
+        })
         if (res && res.data.success) {
             alert("성공적으로 등록되었습니다.")
         } else {
@@ -126,13 +125,19 @@ function Admin() {
 
 
     async function modifyItem() {
+        console.log(selectedUpdateData)
         const res = await axios.post(`${process.env.REACT_APP_API_ADDRESS}/updateItem`, {
             "image": selectedUpdateData.image,
+            "listImage": selectedUpdateData.listImage,
             "title": selectedUpdateData.title,
             "content": selectedUpdateData.content,
             "links": selectedUpdateData.links,
             "_id": selectedUpdateData['_id'],
             "expose": selectedUpdateData.expose
+        },{
+            headers: {
+                auth : cookie.get('auth') 
+            }
         })
         if (res.data.success) {
             alert("성공적으로 변경되었습니다.");
@@ -141,6 +146,7 @@ function Admin() {
                 if (d._id === selectedUpdateData['_id']) {
                     return {
                         "image": selectedUpdateData.image,
+                        "listImage": selectedUpdateData.listImage,
                         "title": selectedUpdateData.title,
                         "content": selectedUpdateData.content,
                         "links": selectedUpdateData.links,
@@ -157,6 +163,10 @@ function Admin() {
     async function deleteItem() {
         const res = await axios.post(`${process.env.REACT_APP_API_ADDRESS}/deleteItem`, {
             "_id": selectedUpdateData['_id'],
+        },{
+            headers: {
+                auth : cookie.get('auth') 
+            }
         })
         if (res.data.success) {
             alert("성공적으로 삭제되었습니다.");
@@ -174,6 +184,10 @@ function Admin() {
             "code": _code,
             "text": modifyCateogryInputValue,
             "region": _region
+        },{
+            headers: {
+                auth : cookie.get('auth') 
+            }
         })
         if (res.data.success) {
             alert("성공적으로 수정되었습니다.");
@@ -192,6 +206,10 @@ function Admin() {
             "cat2": modifyCat2,
             "text": addCateValue,
             "region": addCateRegion
+        },{
+            headers: {
+                auth : cookie.get('auth') 
+            }
         })
         if (res.data.success) {
             alert("성공적으로 추가되었습니다.");
@@ -204,27 +222,37 @@ function Admin() {
 
 
     async function makeURL(data) {
+        console.log('makeURL1')
         const res = await axios.post(`${process.env.REACT_APP_API_ADDRESS}/createImage`, {
-            header:{
-                Cookie: Cookies.get('auth')
-            },
-            data:{
-                "image": data
+            "image": data
+        },{
+            headers: {
+                auth : cookie.get('auth') 
             }
         })
         if (res && res.data.success) {
-            setImgSrc(res.data.data);
+            setImgSrc(res.data.data.listImage);
+            setAddImgList(res.data.data);
         }
     }
     async function makeURL2(data) {
+        console.log('makeURL2')
         const res = await axios.post(`${process.env.REACT_APP_API_ADDRESS}/createImage`, {
             "image": data
+        },{
+            headers: {
+                auth : cookie.get('auth') 
+            }
         })
         if (res && res.data.success) {
+            console.log(res.data.data)
             setSelectedUpdateData({
                 ...selectedUpdateData,
-                image: res.data.data
+                image: res.data.data.listImage,
+                listImage: res.data.data
             })
+        }else {
+            console.log("Error")
         }
     }
 

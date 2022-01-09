@@ -20,6 +20,10 @@
 }
 
 @media screen and (min-width: 501px) {
+
+  .mobile_Notice{
+    display: none;
+  }
   
 img:hover{
   cursor: pointer;
@@ -52,7 +56,7 @@ button:hover{cursor: pointer;}
   width: 100%;
   height: 450px;
   padding-top: 100px;
-  background-image: url('http://www.photonuri.com/images/main_top_back.jpg');
+  background-image: url('http://www.photonuri.com/images/main_top_back.png');
   opacity: 0.95;
   background-size: cover;
   background-repeat: no-repeat;
@@ -102,7 +106,7 @@ button:hover{cursor: pointer;}
   border-top: 1px solid #eaeaea;
   justify-content: center;
   align-items: center;
-  background-image: url('http://www.photonuri.com/images/main_bottom_back.jpg');
+  background-image: url('http://www.photonuri.com/images/main_bottom_back.png');
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -432,6 +436,8 @@ button:hover{cursor: pointer;}
   padding-right: 10px;
   border-radius: 7px;
   position: relative;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 .photo_main_p2{
   position: relative;

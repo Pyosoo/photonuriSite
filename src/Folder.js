@@ -4,17 +4,19 @@ import axios from 'axios';
 import { useHistory } from 'react-router-dom'
 import { Input, Select, Button, Modal, Pagination } from 'antd';
 import { ArrowLeftOutlined, ArrowRightOutlined } from "@ant-design/icons"
-import { Watermark } from '@hirohe/react-watermark';
 import {Adsense} from '@ctrl/react-adsense';
+import {Cookies , useCookies} from 'react-cookie';
 import 'antd/dist/antd.css';
 const { Option } = Select;
+
+const cookies = new Cookies();
 
 function Folder({ location, match }) {
     const history = useHistory();
     const [category, setCategory] = useState(null);
     const [code, setCode] = useState(location.pathname.split('/')[location.pathname.split('/').length - 1])
     const [modalVisible, setModalVisible] = useState(false);
-    const [items, setItems] = useState([1])
+    const [items, setItems] = useState([{listImage: []}])
     const [totalLength, setTotalLength] = useState(0);
     const [selectedItems, setSelectedItems] = useState(null);
     const [modalOpen, setModalOpen] = useState(false);
@@ -46,13 +48,16 @@ function Folder({ location, match }) {
         setMoveCategoryModalOpen(false)
     }
 
-
     async function GetItems(c) {
         const res = await axios.post(`${process.env.REACT_APP_API_ADDRESS}/searchItems`, {
             "code": c === 0 ? code : c,
             "page": pageNum,
+        },{
+            cookie : cookies.get('auth')
         })
+        console.log(res);
         if (res.data.success && res.data.data.items.length > 0) {
+            console.log(res.data.data.items)
             setItems(res.data.data.items)
             setTotalLength(res.data.data.total)
             setMainImgItem(res.data.data.items[0]);
@@ -142,22 +147,22 @@ function Folder({ location, match }) {
                     style={{ width: 728, height: 90 }}
                 />
             </div>
+
+            {/* 메인이미지 세부설명 나와있는 곳 */}
             {
                 mainImgItem && items.length > 0 ?
                     <>
                         <div className="photo_main">
                             <div className="photo_main_left">
-                                <Watermark text="photonuri">
                                     <img
                                         alt=""
-                                        src={mainImgItem.image}
+                                        src={mainImgItem.listImage.mainImage}
                                         className="photo_main_img"
                                         onClick={e => {
                                             setModalOpen(true);
                                             setSelectedItems(mainImgItem);
                                         }}
                                     />
-                                </Watermark>
                             </div>
                             <div className="photo_main_right">
                                 <div className="photo_main_p">
@@ -227,6 +232,9 @@ function Folder({ location, match }) {
             }
 
 
+
+
+            {/* 폴더 이미지 리스트 나오는 곳 */}
             <div className="photo_body">
                 {
                     items.length > 0 ?
@@ -238,7 +246,7 @@ function Folder({ location, match }) {
                                     catchCategory(item.code)
                                 }}>
                                     <img
-                                        src={item.image}
+                                        src={item.listImage.listImage}
                                         alt=""
                                         className="photo_img"
                                     />
@@ -449,13 +457,11 @@ function Folder({ location, match }) {
                                         onClick={e => changeMainLeft()}
                                     />
                                 </div>
-                                <Watermark text="photonuri">
                                     <img
-                                        src={selectedItems.image}
+                                        src={selectedItems.listImage.mainImage}
                                         alt=""
                                         className="modal_image"
                                     />
-                                </Watermark>
                                 <div
                                     style={{
                                         position:'absolute',
