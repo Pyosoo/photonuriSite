@@ -191,7 +191,17 @@ function Folder({ location, match }) {
                                 </div>
                             </div>
                         </div>
-                        <div style={{ textAlign: 'center', display: 'flex', justifyContent:'center', marginTop: '0px', marginBottom: '100px' }}>
+                        <div 
+                            style={{ 
+                                width:'1300px',
+                                marginRight:'auto', 
+                                display: 'flex', 
+                                justifyContent:'left',
+                                marginLeft:'auto', 
+                                marginTop: '0px', 
+                                marginBottom: '100px',
+                                }}
+                            >
                             {
                                 mainImgItem.links.shutterstock.length > 0 ?
                                     <div className='modal_link_div'>
@@ -317,11 +327,11 @@ function Folder({ location, match }) {
                     total={totalLength}
                     pageSize={10}
                 />
-                <Button
+                {/* <Button
                     style={{ marginLeft: 'auto', marginRight: 'auto', display: 'block', marginTop: '50px', marginBottom: '50px' }}
                     onClick={e => {
                         history.push("/")
-                    }}>처음으로</Button>
+                    }}>처음으로</Button> */}
 
             </div>
 

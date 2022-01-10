@@ -330,7 +330,9 @@ function Choice(props) {
                 </div>
             </div>
             <div className='mobile_Notice'>
-                    PC버전을 이용해주세요.
+            <p>Photonuri.com PC버전입니다. PC 통해 접속을 부탁드립니다.</p>
+            <p>Photonuri.com is the PC version website. Please connect by PC</p>
+           
             </div>
         </>
         )
