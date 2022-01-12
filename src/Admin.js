@@ -41,7 +41,8 @@ function Admin() {
 
     const [modifyCat1, setModifyCat1] = useState('선택');
     const [modifyCat2, setModifyCat2] = useState('선택');
-    const [modifyCateogryInputValue, setModifyCateogryInputValue] = useState('');
+    const [modifyCategoryInputValue, setmodifyCategoryInputValue] = useState('');
+    const [modifyCategoryInputValue2, setmodifyCategoryInputValue2] = useState('');
     const [categoryModifyMode, setCateogryModifyMode] = useState(false);
     const [categoryModifyCode, setCategoryModifyCode] = useState(0);
 
@@ -178,12 +179,15 @@ function Admin() {
         }
     }
 
-    async function modifyCategory(_code, _region) {
-        console.log(_code, _region)
+    async function modifyCategory(_code) {
+        if(modifyCategoryInputValue.trim() === "" || modifyCategoryInputValue2.trim() === ""){
+            alert("값을 입력해주세요.")
+            return ;
+        }
         const res = await axios.post(`${process.env.REACT_APP_API_ADDRESS}/modifyCategory`, {
             "code": _code,
-            "text": modifyCateogryInputValue,
-            "region": _region
+            "text": modifyCategoryInputValue,
+            "region": modifyCategoryInputValue2
         },{
             headers: {
                 auth : cookie.get('auth') 
@@ -492,19 +496,22 @@ function Admin() {
                                                     })
                                                 }
                                             </Select>
-                                            <div style={{ display: 'flex', marginTop: '50px', marginBottom: '50px', flexWrap: 'wrap' }}>
+                                            <div style={{ display: 'flex', marginTop: '50px', marginBottom: '50px', flexWrap: 'wrap', flexDirection:'column' }}>
                                                 {
                                                     cateData['cat3'].filter((c) => (c.cat1 === modifyCat1 && c.cat2 === modifyCat2)).map((d, index) => {
                                                         return <div className='modifyCategoryItem'>
                                                             {
                                                                 categoryModifyMode && d.code === categoryModifyCode ?
-                                                                    <input value={modifyCateogryInputValue} onChange={e => setModifyCateogryInputValue(e.target.value)} />
+                                                                    <>
+                                                                        <input placeholder={d.text} value={modifyCategoryInputValue} onChange={e => setmodifyCategoryInputValue(e.target.value)} />
+                                                                        <input placeholder={d.region} value={modifyCategoryInputValue2} onChange={e => setmodifyCategoryInputValue2(e.target.value)} />
+                                                                    </>
                                                                     :
-                                                                    <div className='modifyDiv'>{index}. {d.text}</div>
+                                                                    <div className='modifyDiv'>{index}. {d.text} ( {d.region} ) </div>
                                                             }
                                                             {
                                                                 categoryModifyMode ?
-                                                                    <button className='modifyButton' onClick={e => modifyCategory(d.code, d.region)}>확인</button>
+                                                                    <button className='modifyButton' onClick={e => modifyCategory(d.code)}>확인</button>
                                                                     :
                                                                     <button className='modifyButton' onClick={e => {
                                                                         setCateogryModifyMode(true);
