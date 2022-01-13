@@ -56,22 +56,21 @@ function Choice(props) {
                                     to={{
                                         pathname: `/folder/${mainData[0].code}`,
                                         state: {
-                                            categoryData: cateData
+                                            categoryData: cateData,
+                                            ID: mainData[0]._id
                                         }
                                     }}
                                     className='mainImage0'
                                 >
-                                    <div style={{ width: '100%', height: '460px' }}>
-                                        <img
-                                            src={mainData[0].listImage.listImage}
-                                            alt=""
-                                            className='mainImgBig'
-                                            onClick={e => {
-                                                setcat1(mainData[0].code);
-                                                window.scrollTo(0, 300)
-                                            }}
-                                        />
-                                    </div>
+                                    <img
+                                        src={mainData[0].listImage.listImage}
+                                        alt=""
+                                        className='mainImgBig'
+                                        onClick={e => {
+                                            setcat1(mainData[0].code);
+                                            window.scrollTo(0, 300)
+                                        }}
+                                    />
                                 </Link>
                                 :
                                 null
@@ -86,7 +85,8 @@ function Choice(props) {
                                         to={{
                                             pathname: `/folder/${mainData[1].code}`,
                                             state: {
-                                                categoryData: cateData
+                                                categoryData: cateData,
+                                                ID: mainData[1]._id
                                             }
                                         }}
                                         className='mainImage1'
@@ -109,7 +109,8 @@ function Choice(props) {
                                         to={{
                                             pathname: `/folder/${mainData[2].code}`,
                                             state: {
-                                                categoryData: cateData
+                                                categoryData: cateData,
+                                                ID: mainData[2]._id
                                             }
                                         }}
                                         className='mainImage1'
@@ -136,7 +137,8 @@ function Choice(props) {
                                         to={{
                                             pathname: `/folder/${mainData[3].code}`,
                                             state: {
-                                                categoryData: cateData
+                                                categoryData: cateData,
+                                                ID: mainData[3]._id
                                             }
                                         }}
                                         className='mainImage1'
@@ -160,7 +162,8 @@ function Choice(props) {
                                         to={{
                                             pathname: `/folder/${mainData[4].code}`,
                                             state: {
-                                                categoryData: cateData
+                                                categoryData: cateData,
+                                                ID: mainData[4]._id
                                             }
                                         }}
                                         className='mainImage1'
@@ -193,7 +196,8 @@ function Choice(props) {
                                         to={{
                                             pathname: `/folder/${mainData[5].code}`,
                                             state: {
-                                                categoryData: cateData
+                                                categoryData: cateData,
+                                                ID: mainData[5]._id
                                             }
                                         }}
                                         className='mainImage1'
@@ -217,7 +221,8 @@ function Choice(props) {
                                         to={{
                                             pathname: `/folder/${mainData[6].code}`,
                                             state: {
-                                                categoryData: cateData
+                                                categoryData: cateData,
+                                                ID: mainData[6]._id
                                             }
                                         }}
                                         className='mainImage1'
@@ -244,7 +249,8 @@ function Choice(props) {
                                         to={{
                                             pathname: `/folder/${mainData[7].code}`,
                                             state: {
-                                                categoryData: cateData
+                                                categoryData: cateData,
+                                                ID: mainData[7]._id
                                             }
                                         }}
                                         className='mainImage1'
@@ -268,7 +274,8 @@ function Choice(props) {
                                         to={{
                                             pathname: `/folder/${mainData[8].code}`,
                                             state: {
-                                                categoryData: cateData
+                                                categoryData: cateData,
+                                                ID: mainData[8]._id
                                             }
                                         }}
                                         className='mainImage1'
@@ -296,7 +303,8 @@ function Choice(props) {
                                     to={{
                                         pathname: `/folder/${mainData[9].code}`,
                                         state: {
-                                            categoryData: cateData
+                                            categoryData: cateData,
+                                            ID: mainData[9]._id
                                         }
                                     }}
                                     className='mainImage0'

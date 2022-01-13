@@ -60,7 +60,16 @@ function Folder({ location, match }) {
             console.log(res.data.data.items)
             setItems(res.data.data.items)
             setTotalLength(res.data.data.total)
-            setMainImgItem(res.data.data.items[0]);
+            for(let i=0; i<res.data.data.items.length; i++){
+                if(res.data.data.items[i]._id === location.state.ID){
+                    setMainImgItem(res.data.data.items[i]);
+                    break;
+                }
+                if(i === res.data.data.items.length -1 && res.data.data.items[i]._id !== location.state.ID){
+                    console.log("not found")
+                    setMainImgItem(res.data.data.items[0]);
+                }
+            }
             catchCategory(res.data.data.items[0].code)
         } else {
             setItems([])
@@ -138,6 +147,7 @@ function Folder({ location, match }) {
         fetchCategories();
         
     }, [])
+
     return (
         <div className="photo_container">
             <div className="folder_ad">
@@ -199,42 +209,46 @@ function Folder({ location, match }) {
                                 justifyContent:'left',
                                 marginLeft:'auto', 
                                 marginTop: '0px', 
-                                marginBottom: '100px',
+                                marginBottom: '50px',
                                 }}
                             >
                             {
                                 mainImgItem.links.shutterstock.length > 0 ?
                                     <div className='modal_link_div'>
-                                        <img style={{ width: '180px' }} alt="" rel="noreferrel" src={imageSrcUrl + "shutter_text.png"} />
-                                        <a href={mainImgItem.links.adobestock} target="_blank" rel='noreferrer'><img style={{ width: '25px', height: '25px' }} alt="" rel="noreferrel" src={imageSrcUrl + "link_icon.png"} /></a>
+                                        <a href={mainImgItem.links.adobestock} target="_blank">
+                                            <img style={{ width: '30px', marginLeft:'auto', marginRight:'auto' }} alt="" rel="noreferrel" src={imageSrcUrl + "shutter_active.png"} />
+                                        </a>
                                     </div>
                                     :
                                     <div className='modal_link_div_no'>
-                                        <img style={{ width: '180px' }} alt="" rel="noreferrel" src={imageSrcUrl + "shutter_text.png"} />
+                                        <img style={{ width: '30px', marginLeft:'auto', marginRight:'auto' }} alt="" rel="noreferrel" src={imageSrcUrl + "shutter.png"} />
                                     </div>
                             }
                             {
                                 mainImgItem.links.adobestock.length > 0 ?
                                     <div className='modal_link_div'>
-                                        <img style={{ width: '180px' }} alt="" rel="noreferrel" src={imageSrcUrl + "adobe_text.png"} />
-                                        <a href={mainImgItem.links.adobestock} target="_blank" rel='noreferrer'><img style={{ width: '25px', height: '25px' }} alt="" rel="noreferrel" src={imageSrcUrl + "link_icon.png"} /></a>
+                                        <a href={mainImgItem.links.adobestock} target="_blank">
+                                            <img style={{ width: '30px', marginLeft:'auto', marginRight:'auto' }} alt="" rel="noreferrel" src={imageSrcUrl + "adobe_active.png"} />
+                                        </a>
                                     </div>
                                     :
                                     <div className='modal_link_div_no'>
-                                        <img style={{ width: '180px' }} alt="" rel="noreferrel" src={imageSrcUrl + "adobe_text.png"} />
+                                        <img style={{ width: '30px', marginLeft:'auto', marginRight:'auto' }} alt="" rel="noreferrel" src={imageSrcUrl + "adobe.png"} />
                                     </div>
                             }
                             {
                                 mainImgItem.links.istockphoto.length > 0 ?
                                     <div className='modal_link_div'>
-                                        <img style={{ width: '180px' }} alt="" rel="noreferrel" src={imageSrcUrl + "gety_text.png"} />
-                                        <a href={mainImgItem.links.istockphoto} target="_blank" rel='noreferrer'><img style={{ width: '25px', height: '25px' }} alt="" rel="noreferrel" src={imageSrcUrl + "link_icon.png"} /></a>
+                                        <a href={mainImgItem.links.istockphoto} target="_blank">
+                                        <img style={{ width: '30px', marginLeft:'auto', marginRight:'auto' }} alt="" rel="noreferrel" src={imageSrcUrl + "gitty_active.png"} />
+                                        </a>
                                     </div>
                                     :
                                     <div className='modal_link_div_no'>
-                                        <img style={{ width: '180px' }} alt="" rel="noreferrel" src={imageSrcUrl + "gety_text.png"} />
+                                        <img style={{ width: '30px', marginLeft:'auto', marginRight:'auto' }} alt="" rel="noreferrel" src={imageSrcUrl + "gitty.png"} />
                                     </div>
                             }
+                            <p className='modal_link_text'>〈〈 click to view details.</p>
                         </div>
                     </>
                     :
