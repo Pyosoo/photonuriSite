@@ -338,13 +338,16 @@ function Choice(props) {
                 </div>
             </div>
             <div className='mobile_Notice'>
-            <p>Photonuri.com PC버전입니다. PC 통해 접속을 부탁드립니다.</p>
-            <p>Photonuri.com is the PC version website. Please connect by PC</p>
-           
             </div>
         </>
         )
-    } else return <div style={{ height: '500px', lineHeight: '500px', textAlign: 'center', fontSize: '25px', fontWeight: '600' }}>사진을 업로드해주세요.</div>
+    } else return (
+        <>
+            <div className='pc_notice' style={{ height: '500px', lineHeight: '500px', textAlign: 'center', fontSize: '25px', fontWeight: '600' }}>사진을 업로드해주세요.</div>
+            <div className='mobile_Notice'>
+            </div>
+        </>
+    )
 
 
 }

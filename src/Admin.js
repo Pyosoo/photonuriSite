@@ -498,7 +498,7 @@ function Admin() {
                                             </Select>
                                             <div style={{ display: 'flex', marginTop: '50px', marginBottom: '50px', flexWrap: 'wrap', flexDirection:'column' }}>
                                                 {
-                                                    cateData['cat3'].filter((c) => (c.cat1 === modifyCat1 && c.cat2 === modifyCat2)).map((d, index) => {
+                                                    cateData['cat3'].filter((c) => (c.cat1 === modifyCat1 && c.cat2 === modifyCat2)).reverse().map((d, index) => {
                                                         return <div className='modifyCategoryItem'>
                                                             {
                                                                 categoryModifyMode && d.code === categoryModifyCode ?

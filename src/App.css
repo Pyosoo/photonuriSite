@@ -8,14 +8,18 @@
   .footer{
     display: none;
   }
+  .pc_notice{
+    display: none;
+  }
   .header{
     display: none;
   }
   .mobile_Notice{
-    display: block;
-    font-size: 25px;
-    text-align: center;
-    margin-top: 150px;
+    width: 100%;
+    height: 600px;
+    background-image: url('http://www.photonuri.com/images/mobile_back.png');
+    background-size: cover;
+    background-position: center;
   }
 }
 
