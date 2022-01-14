@@ -248,7 +248,7 @@ function Folder({ location, match }) {
                                         <img style={{ width: '30px', marginLeft:'auto', marginRight:'auto' }} alt="" rel="noreferrel" src={imageSrcUrl + "gitty.png"} />
                                     </div>
                             }
-                            <p className='modal_link_text'>〈〈 click to view details.</p>
+                            <p className='modal_link_text'>〈〈 click to downloads</p>
                         </div>
                     </>
                     :
